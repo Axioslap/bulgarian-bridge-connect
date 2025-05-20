@@ -13,7 +13,7 @@ const About = () => {
           <div className="max-w-3xl">
             <h1 className="text-4xl font-bold mb-6">About ABTC Bulgaria</h1>
             <p className="text-xl text-gray-600 mb-4">
-              The American Business & Tech Club Bulgaria is an initiative funded by the U.S. Embassy designed to connect U.S.-educated Bulgarians, young professionals, and innovation partners.
+              The American Business & Tech Club Bulgaria is an initiative designed to connect U.S.-educated Bulgarians, young professionals, and innovation partners.
             </p>
           </div>
         </div>
@@ -126,26 +126,6 @@ const About = () => {
                 We embrace change and remain flexible in our approach, constantly evolving to meet the needs of our members in a rapidly changing world.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* U.S. Embassy Support */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">U.S. Embassy Support</h2>
-            <div className="w-16 h-1 bg-primary mx-auto mb-8"></div>
-            <p className="text-gray-600 mb-6">
-              The American Business & Tech Club Bulgaria is proudly funded by the U.S. Embassy, 
-              reflecting the United States' commitment to fostering economic ties, innovation, 
-              and democratic values in the region.
-            </p>
-            <p className="text-gray-600">
-              This support enables us to develop impactful programs, create valuable networking 
-              opportunities, and establish a sustainable platform for long-term collaboration 
-              between professionals in both countries.
-            </p>
           </div>
         </div>
       </section>
