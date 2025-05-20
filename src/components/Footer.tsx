@@ -7,7 +7,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center">
               <span className="text-xl font-bold text-primary mr-1">ABTC</span>
-              <span className="text-xl font-bold text-secondary">Buia</span>
+              <span className="text-xl font-bold text-secondary">Bia</span>
             </div>
             <p className="mt-4 text-sm text-gray-600 max-w-md">
               Connecting U.S.-educated Bulgarians, young professionals, and innovation 
