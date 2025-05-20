@@ -17,9 +17,6 @@ const Footer = () => {
               Connecting U.S.-educated Bulgarians, young professionals, and innovation 
               partners through events, mentorship, and curated opportunities.
             </p>
-            <p className="mt-4 text-sm text-gray-500">
-              Funded by the U.S. Embassy
-            </p>
           </div>
           
           <div>
