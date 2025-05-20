@@ -1,17 +1,13 @@
-
 import { Link } from "react-router-dom";
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
-  return (
-    <footer className="bg-gray-50 border-t">
+  return <footer className="bg-gray-50 border-t">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center">
               <span className="text-xl font-bold text-primary mr-1">ABTC</span>
-              <span className="text-xl font-bold text-secondary">Bulgaria</span>
+              <span className="text-xl font-bold text-secondary">Buia</span>
             </div>
             <p className="mt-4 text-sm text-gray-600 max-w-md">
               Connecting U.S.-educated Bulgarians, young professionals, and innovation 
@@ -75,8 +71,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
