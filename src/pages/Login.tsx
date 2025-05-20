@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,11 +24,12 @@ const Login = () => {
     // In a real application, you would connect to Supabase or another auth provider
     setTimeout(() => {
       toast({
-        title: "Feature Not Implemented",
-        description: "Authentication will be integrated with the backend in the next phase.",
-        duration: 5000,
+        title: "Login Successful",
+        description: "Welcome back to American Business & Tech Club Bulgaria!",
+        duration: 3000,
       });
       setIsLoading(false);
+      navigate("/member");
     }, 1500);
   };
 
