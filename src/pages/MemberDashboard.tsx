@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { User, BookOpen, Calendar, Search, MessageCircle } from "lucide-react";
+import { User, BookOpen, Calendar, Search, MessageCircle, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const MemberDashboard = () => {
@@ -15,6 +15,7 @@ const MemberDashboard = () => {
     interest: "",
     education: ""
   });
+  const [selectedMessage, setSelectedMessage] = useState<number | null>(null);
   const location = useLocation();
   const { toast } = useToast();
 
@@ -47,13 +48,14 @@ const MemberDashboard = () => {
     { title: "Entrepreneurship Resources", type: "Links" }
   ];
 
-  // Mock messages data
+  // Enhanced messages data with full content
   const messages = [
     {
       id: 1,
       sender: "Maria Dimitrova",
       subject: "Networking Event Follow-up",
       preview: "Hi John, it was great meeting you at the Sofia networking event...",
+      fullContent: "Hi John,\n\nIt was great meeting you at the Sofia networking event last week! I really enjoyed our conversation about digital marketing strategies for Bulgarian startups.\n\nI wanted to follow up on the collaboration opportunity we discussed. My team at TechSofia is currently working on a project that could benefit from your MBA expertise, particularly in the areas of business development and market analysis.\n\nWould you be available for a coffee meeting next week to discuss this further? I'm free Tuesday or Wednesday afternoon.\n\nBest regards,\nMaria Dimitrova\nCEO, TechSofia",
       time: "2 hours ago",
       unread: true
     },
@@ -62,6 +64,7 @@ const MemberDashboard = () => {
       sender: "Alex Petrov",
       subject: "Business Partnership Opportunity",
       preview: "I saw your profile and think we could collaborate on...",
+      fullContent: "Hi John,\n\nI saw your profile on the ABTC Bulgaria platform and was impressed by your background at Harvard Business School. I think we could collaborate on something exciting!\n\nI'm currently developing an AI-powered fintech solution for the Bulgarian market, and I'm looking for a business partner with strong strategic and financial expertise. Your experience could be exactly what we need to take this to the next level.\n\nThe opportunity involves:\n- Market strategy development\n- Investor relations\n- Business model optimization\n- Potential equity partnership\n\nWould you be interested in learning more? I'd love to set up a call to discuss the details.\n\nBest,\nAlex Petrov\nFounder, FinTech Innovations",
       time: "1 day ago",
       unread: true
     },
@@ -70,6 +73,7 @@ const MemberDashboard = () => {
       sender: "ABTC Bulgaria",
       subject: "Upcoming Workshop Reminder",
       preview: "Don't forget about the U.S. Business Culture Workshop...",
+      fullContent: "Dear John,\n\nThis is a friendly reminder about the upcoming U.S. Business Culture Workshop scheduled for July 3, 2023, at the American Corner Sofia.\n\nWorkshop Details:\n- Date: July 3, 2023\n- Time: 2:00 PM - 5:00 PM\n- Location: American Corner Sofia\n- Topic: Advanced Business Communication and Networking Strategies\n\nWhat to expect:\n- Interactive sessions on cross-cultural business communication\n- Networking best practices in the U.S. market\n- Case studies from successful Bulgarian-American business partnerships\n- Q&A session with industry experts\n\nPlease confirm your attendance by replying to this message. Light refreshments will be provided.\n\nWe look forward to seeing you there!\n\nBest regards,\nABTC Bulgaria Team",
       time: "3 days ago",
       unread: false
     }
@@ -120,6 +124,21 @@ const MemberDashboard = () => {
     });
     // Here you would clear auth state and redirect
   };
+
+  const handleMessageClick = (messageId: number) => {
+    setSelectedMessage(messageId);
+    // Mark message as read
+    const message = messages.find(m => m.id === messageId);
+    if (message && message.unread) {
+      message.unread = false;
+    }
+  };
+
+  const handleBackToMessages = () => {
+    setSelectedMessage(null);
+  };
+
+  const selectedMessageData = messages.find(m => m.id === selectedMessage);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -298,44 +317,80 @@ const MemberDashboard = () => {
             
             {activeTab === "messages" && (
               <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Messages</CardTitle>
-                    <CardDescription>
-                      Connect with other ABTC Bulgaria members
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {messages.map((message) => (
-                        <div key={message.id} className={`p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${message.unread ? 'border-primary bg-primary/5' : 'border-gray-200'}`}>
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <div className="flex items-center space-x-2">
-                                <h4 className={`font-medium text-sm ${message.unread ? 'font-semibold' : ''}`}>
-                                  {message.sender}
-                                </h4>
-                                {message.unread && (
-                                  <Badge variant="secondary" className="text-xs">New</Badge>
-                                )}
+                {!selectedMessage ? (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Messages</CardTitle>
+                      <CardDescription>
+                        Connect with other ABTC Bulgaria members
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {messages.map((message) => (
+                          <div 
+                            key={message.id} 
+                            className={`p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${message.unread ? 'border-primary bg-primary/5' : 'border-gray-200'}`}
+                            onClick={() => handleMessageClick(message.id)}
+                          >
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center space-x-2">
+                                  <h4 className={`font-medium text-sm ${message.unread ? 'font-semibold' : ''}`}>
+                                    {message.sender}
+                                  </h4>
+                                  {message.unread && (
+                                    <Badge variant="secondary" className="text-xs">New</Badge>
+                                  )}
+                                </div>
+                                <p className={`text-sm ${message.unread ? 'font-medium' : 'text-gray-600'}`}>
+                                  {message.subject}
+                                </p>
+                                <p className="text-xs text-gray-500 mt-1">
+                                  {message.preview}
+                                </p>
                               </div>
-                              <p className={`text-sm ${message.unread ? 'font-medium' : 'text-gray-600'}`}>
-                                {message.subject}
-                              </p>
-                              <p className="text-xs text-gray-500 mt-1">
-                                {message.preview}
-                              </p>
+                              <span className="text-xs text-gray-400">{message.time}</span>
                             </div>
-                            <span className="text-xs text-gray-400">{message.time}</span>
                           </div>
+                        ))}
+                      </div>
+                      <div className="mt-4">
+                        <Button variant="outline" size="sm" className="w-full">Compose New Message</Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card>
+                    <CardHeader>
+                      <div className="flex items-center space-x-2">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          onClick={handleBackToMessages}
+                          className="p-1"
+                        >
+                          <ArrowLeft className="h-4 w-4" />
+                        </Button>
+                        <div>
+                          <CardTitle className="text-lg">{selectedMessageData?.subject}</CardTitle>
+                          <CardDescription>
+                            From: {selectedMessageData?.sender} • {selectedMessageData?.time}
+                          </CardDescription>
                         </div>
-                      ))}
-                    </div>
-                    <div className="mt-4">
-                      <Button variant="outline" size="sm" className="w-full">Compose New Message</Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="whitespace-pre-line text-sm">
+                        {selectedMessageData?.fullContent}
+                      </div>
+                      <div className="mt-6 flex space-x-2">
+                        <Button size="sm">Reply</Button>
+                        <Button variant="outline" size="sm">Forward</Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
               </div>
             )}
             
