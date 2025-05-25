@@ -1,14 +1,20 @@
-
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, BookOpen, Calendar, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { User, BookOpen, Calendar, Search, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchFilters, setSearchFilters] = useState({
+    location: "",
+    interest: "",
+    education: ""
+  });
   const location = useLocation();
   const { toast } = useToast();
 
@@ -40,6 +46,72 @@ const MemberDashboard = () => {
     { title: "Pitch Deck Templates", type: "Templates" },
     { title: "Entrepreneurship Resources", type: "Links" }
   ];
+
+  // Mock messages data
+  const messages = [
+    {
+      id: 1,
+      sender: "Maria Dimitrova",
+      subject: "Networking Event Follow-up",
+      preview: "Hi John, it was great meeting you at the Sofia networking event...",
+      time: "2 hours ago",
+      unread: true
+    },
+    {
+      id: 2,
+      sender: "Alex Petrov",
+      subject: "Business Partnership Opportunity",
+      preview: "I saw your profile and think we could collaborate on...",
+      time: "1 day ago",
+      unread: true
+    },
+    {
+      id: 3,
+      sender: "ABTC Bulgaria",
+      subject: "Upcoming Workshop Reminder",
+      preview: "Don't forget about the U.S. Business Culture Workshop...",
+      time: "3 days ago",
+      unread: false
+    }
+  ];
+
+  // Mock member search results
+  const mockMembers = [
+    {
+      id: 1,
+      name: "Maria Dimitrova",
+      location: "Sofia, Bulgaria",
+      education: "MBA, Stanford University",
+      interests: ["Technology", "Startups", "Marketing"],
+      role: "Entrepreneur"
+    },
+    {
+      id: 2,
+      name: "Alex Petrov",
+      location: "Plovdiv, Bulgaria",
+      education: "MS Computer Science, MIT",
+      interests: ["AI", "Software Development", "Innovation"],
+      role: "Tech Professional"
+    },
+    {
+      id: 3,
+      name: "Elena Georgiev",
+      location: "Varna, Bulgaria",
+      education: "PhD Economics, Harvard University",
+      interests: ["Finance", "Economics", "Policy"],
+      role: "Academic"
+    }
+  ];
+
+  const filteredMembers = mockMembers.filter(member => {
+    const matchesSearch = member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         member.interests.some(interest => interest.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesLocation = !searchFilters.location || member.location.toLowerCase().includes(searchFilters.location.toLowerCase());
+    const matchesInterest = !searchFilters.interest || member.interests.some(interest => interest.toLowerCase().includes(searchFilters.interest.toLowerCase()));
+    const matchesEducation = !searchFilters.education || member.education.toLowerCase().includes(searchFilters.education.toLowerCase());
+    
+    return matchesSearch && matchesLocation && matchesInterest && matchesEducation;
+  });
 
   const handleLogout = () => {
     toast({
@@ -102,6 +174,27 @@ const MemberDashboard = () => {
                   Dashboard
                 </Button>
                 <Button
+                  variant={activeTab === "messages" ? "default" : "ghost"}
+                  className="justify-start"
+                  onClick={() => setActiveTab("messages")}
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Messages
+                  {messages.filter(m => m.unread).length > 0 && (
+                    <Badge variant="destructive" className="ml-auto h-5 w-5 p-0 text-xs">
+                      {messages.filter(m => m.unread).length}
+                    </Badge>
+                  )}
+                </Button>
+                <Button
+                  variant={activeTab === "search" ? "default" : "ghost"}
+                  className="justify-start"
+                  onClick={() => setActiveTab("search")}
+                >
+                  <Search className="mr-2 h-4 w-4" />
+                  Find Members
+                </Button>
+                <Button
                   variant={activeTab === "profile" ? "default" : "ghost"}
                   className="justify-start"
                   onClick={() => setActiveTab("profile")}
@@ -122,7 +215,7 @@ const MemberDashboard = () => {
                   className="justify-start"
                   onClick={() => setActiveTab("resources")}
                 >
-                  <Search className="mr-2 h-4 w-4" />
+                  <BookOpen className="mr-2 h-4 w-4" />
                   Resources
                 </Button>
               </CardContent>
@@ -197,6 +290,132 @@ const MemberDashboard = () => {
                     </div>
                     <div className="mt-4">
                       <Button variant="outline" size="sm" className="w-full">Browse all resources</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+            
+            {activeTab === "messages" && (
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Messages</CardTitle>
+                    <CardDescription>
+                      Connect with other ABTC Bulgaria members
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {messages.map((message) => (
+                        <div key={message.id} className={`p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${message.unread ? 'border-primary bg-primary/5' : 'border-gray-200'}`}>
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-2">
+                                <h4 className={`font-medium text-sm ${message.unread ? 'font-semibold' : ''}`}>
+                                  {message.sender}
+                                </h4>
+                                {message.unread && (
+                                  <Badge variant="secondary" className="text-xs">New</Badge>
+                                )}
+                              </div>
+                              <p className={`text-sm ${message.unread ? 'font-medium' : 'text-gray-600'}`}>
+                                {message.subject}
+                              </p>
+                              <p className="text-xs text-gray-500 mt-1">
+                                {message.preview}
+                              </p>
+                            </div>
+                            <span className="text-xs text-gray-400">{message.time}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4">
+                      <Button variant="outline" size="sm" className="w-full">Compose New Message</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+            
+            {activeTab === "search" && (
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Find Members</CardTitle>
+                    <CardDescription>
+                      Search and connect with other ABTC Bulgaria members
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-4">
+                      <div>
+                        <Input
+                          placeholder="Search by name or interests..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full"
+                        />
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <Input
+                          placeholder="Filter by location..."
+                          value={searchFilters.location}
+                          onChange={(e) => setSearchFilters({...searchFilters, location: e.target.value})}
+                        />
+                        <Input
+                          placeholder="Filter by interest..."
+                          value={searchFilters.interest}
+                          onChange={(e) => setSearchFilters({...searchFilters, interest: e.target.value})}
+                        />
+                        <Input
+                          placeholder="Filter by education..."
+                          value={searchFilters.education}
+                          onChange={(e) => setSearchFilters({...searchFilters, education: e.target.value})}
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Members ({filteredMembers.length})</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {filteredMembers.map((member) => (
+                        <div key={member.id} className="p-4 border rounded-lg hover:bg-gray-50">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-2 mb-2">
+                                <h4 className="font-medium">{member.name}</h4>
+                                <Badge variant="outline">{member.role}</Badge>
+                              </div>
+                              <p className="text-sm text-gray-600 mb-1">📍 {member.location}</p>
+                              <p className="text-sm text-gray-600 mb-2">🎓 {member.education}</p>
+                              <div className="flex flex-wrap gap-1">
+                                {member.interests.map((interest, index) => (
+                                  <Badge key={index} variant="secondary" className="text-xs">
+                                    {interest}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="flex space-x-2">
+                              <Button size="sm" variant="outline">View Profile</Button>
+                              <Button size="sm">Message</Button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                      {filteredMembers.length === 0 && (
+                        <div className="text-center py-8 text-gray-500">
+                          No members found matching your search criteria.
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
