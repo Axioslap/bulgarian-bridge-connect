@@ -8,39 +8,41 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <header className="bg-white/90 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-gray-200/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center group">
-              <div className="relative">
-                <img 
-                  src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
-                  alt="ABTC Bulgaria Logo" 
-                  className="h-12 w-12 mr-4 transition-transform group-hover:scale-105"
-                />
-                <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative mr-4">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                  <img 
+                    src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
+                    alt="ABTC Bulgaria Logo" 
+                    className="h-10 w-10 transition-transform group-hover:scale-110 duration-300"
+                  />
+                </div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
               </div>
               <div className="flex items-center">
-                <span className="text-2xl font-bold text-primary mr-1 tracking-tight">ABTC</span>
-                <span className="text-2xl font-bold text-secondary tracking-tight">Bulgaria</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mr-1 tracking-tight">ABTC</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-secondary to-secondary/80 bg-clip-text text-transparent tracking-tight">Bulgaria</span>
               </div>
             </Link>
           </div>
           
           {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-primary px-4 py-2 text-sm font-medium transition-colors relative group">
+            <Link to="/" className="text-gray-700 hover:text-primary px-4 py-2 text-sm font-medium transition-all duration-200 relative group">
               Home
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-primary px-4 py-2 text-sm font-medium transition-colors relative group">
+            <Link to="/about" className="text-gray-700 hover:text-primary px-4 py-2 text-sm font-medium transition-all duration-200 relative group">
               About
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </Link>
-            <Link to="/events" className="text-gray-700 hover:text-primary px-4 py-2 text-sm font-medium transition-colors relative group">
+            <Link to="/events" className="text-gray-700 hover:text-primary px-4 py-2 text-sm font-medium transition-all duration-200 relative group">
               Events
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </Link>
           </nav>
           

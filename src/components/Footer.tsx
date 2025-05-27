@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -10,17 +9,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-6">
-              <div className="relative">
-                <img 
-                  src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
-                  alt="ABTC Bulgaria Logo" 
-                  className="h-10 w-10 mr-4"
-                />
-                <div className="absolute inset-0 rounded-full bg-primary/5"></div>
+              <div className="relative mr-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center shadow-md">
+                  <img 
+                    src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
+                    alt="ABTC Bulgaria Logo" 
+                    className="h-8 w-8"
+                  />
+                </div>
               </div>
               <div className="flex items-center">
-                <span className="text-2xl font-bold text-primary mr-1 tracking-tight">ABTC</span>
-                <span className="text-2xl font-bold text-secondary tracking-tight">Bulgaria</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mr-1 tracking-tight">ABTC</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-secondary to-secondary/80 bg-clip-text text-transparent tracking-tight">Bulgaria</span>
               </div>
             </div>
             <p className="text-gray-600 max-w-md leading-relaxed">

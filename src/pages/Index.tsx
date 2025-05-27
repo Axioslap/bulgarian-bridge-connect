@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -42,27 +41,36 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative hero-gradient text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40">
+      <section className="relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/90"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
+        
+        {/* Content */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 text-white">
           <div className="max-w-4xl">
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
                 American Business & 
-                <span className="block text-secondary">Tech Club Bulgaria</span>
+                <span className="block text-white/90 drop-shadow-lg">Tech Club Bulgaria</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-10 leading-relaxed text-white/90 max-w-3xl">
+              <p className="text-xl md:text-2xl mb-10 leading-relaxed text-white/95 max-w-3xl drop-shadow-md">
                 Connecting U.S.-educated Bulgarians, young professionals, and innovation partners through meaningful experiences
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
                 <Link to="/register">
-                  <Button size="lg" className="bg-white text-primary hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
+                  <Button size="lg" className="bg-white text-primary hover:bg-gray-100 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg border-0">
                     Join Our Community
                   </Button>
                 </Link>
                 <Link to="/about">
-                  <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 font-semibold px-8 py-4 text-lg">
+                  <Button size="lg" variant="outline" className="text-white border-2 border-white/80 hover:bg-white/15 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold px-8 py-4 text-lg hover:border-white">
                     Learn More
                   </Button>
                 </Link>
@@ -72,8 +80,9 @@ const Index = () => {
         </div>
         
         {/* Decorative elements */}
-        <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-white/5 animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 rounded-full bg-secondary/10 animate-pulse delay-200"></div>
+        <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-white/10 animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 rounded-full bg-white/5 animate-pulse delay-200"></div>
+        <div className="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-secondary/20 animate-pulse delay-500"></div>
       </section>
       
       {/* Mission Section */}
