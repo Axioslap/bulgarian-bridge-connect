@@ -4,8 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { User, BookOpen, Calendar, Search, MessageCircle, ArrowLeft } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { User, BookOpen, Calendar, Search, MessageCircle, ArrowLeft, Users, Settings, Award, Briefcase } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import SkillSelector from "@/components/SkillSelector";
+import SkillTag from "@/components/SkillTag";
+import DiscussionPost from "@/components/DiscussionPost";
 
 const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
@@ -16,6 +20,10 @@ const MemberDashboard = () => {
     education: ""
   });
   const [selectedMessage, setSelectedMessage] = useState<number | null>(null);
+  const [userSkills, setUserSkills] = useState<string[]>(["Business Strategy", "Marketing", "Leadership"]);
+  const [newPostTitle, setNewPostTitle] = useState("");
+  const [newPostContent, setNewPostContent] = useState("");
+  const [newPostTags, setNewPostTags] = useState<string[]>([]);
   const location = useLocation();
   const { toast } = useToast();
 
@@ -24,7 +32,9 @@ const MemberDashboard = () => {
     name: "John Smith",
     usEducation: "MBA, Harvard Business School",
     joinDate: "May 2023",
-    role: "Member"
+    role: "Member",
+    skills: userSkills,
+    bio: "Experienced business strategist with 8+ years in tech startups. Passionate about connecting Bulgarian talent with global opportunities."
   };
 
   // Mock upcoming events data
@@ -79,7 +89,7 @@ const MemberDashboard = () => {
     }
   ];
 
-  // Mock member search results
+  // Enhanced mock members with skills
   const mockMembers = [
     {
       id: 1,
@@ -87,7 +97,9 @@ const MemberDashboard = () => {
       location: "Sofia, Bulgaria",
       education: "MBA, Stanford University",
       interests: ["Technology", "Startups", "Marketing"],
-      role: "Entrepreneur"
+      skills: ["Digital Marketing", "Product Management", "Data Analytics"],
+      role: "Entrepreneur",
+      bio: "Tech entrepreneur building the next generation of fintech solutions for Eastern Europe."
     },
     {
       id: 2,
@@ -95,7 +107,9 @@ const MemberDashboard = () => {
       location: "Plovdiv, Bulgaria",
       education: "MS Computer Science, MIT",
       interests: ["AI", "Software Development", "Innovation"],
-      role: "Tech Professional"
+      skills: ["Machine Learning", "Python", "Cloud Architecture"],
+      role: "Tech Professional",
+      bio: "AI researcher and software architect with expertise in scalable systems."
     },
     {
       id: 3,
@@ -103,13 +117,53 @@ const MemberDashboard = () => {
       location: "Varna, Bulgaria",
       education: "PhD Economics, Harvard University",
       interests: ["Finance", "Economics", "Policy"],
-      role: "Academic"
+      skills: ["Economic Analysis", "Financial Modeling", "Policy Research"],
+      role: "Academic",
+      bio: "Economic policy researcher focused on EU-US trade relationships."
+    }
+  ];
+
+  // Mock discussion posts
+  const discussionPosts = [
+    {
+      id: 1,
+      author: "Maria Dimitrova",
+      title: "Seeking Beta Testers for New Fintech App",
+      content: "Hi everyone! I'm launching a new fintech app focused on cross-border payments between Bulgaria and the US. Looking for fellow entrepreneurs who'd be interested in beta testing. Would love to get feedback from this amazing community!",
+      tags: ["Fintech", "Beta Testing", "Entrepreneurship"],
+      likes: 12,
+      comments: 5,
+      timeAgo: "2 hours ago",
+      isLiked: false
+    },
+    {
+      id: 2,
+      author: "Alex Petrov",
+      title: "AI Ethics Discussion - Thoughts?",
+      content: "Just attended an amazing conference on AI ethics at MIT. The discussions around bias in machine learning were particularly eye-opening. What are your thoughts on how we can ensure more ethical AI development in Bulgaria?",
+      tags: ["AI", "Ethics", "Technology"],
+      likes: 8,
+      comments: 12,
+      timeAgo: "1 day ago",
+      isLiked: true
+    },
+    {
+      id: 3,
+      author: "Elena Georgiev",
+      title: "Research Collaboration Opportunity",
+      content: "Working on a research paper about economic impacts of US-Bulgaria tech partnerships. Looking for data points and case studies. Anyone interested in contributing or collaborating?",
+      tags: ["Research", "Economics", "Collaboration"],
+      likes: 6,
+      comments: 3,
+      timeAgo: "3 days ago",
+      isLiked: false
     }
   ];
 
   const filteredMembers = mockMembers.filter(member => {
     const matchesSearch = member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         member.interests.some(interest => interest.toLowerCase().includes(searchQuery.toLowerCase()));
+                         member.interests.some(interest => interest.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                         member.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesLocation = !searchFilters.location || member.location.toLowerCase().includes(searchFilters.location.toLowerCase());
     const matchesInterest = !searchFilters.interest || member.interests.some(interest => interest.toLowerCase().includes(searchFilters.interest.toLowerCase()));
     const matchesEducation = !searchFilters.education || member.education.toLowerCase().includes(searchFilters.education.toLowerCase());
@@ -127,7 +181,6 @@ const MemberDashboard = () => {
 
   const handleMessageClick = (messageId: number) => {
     setSelectedMessage(messageId);
-    // Mark message as read
     const message = messages.find(m => m.id === messageId);
     if (message && message.unread) {
       message.unread = false;
@@ -136,6 +189,18 @@ const MemberDashboard = () => {
 
   const handleBackToMessages = () => {
     setSelectedMessage(null);
+  };
+
+  const handlePostSubmit = () => {
+    if (newPostTitle.trim() && newPostContent.trim()) {
+      toast({
+        title: "Post created successfully!",
+        description: "Your post has been shared with the community.",
+      });
+      setNewPostTitle("");
+      setNewPostContent("");
+      setNewPostTags([]);
+    }
   };
 
   const selectedMessageData = messages.find(m => m.id === selectedMessage);
@@ -191,6 +256,14 @@ const MemberDashboard = () => {
                 >
                   <BookOpen className="mr-2 h-4 w-4" />
                   Dashboard
+                </Button>
+                <Button
+                  variant={activeTab === "discussion" ? "default" : "ghost"}
+                  className="justify-start"
+                  onClick={() => setActiveTab("discussion")}
+                >
+                  <Users className="mr-2 h-4 w-4" />
+                  Discussion
                 </Button>
                 <Button
                   variant={activeTab === "messages" ? "default" : "ghost"}
@@ -258,6 +331,14 @@ const MemberDashboard = () => {
                       <h3 className="font-medium text-sm mb-2">U.S. Education:</h3>
                       <p className="text-sm text-gray-500">{userProfile.usEducation}</p>
                     </div>
+                    <div className="mb-4">
+                      <h3 className="font-medium text-sm mb-2">Your Skills:</h3>
+                      <div className="flex flex-wrap gap-1">
+                        {userProfile.skills.map((skill, index) => (
+                          <SkillTag key={index} skill={skill} variant="outline" />
+                        ))}
+                      </div>
+                    </div>
                     <div>
                       <h3 className="font-medium text-sm mb-2">Community Status:</h3>
                       <Badge>{userProfile.role}</Badge>
@@ -312,6 +393,50 @@ const MemberDashboard = () => {
                     </div>
                   </CardContent>
                 </Card>
+              </div>
+            )}
+            
+            {activeTab === "discussion" && (
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Create New Post</CardTitle>
+                    <CardDescription>
+                      Share updates, opportunities, or start discussions with the community
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Input
+                      placeholder="Post title..."
+                      value={newPostTitle}
+                      onChange={(e) => setNewPostTitle(e.target.value)}
+                    />
+                    <Textarea
+                      placeholder="What's on your mind?"
+                      value={newPostContent}
+                      onChange={(e) => setNewPostContent(e.target.value)}
+                      rows={3}
+                    />
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Tags</label>
+                      <SkillSelector
+                        skills={newPostTags}
+                        onSkillsChange={setNewPostTags}
+                        placeholder="Add tags (e.g., startup, networking)..."
+                      />
+                    </div>
+                    <Button onClick={handlePostSubmit} className="w-full">
+                      Share Post
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Community Discussion</h3>
+                  {discussionPosts.map((post) => (
+                    <DiscussionPost key={post.id} post={post} />
+                  ))}
+                </div>
               </div>
             )}
             
@@ -407,7 +532,7 @@ const MemberDashboard = () => {
                     <div className="space-y-4">
                       <div>
                         <Input
-                          placeholder="Search by name or interests..."
+                          placeholder="Search by name, interests, or skills..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                           className="w-full"
@@ -451,12 +576,26 @@ const MemberDashboard = () => {
                               </div>
                               <p className="text-sm text-gray-600 mb-1">📍 {member.location}</p>
                               <p className="text-sm text-gray-600 mb-2">🎓 {member.education}</p>
-                              <div className="flex flex-wrap gap-1">
-                                {member.interests.map((interest, index) => (
-                                  <Badge key={index} variant="secondary" className="text-xs">
-                                    {interest}
-                                  </Badge>
-                                ))}
+                              <p className="text-sm text-gray-700 mb-3">{member.bio}</p>
+                              <div className="space-y-2">
+                                <div>
+                                  <span className="text-xs font-medium text-gray-500">Interests:</span>
+                                  <div className="flex flex-wrap gap-1 mt-1">
+                                    {member.interests.map((interest, index) => (
+                                      <Badge key={index} variant="secondary" className="text-xs">
+                                        {interest}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                                <div>
+                                  <span className="text-xs font-medium text-gray-500">Skills:</span>
+                                  <div className="flex flex-wrap gap-1 mt-1">
+                                    {member.skills.map((skill, index) => (
+                                      <SkillTag key={index} skill={skill} variant="outline" />
+                                    ))}
+                                  </div>
+                                </div>
                               </div>
                             </div>
                             <div className="flex space-x-2">
@@ -482,13 +621,30 @@ const MemberDashboard = () => {
                 <CardHeader>
                   <CardTitle>Your Profile</CardTitle>
                   <CardDescription>
-                    View and manage your profile information
+                    Manage your profile information and skills
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-500">
-                    Profile editing functionality will be implemented in the next phase.
-                  </p>
+                <CardContent className="space-y-6">
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Bio</label>
+                    <Textarea
+                      value={userProfile.bio}
+                      readOnly
+                      rows={3}
+                      className="bg-gray-50"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Your Skills & Expertise</label>
+                    <SkillSelector
+                      skills={userSkills}
+                      onSkillsChange={setUserSkills}
+                      placeholder="Add a skill or area of expertise..."
+                    />
+                  </div>
+                  <div>
+                    <Button>Save Changes</Button>
+                  </div>
                 </CardContent>
               </Card>
             )}
