@@ -13,8 +13,15 @@ const Header = () => {
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-xl font-bold text-primary mr-1">ABTC</span>
-              <span className="text-xl font-bold text-secondary">Bulgaria</span>
+              <img 
+                src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
+                alt="ABTC Bulgaria Logo" 
+                className="h-10 w-10 mr-3"
+              />
+              <div className="flex items-center">
+                <span className="text-xl font-bold text-primary mr-1">ABTC</span>
+                <span className="text-xl font-bold text-secondary">Bulgaria</span>
+              </div>
             </Link>
           </div>
           
