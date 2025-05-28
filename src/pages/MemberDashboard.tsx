@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { User, BookOpen, Calendar, Search, MessageCircle, ArrowLeft, Users, Settings, Award, Briefcase } from "lucide-react";
+import { User, BookOpen, Calendar, Search, MessageCircle, ArrowLeft, Users, Settings, Award, Briefcase, Newspaper } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import SkillSelector from "@/components/SkillSelector";
 import SkillTag from "@/components/SkillTag";
@@ -21,6 +21,7 @@ const MemberDashboard = () => {
   });
   const [selectedMessage, setSelectedMessage] = useState<number | null>(null);
   const [userSkills, setUserSkills] = useState<string[]>(["Business Strategy", "Marketing", "Leadership"]);
+  const [newsInterests, setNewsInterests] = useState<string[]>(["Technology", "Startups", "AI"]);
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostContent, setNewPostContent] = useState("");
   const [newPostTags, setNewPostTags] = useState<string[]>([]);
@@ -160,6 +161,31 @@ const MemberDashboard = () => {
     }
   ];
 
+  // Mock curated news based on user interests
+  const curatedNews = [
+    {
+      id: 1,
+      title: "AI Startup from Sofia Raises $2M Series A",
+      category: "AI",
+      date: "2 hours ago",
+      isNew: true
+    },
+    {
+      id: 2,
+      title: "Bulgarian Tech Companies Expand to US Markets",
+      category: "Technology",
+      date: "1 day ago",
+      isNew: true
+    },
+    {
+      id: 3,
+      title: "Startup Accelerator Opens in Plovdiv",
+      category: "Startups",
+      date: "3 days ago",
+      isNew: false
+    }
+  ];
+
   const filteredMembers = mockMembers.filter(member => {
     const matchesSearch = member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          member.interests.some(interest => interest.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -256,6 +282,14 @@ const MemberDashboard = () => {
                 >
                   <BookOpen className="mr-2 h-4 w-4" />
                   Dashboard
+                </Button>
+                <Button
+                  variant={activeTab === "news" ? "default" : "ghost"}
+                  className="justify-start"
+                  onClick={() => setActiveTab("news")}
+                >
+                  <Newspaper className="mr-2 h-4 w-4" />
+                  My News Feed
                 </Button>
                 <Button
                   variant={activeTab === "discussion" ? "default" : "ghost"}
@@ -390,6 +424,67 @@ const MemberDashboard = () => {
                     </div>
                     <div className="mt-4">
                       <Button variant="outline" size="sm" className="w-full">Browse all resources</Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+            
+            {activeTab === "news" && (
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Your News Interests</CardTitle>
+                    <CardDescription>
+                      Customize what topics you want to see in your personalized news feed
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">Topics of Interest</label>
+                      <SkillSelector
+                        skills={newsInterests}
+                        onSkillsChange={setNewsInterests}
+                        placeholder="Add topics (e.g., AI, fintech, blockchain)..."
+                      />
+                    </div>
+                    <Button>Update Preferences</Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Personalized News Feed</CardTitle>
+                    <CardDescription>
+                      Latest stories based on your interests
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {curatedNews.map((article) => (
+                        <div key={article.id} className="flex items-start justify-between p-4 border rounded-lg hover:bg-gray-50">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2 mb-2">
+                              <h4 className="font-medium">{article.title}</h4>
+                              {article.isNew && (
+                                <Badge variant="secondary" className="text-xs">New</Badge>
+                              )}
+                            </div>
+                            <div className="flex items-center space-x-4 text-sm text-gray-500">
+                              <Badge variant="outline" className="text-xs">{article.category}</Badge>
+                              <span>{article.date}</span>
+                            </div>
+                          </div>
+                          <Button size="sm" variant="outline">Read</Button>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4">
+                      <Link to="/news">
+                        <Button variant="outline" className="w-full">
+                          View All News
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>

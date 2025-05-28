@@ -4,9 +4,13 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Calendar, TrendingUp, Briefcase } from "lucide-react";
+import { ExternalLink, Calendar, TrendingUp, Briefcase, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const News = () => {
+  // Mock user authentication state - in real app this would come from auth context
+  const isLoggedIn = false; // This would be dynamic based on actual auth state
+  
   // Sample news articles
   const newsArticles = [
     {
@@ -18,6 +22,7 @@ const News = () => {
       source: "Sofia Tech Report",
       url: "#",
       featured: true,
+      memberOnly: false,
     },
     {
       id: 2,
@@ -28,6 +33,7 @@ const News = () => {
       source: "Business Bulgaria",
       url: "#",
       featured: true,
+      memberOnly: true,
     },
     {
       id: 3,
@@ -38,6 +44,7 @@ const News = () => {
       source: "Startup Europe",
       url: "#",
       featured: false,
+      memberOnly: true,
     },
     {
       id: 4,
@@ -48,6 +55,7 @@ const News = () => {
       source: "Digital Bulgaria",
       url: "#",
       featured: false,
+      memberOnly: false,
     },
     {
       id: 5,
@@ -58,6 +66,7 @@ const News = () => {
       source: "AmCham Bulgaria",
       url: "#",
       featured: false,
+      memberOnly: true,
     },
     {
       id: 6,
@@ -68,6 +77,7 @@ const News = () => {
       source: "Tech Education Today",
       url: "#",
       featured: false,
+      memberOnly: true,
     },
   ];
 
@@ -99,6 +109,28 @@ const News = () => {
         return "bg-gray-50 text-gray-700 border-gray-200";
     }
   };
+
+  const MembershipPrompt = () => (
+    <div className="bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 rounded-xl p-6 text-center">
+      <Lock className="w-12 h-12 mx-auto mb-4 text-primary" />
+      <h3 className="text-xl font-bold text-gray-900 mb-2">Member-Exclusive Content</h3>
+      <p className="text-gray-600 mb-6">
+        Join ABTC Bulgaria to access our full collection of business and tech news, insights, and analysis.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <Link to="/register">
+          <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
+            Become a Member
+          </Button>
+        </Link>
+        <Link to="/register">
+          <Button variant="outline">
+            Support Our Community
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -135,10 +167,18 @@ const News = () => {
               <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-3">
-                    <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
-                      {getCategoryIcon(article.category)}
-                      {article.category}
-                    </Badge>
+                    <div className="flex items-center gap-2">
+                      <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
+                        {getCategoryIcon(article.category)}
+                        {article.category}
+                      </Badge>
+                      {article.memberOnly && (
+                        <Badge variant="outline" className="text-xs">
+                          <Lock className="w-3 h-3 mr-1" />
+                          Members Only
+                        </Badge>
+                      )}
+                    </div>
                     <span className="text-sm text-gray-500 flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {article.date}
@@ -154,10 +194,17 @@ const News = () => {
                 <CardContent>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-500">{article.source}</span>
-                    <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
-                      Read More
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </Button>
+                    {article.memberOnly && !isLoggedIn ? (
+                      <Button variant="outline" size="sm" disabled className="opacity-50">
+                        <Lock className="w-4 h-4 mr-2" />
+                        Members Only
+                      </Button>
+                    ) : (
+                      <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
+                        Read More
+                        <ExternalLink className="w-4 h-4 ml-2" />
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -175,32 +222,53 @@ const News = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {regularArticles.map((article) => (
-              <Card key={article.id} className="group hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-primary/20">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge variant="outline" className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
-                      {getCategoryIcon(article.category)}
-                      {article.category}
-                    </Badge>
-                    <span className="text-sm text-gray-500">{article.date}</span>
+            {regularArticles.map((article, index) => (
+              <div key={article.id}>
+                {index === 2 && !isLoggedIn && (
+                  <div className="mb-6">
+                    <MembershipPrompt />
                   </div>
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">
-                    {article.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-600 text-sm leading-relaxed">
-                    {article.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-500">{article.source}</span>
-                    <Button variant="ghost" size="sm" className="group-hover:text-primary transition-colors p-2">
-                      <ExternalLink className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                )}
+                <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-primary/20">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="outline" className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
+                          {getCategoryIcon(article.category)}
+                          {article.category}
+                        </Badge>
+                        {article.memberOnly && (
+                          <Badge variant="outline" className="text-xs">
+                            <Lock className="w-3 h-3 mr-1" />
+                            Member
+                          </Badge>
+                        )}
+                      </div>
+                      <span className="text-sm text-gray-500">{article.date}</span>
+                    </div>
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">
+                      {article.title}
+                    </CardTitle>
+                    <CardDescription className="text-gray-600 text-sm leading-relaxed">
+                      {article.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-500">{article.source}</span>
+                      {article.memberOnly && !isLoggedIn ? (
+                        <Button variant="ghost" size="sm" disabled className="opacity-50 p-2">
+                          <Lock className="w-4 h-4" />
+                        </Button>
+                      ) : (
+                        <Button variant="ghost" size="sm" className="group-hover:text-primary transition-colors p-2">
+                          <ExternalLink className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
