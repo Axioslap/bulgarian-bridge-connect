@@ -1,15 +1,17 @@
-
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ExternalLink, Calendar, TrendingUp, Briefcase, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const News = () => {
   // Mock user authentication state - in real app this would come from auth context
   const isLoggedIn = false; // This would be dynamic based on actual auth state
+  const [showMembershipModal, setShowMembershipModal] = useState(false);
   
   // Sample news articles
   const newsArticles = [
@@ -132,6 +134,15 @@ const News = () => {
     </div>
   );
 
+  const handleReadMore = (article: any) => {
+    if (article.memberOnly && !isLoggedIn) {
+      setShowMembershipModal(true);
+    } else {
+      // Navigate to full article or open in new tab
+      console.log("Reading article:", article.title);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -194,17 +205,24 @@ const News = () => {
                 <CardContent>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-500">{article.source}</span>
-                    {article.memberOnly && !isLoggedIn ? (
-                      <Button variant="outline" size="sm" disabled className="opacity-50">
-                        <Lock className="w-4 h-4 mr-2" />
-                        Members Only
-                      </Button>
-                    ) : (
-                      <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
-                        Read More
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </Button>
-                    )}
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="group-hover:bg-primary group-hover:text-white transition-colors"
+                      onClick={() => handleReadMore(article)}
+                    >
+                      {article.memberOnly && !isLoggedIn ? (
+                        <>
+                          <Lock className="w-4 h-4 mr-2" />
+                          Members Only
+                        </>
+                      ) : (
+                        <>
+                          Read More
+                          <ExternalLink className="w-4 h-4 ml-2" />
+                        </>
+                      )}
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -256,15 +274,18 @@ const News = () => {
                   <CardContent>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium text-gray-500">{article.source}</span>
-                      {article.memberOnly && !isLoggedIn ? (
-                        <Button variant="ghost" size="sm" disabled className="opacity-50 p-2">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="group-hover:text-primary transition-colors p-2"
+                        onClick={() => handleReadMore(article)}
+                      >
+                        {article.memberOnly && !isLoggedIn ? (
                           <Lock className="w-4 h-4" />
-                        </Button>
-                      ) : (
-                        <Button variant="ghost" size="sm" className="group-hover:text-primary transition-colors p-2">
+                        ) : (
                           <ExternalLink className="w-4 h-4" />
-                        </Button>
-                      )}
+                        )}
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -286,6 +307,33 @@ const News = () => {
           </Button>
         </div>
       </section>
+
+      {/* Membership Modal */}
+      <Dialog open={showMembershipModal} onOpenChange={setShowMembershipModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Lock className="w-5 h-5 text-primary" />
+              Member-Exclusive Content
+            </DialogTitle>
+            <DialogDescription>
+              Join ABTC Bulgaria to access our full collection of business and tech news, insights, and analysis.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-3 mt-4">
+            <Link to="/register" onClick={() => setShowMembershipModal(false)}>
+              <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
+                Become a Member
+              </Button>
+            </Link>
+            <Link to="/register" onClick={() => setShowMembershipModal(false)}>
+              <Button variant="outline" className="w-full">
+                Support Our Community
+              </Button>
+            </Link>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
