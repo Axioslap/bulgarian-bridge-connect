@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, BookOpen, Calendar, Search, MessageCircle, Users, Newspaper } from "lucide-react";
+import { User, BookOpen, Calendar, Search, MessageCircle, Users } from "lucide-react";
 
 interface DashboardSidebarProps {
   userProfile: {
@@ -38,14 +38,6 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
           >
             <BookOpen className="mr-2 h-4 w-4" />
             Dashboard
-          </Button>
-          <Button
-            variant={activeTab === "news" ? "default" : "ghost"}
-            className="justify-start"
-            onClick={() => setActiveTab("news")}
-          >
-            <Newspaper className="mr-2 h-4 w-4" />
-            My News Feed
           </Button>
           <Button
             variant={activeTab === "discussion" ? "default" : "ghost"}

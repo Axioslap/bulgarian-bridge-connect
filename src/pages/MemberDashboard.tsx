@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardTab from "@/components/dashboard/tabs/DashboardTab";
-import NewsTab from "@/components/dashboard/tabs/NewsTab";
 import DiscussionTab from "@/components/dashboard/tabs/DiscussionTab";
 import MessagesTab from "@/components/dashboard/tabs/MessagesTab";
 import SearchTab from "@/components/dashboard/tabs/SearchTab";
@@ -18,7 +17,6 @@ import { mockMessages } from "@/data/mockData";
 const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [userSkills, setUserSkills] = useState<string[]>(["Business Strategy", "Marketing", "Leadership"]);
-  const [newsInterests, setNewsInterests] = useState<string[]>(["Technology", "Startups", "AI"]);
   const { toast } = useToast();
 
   // This would normally come from an auth context/provider
@@ -45,8 +43,6 @@ const MemberDashboard = () => {
     switch (activeTab) {
       case "dashboard":
         return <DashboardTab userProfile={userProfile} />;
-      case "news":
-        return <NewsTab newsInterests={newsInterests} setNewsInterests={setNewsInterests} />;
       case "discussion":
         return <DiscussionTab />;
       case "messages":
