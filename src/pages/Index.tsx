@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -49,8 +50,8 @@ const Index = () => {
             backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-secondary/90"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/85 to-secondary/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10"></div>
         
         {/* Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 text-white">
@@ -58,9 +59,9 @@ const Index = () => {
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
                 American Business & 
-                <span className="block text-white/90 drop-shadow-lg">Tech Club Bulgaria</span>
+                <span className="block text-white/95 drop-shadow-xl">Tech Club Bulgaria</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-10 leading-relaxed text-white/95 max-w-3xl drop-shadow-md">
+              <p className="text-xl md:text-2xl mb-10 leading-relaxed text-white/95 max-w-3xl drop-shadow-lg">
                 Connecting U.S.-educated Bulgarians, young professionals, and innovation partners through meaningful experiences
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
@@ -86,8 +87,11 @@ const Index = () => {
       </section>
       
       {/* Mission Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.03),transparent)] opacity-60"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(239,68,68,0.02),transparent)] opacity-60"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Our Mission</h2>
             <div className="w-32 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"></div>
@@ -138,8 +142,11 @@ const Index = () => {
       </section>
       
       {/* Featured Events */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.04),transparent)] opacity-60"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.03),transparent)] opacity-60"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-16">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Upcoming Events</h2>
@@ -169,10 +176,12 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-r from-primary to-secondary rounded-3xl shadow-2xl p-12 md:p-16 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-black/5"></div>
+      <section className="py-24 bg-gradient-to-br from-white via-gray-50/30 to-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent)] opacity-60"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative bg-gradient-to-r from-primary via-primary/95 to-secondary rounded-3xl shadow-2xl p-12 md:p-16 text-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent"></div>
             <div className="absolute top-10 right-10 w-24 h-24 rounded-full bg-white/10 animate-pulse"></div>
             <div className="absolute bottom-10 left-10 w-16 h-16 rounded-full bg-white/5 animate-pulse delay-200"></div>
             

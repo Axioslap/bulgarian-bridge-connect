@@ -1,0 +1,227 @@
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Calendar, TrendingUp, Briefcase } from "lucide-react";
+
+const News = () => {
+  // Sample news articles
+  const newsArticles = [
+    {
+      id: 1,
+      title: "Bulgaria's Tech Sector Sees Record Investment in 2024",
+      description: "Foreign direct investment in Bulgaria's technology sector reached an all-time high, with American companies leading the charge in establishing regional headquarters.",
+      category: "Tech",
+      date: "May 25, 2025",
+      source: "Sofia Tech Report",
+      url: "#",
+      featured: true,
+    },
+    {
+      id: 2,
+      title: "US-Bulgaria Trade Partnership Expands to Include AI Research",
+      description: "New bilateral agreement opens opportunities for joint artificial intelligence research projects between American and Bulgarian institutions.",
+      category: "Business",
+      date: "May 23, 2025",
+      source: "Business Bulgaria",
+      url: "#",
+      featured: true,
+    },
+    {
+      id: 3,
+      title: "Bulgarian Startups Gain Access to Silicon Valley Accelerators",
+      description: "Three Bulgarian tech startups have been accepted into prestigious US accelerator programs, marking a significant milestone for the local startup ecosystem.",
+      category: "Startups",
+      date: "May 20, 2025",
+      source: "Startup Europe",
+      url: "#",
+      featured: false,
+    },
+    {
+      id: 4,
+      title: "Digital Transformation Drives Bulgarian Economic Growth",
+      description: "Government initiatives in digitalization are attracting international businesses to establish operations in Bulgaria, creating new opportunities for tech professionals.",
+      category: "Tech",
+      date: "May 18, 2025",
+      source: "Digital Bulgaria",
+      url: "#",
+      featured: false,
+    },
+    {
+      id: 5,
+      title: "American Chamber of Commerce Bulgaria Reports Strong Q1 Results",
+      description: "Member companies show impressive growth in the first quarter, with technology and financial services leading the expansion.",
+      category: "Business",
+      date: "May 15, 2025",
+      source: "AmCham Bulgaria",
+      url: "#",
+      featured: false,
+    },
+    {
+      id: 6,
+      title: "Bulgarian Universities Partner with US Tech Giants for Research",
+      description: "Major American technology companies announce new research partnerships with Bulgarian universities, focusing on cybersecurity and blockchain technology.",
+      category: "Education",
+      date: "May 12, 2025",
+      source: "Tech Education Today",
+      url: "#",
+      featured: false,
+    },
+  ];
+
+  const featuredArticles = newsArticles.filter(article => article.featured);
+  const regularArticles = newsArticles.filter(article => !article.featured);
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "Tech":
+        return <TrendingUp className="w-4 h-4" />;
+      case "Business":
+        return <Briefcase className="w-4 h-4" />;
+      default:
+        return <Calendar className="w-4 h-4" />;
+    }
+  };
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case "Tech":
+        return "bg-primary/10 text-primary border-primary/20";
+      case "Business":
+        return "bg-secondary/10 text-secondary border-secondary/20";
+      case "Startups":
+        return "bg-green-50 text-green-700 border-green-200";
+      case "Education":
+        return "bg-purple-50 text-purple-700 border-purple-200";
+      default:
+        return "bg-gray-50 text-gray-700 border-gray-200";
+    }
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.05),transparent)] opacity-60"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.03),transparent)] opacity-60"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary to-secondary bg-clip-text text-transparent">
+              Business & Tech News
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Stay informed with the latest developments in business and technology affecting 
+              the U.S.-Bulgaria corridor and our global community.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Articles */}
+      <section className="py-16 bg-gradient-to-br from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Stories</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {featuredArticles.map((article) => (
+              <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
+                      {getCategoryIcon(article.category)}
+                      {article.category}
+                    </Badge>
+                    <span className="text-sm text-gray-500 flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      {article.date}
+                    </span>
+                  </div>
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                    {article.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-600 leading-relaxed">
+                    {article.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-500">{article.source}</span>
+                    <Button variant="outline" size="sm" className="group-hover:bg-primary group-hover:text-white transition-colors">
+                      Read More
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Regular Articles */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Latest Updates</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regularArticles.map((article) => (
+              <Card key={article.id} className="group hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-primary/20">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge variant="outline" className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
+                      {getCategoryIcon(article.category)}
+                      {article.category}
+                    </Badge>
+                    <span className="text-sm text-gray-500">{article.date}</span>
+                  </div>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">
+                    {article.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-600 text-sm leading-relaxed">
+                    {article.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-500">{article.source}</span>
+                    <Button variant="ghost" size="sm" className="group-hover:text-primary transition-colors p-2">
+                      <ExternalLink className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated</h2>
+          <p className="text-gray-600 mb-8 text-lg">
+            Get the latest business and tech news delivered to your inbox weekly.
+          </p>
+          <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg">
+            Subscribe to Newsletter
+          </Button>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default News;
