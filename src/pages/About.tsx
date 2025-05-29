@@ -9,42 +9,48 @@ const About = () => {
       position: "Chairman of the Board",
       country: "United States",
       organization: "Tech Innovation Labs, Senior Director",
-      quote: "Bridging cultures through innovation and entrepreneurship."
+      quote: "Bridging cultures through innovation and entrepreneurship.",
+      image: "/placeholder.svg"
     },
     {
       name: "Alexander Petrov",
       position: "Vice Chairman",
       country: "Bulgaria",
       organization: "Sofia Tech Park, CEO",
-      quote: "Building tomorrow's tech ecosystem in Bulgaria."
+      quote: "Building tomorrow's tech ecosystem in Bulgaria.",
+      image: "/placeholder.svg"
     },
     {
       name: "Dr. Elena Stoyanova",
       position: "Board Member",
       country: "United States",
       organization: "MIT Research Lab, Principal Scientist",
-      quote: "Advancing science and technology for global impact."
+      quote: "Advancing science and technology for global impact.",
+      image: "/placeholder.svg"
     },
     {
       name: "Dimitar Georgiev",
       position: "Board Member",
       country: "Bulgaria",
       organization: "Bulgarian-American Chamber of Commerce, Director",
-      quote: "Fostering business partnerships across continents."
+      quote: "Fostering business partnerships across continents.",
+      image: "/placeholder.svg"
     },
     {
       name: "Kristina Marinova",
       position: "Board Member",
       country: "United States",
       organization: "Google, Senior Product Manager",
-      quote: "Empowering the next generation of Bulgarian tech leaders."
+      quote: "Empowering the next generation of Bulgarian tech leaders.",
+      image: "/placeholder.svg"
     },
     {
       name: "Plamen Todorov",
       position: "Board Member",
       country: "Bulgaria",
       organization: "Innovation Capital, Managing Partner",
-      quote: "Investing in Bulgaria's future through strategic partnerships."
+      quote: "Investing in Bulgaria's future through strategic partnerships.",
+      image: "/placeholder.svg"
     }
   ];
 
@@ -102,9 +108,16 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {boardMembers.map((member, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="flex flex-col items-center mb-4">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-primary/10"
+                  />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1 text-center">{member.name}</h3>
+                  <p className="text-primary font-medium mb-2 text-center">{member.position}</p>
+                </div>
                 <div className="mb-4">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium mb-2">{member.position}</p>
                   <p className="text-sm text-gray-600 mb-1">
                     <span className="font-medium">Location:</span> {member.country}
                   </p>

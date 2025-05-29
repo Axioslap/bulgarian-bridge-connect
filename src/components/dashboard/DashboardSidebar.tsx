@@ -2,7 +2,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, BookOpen, Calendar, Search, MessageCircle, Users } from "lucide-react";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { User, BookOpen, Calendar, Search, MessageCircle, Users, ChevronDown, Video, FileText, Briefcase } from "lucide-react";
 
 interface DashboardSidebarProps {
   userProfile: {
@@ -23,7 +29,13 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
           <CardTitle className="text-lg">
             <div className="flex items-center">
               <User className="mr-2 h-5 w-5" />
-              {userProfile.name}
+              <Button 
+                variant="ghost" 
+                className="p-0 h-auto font-semibold text-lg justify-start"
+                onClick={() => setActiveTab("profile")}
+              >
+                {userProfile.name}
+              </Button>
             </div>
           </CardTitle>
           <CardDescription className="text-xs">
@@ -60,6 +72,35 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
               </Badge>
             )}
           </Button>
+          
+          {/* Stories & Resources Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="justify-start w-full"
+              >
+                <BookOpen className="mr-2 h-4 w-4" />
+                Stories & Resources
+                <ChevronDown className="ml-auto h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56 bg-white">
+              <DropdownMenuItem onClick={() => setActiveTab("videos")}>
+                <Video className="mr-2 h-4 w-4" />
+                Storytelling - Videos
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setActiveTab("articles")}>
+                <FileText className="mr-2 h-4 w-4" />
+                Articles
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setActiveTab("jobs")}>
+                <Briefcase className="mr-2 h-4 w-4" />
+                Jobs
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Button
             variant={activeTab === "search" ? "default" : "ghost"}
             className="justify-start"
@@ -67,14 +108,6 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
           >
             <Search className="mr-2 h-4 w-4" />
             Find Members
-          </Button>
-          <Button
-            variant={activeTab === "profile" ? "default" : "ghost"}
-            className="justify-start"
-            onClick={() => setActiveTab("profile")}
-          >
-            <User className="mr-2 h-4 w-4" />
-            Profile
           </Button>
           <Button
             variant={activeTab === "events" ? "default" : "ghost"}

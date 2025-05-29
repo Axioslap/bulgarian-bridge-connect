@@ -12,6 +12,9 @@ import SearchTab from "@/components/dashboard/tabs/SearchTab";
 import ProfileTab from "@/components/dashboard/tabs/ProfileTab";
 import EventsTab from "@/components/dashboard/tabs/EventsTab";
 import ResourcesTab from "@/components/dashboard/tabs/ResourcesTab";
+import VideosTab from "@/components/dashboard/tabs/VideosTab";
+import ArticlesTab from "@/components/dashboard/tabs/ArticlesTab";
+import JobsTab from "@/components/dashboard/tabs/JobsTab";
 import { mockMessages } from "@/data/mockData";
 
 const MemberDashboard = () => {
@@ -55,6 +58,12 @@ const MemberDashboard = () => {
         return <EventsTab />;
       case "resources":
         return <ResourcesTab />;
+      case "videos":
+        return <VideosTab />;
+      case "articles":
+        return <ArticlesTab />;
+      case "jobs":
+        return <JobsTab />;
       default:
         return <DashboardTab userProfile={userProfile} />;
     }
