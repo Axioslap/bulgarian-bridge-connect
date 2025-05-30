@@ -6,9 +6,18 @@ const Footer = () => {
   
   return (
     <footer className="bg-[#002147] relative overflow-hidden">
-      {/* Background decorative elements using only specified colors */}
+      {/* USA-themed background elements */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(178,34,52,0.1),transparent)] opacity-60"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(198,166,100,0.08),transparent)] opacity-60"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent)] opacity-60"></div>
+      
+      {/* Stars pattern overlay for USA theme */}
+      <div className="absolute top-0 left-0 w-full h-32 opacity-10">
+        <div className="flex flex-wrap gap-8 p-4">
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className="text-white text-xs">★</div>
+          ))}
+        </div>
+      </div>
       
       <div className="relative max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -33,18 +42,25 @@ const Footer = () => {
               partners through events, mentorship, and curated opportunities.
             </p>
             
-            {/* AAC Partnership */}
+            {/* AAC Partnership with USA flag colors */}
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-[#F5F5F5]/10">
               <p className="text-[#F5F5F5] text-sm mb-4">Proud member of</p>
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center border border-[#C6A664]/20">
-                  <span className="text-[#C6A664] font-bold text-lg">AAC</span>
+                <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center border border-white/20">
+                  <span className="text-white font-bold text-lg">AAC</span>
                 </div>
                 <div>
                   <h4 className="text-white font-semibold">Association of American Clubs</h4>
                   <p className="text-[#F5F5F5] text-sm">Global network of American business communities</p>
                 </div>
               </div>
+            </div>
+
+            {/* USA-themed decorative element */}
+            <div className="mt-6 flex items-center space-x-2 text-xs text-white/60">
+              <span>🇺🇸</span>
+              <span>Bridging Bulgaria & USA</span>
+              <span>🇧🇬</span>
             </div>
           </div>
           
@@ -90,18 +106,18 @@ const Footer = () => {
           <div>
             <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-6 relative">
               Member Area
-              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-[#C6A664]"></div>
+              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-white"></div>
             </h3>
             <ul className="space-y-4">
               <li>
                 <Link to="/login" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-[#C6A664] rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                  <span className="w-1 h-1 bg-white rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
                   Log in
                 </Link>
               </li>
               <li>
                 <Link to="/register" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-[#C6A664] rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                  <span className="w-1 h-1 bg-white rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
                   Join Us
                 </Link>
               </li>

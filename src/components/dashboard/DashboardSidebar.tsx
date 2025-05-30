@@ -24,25 +24,25 @@ interface DashboardSidebarProps {
 const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageCount }: DashboardSidebarProps) => {
   return (
     <div className="w-full md:w-64 mb-6 md:mb-0">
-      <Card>
-        <CardHeader className="pb-3">
+      <Card className="border-[#F5F5F5] bg-white">
+        <CardHeader className="pb-3 bg-gradient-to-r from-[#002147] to-[#B22234] text-white rounded-t-lg">
           <CardTitle className="text-lg">
             <div className="flex items-center">
               <User className="mr-2 h-5 w-5" />
               <Button 
                 variant="ghost" 
-                className="p-0 h-auto font-semibold text-lg justify-start"
+                className="p-0 h-auto font-semibold text-lg justify-start text-white hover:text-white"
                 onClick={() => setActiveTab("profile")}
               >
                 {userProfile.name}
               </Button>
             </div>
           </CardTitle>
-          <CardDescription className="text-xs">
-            Member since {userProfile.joinDate}
+          <CardDescription className="text-xs text-white/80">
+            Member since {userProfile.joinDate} 🇺🇸
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-1">
+        <CardContent className="grid gap-1 pt-4">
           <Button
             variant={activeTab === "dashboard" ? "default" : "ghost"}
             className="justify-start"

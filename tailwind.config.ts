@@ -23,12 +23,11 @@ export default {
 				'sans': ['Open Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 			},
 			colors: {
-				// ABTC Exact Color Palette
+				// ABTC Exact Color Palette - Removed Gold
 				'abtc-navy': '#002147',    // Primary Blue
 				'abtc-red': '#B22234',     // Accent Red  
 				'abtc-white': '#FFFFFF',   // Background White
 				'abtc-gray': '#F5F5F5',    // Light Gray
-				'abtc-gold': '#C6A664',    // Prestige Gold
 				
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -100,6 +99,10 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			backgroundImage: {
+				'usa-flag': 'linear-gradient(to right, #002147 33%, #FFFFFF 33%, #FFFFFF 66%, #B22234 66%)',
+				'stars-stripes': 'repeating-linear-gradient(0deg, #B22234, #B22234 4px, #FFFFFF 4px, #FFFFFF 8px)'
 			}
 		}
 	},
