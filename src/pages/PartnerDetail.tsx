@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,8 +10,8 @@ const PartnerDetail = () => {
   const { id } = useParams();
   
   // Mock data - in a real app this would come from an API
-  const partnerData = {
-    1: {
+  const partnerData: Record<string, any> = {
+    "1": {
       name: "TechCorp",
       logo: "/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png",
       description: "Leading technology solutions provider specializing in enterprise software and digital transformation",
@@ -52,15 +51,15 @@ const PartnerDetail = () => {
     }
   };
 
-  const partner = partnerData[id as keyof typeof partnerData];
+  const partner = id ? partnerData[id] : null;
 
   if (!partner) {
     return (
-      <div className="flex flex-col min-h-screen bg-slate-50">
+      <div className="flex flex-col min-h-screen bg-slate-800">
         <Header />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-900 mb-4">Partner Not Found</h1>
+            <h1 className="text-3xl font-bold text-white mb-4">Partner Not Found</h1>
             <Link to="/partners">
               <Button>Back to Partners</Button>
             </Link>
@@ -72,7 +71,7 @@ const PartnerDetail = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
+    <div className="flex flex-col min-h-screen bg-slate-800">
       <Header />
       
       {/* Header Section */}
@@ -101,7 +100,7 @@ const PartnerDetail = () => {
       </section>
 
       {/* Partner Info */}
-      <section className="py-12 bg-white border-b border-slate-200">
+      <section className="py-12 bg-slate-700 border-b border-slate-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="flex items-center space-x-3">
@@ -135,7 +134,7 @@ const PartnerDetail = () => {
       </section>
 
       {/* Collaboration Details */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Overview */}
@@ -182,7 +181,7 @@ const PartnerDetail = () => {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Upcoming Joint Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
