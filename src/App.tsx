@@ -12,6 +12,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import MemberDashboard from "./pages/MemberDashboard";
+import Partners from "./pages/Partners";
+import PartnerDetail from "./pages/PartnerDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/partners/:id" element={<PartnerDetail />} />
           <Route path="/events" element={<Events />} />
           <Route path="/news" element={<News />} />
           <Route path="/login" element={<Login />} />
