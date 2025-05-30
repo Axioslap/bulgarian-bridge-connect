@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User, BookOpen, Calendar, Search, MessageCircle, Users, ChevronDown, Video, FileText, Briefcase } from "lucide-react";
+import { User, BookOpen, Calendar, Search, MessageCircle, Users, ChevronDown, Video, FileText, Briefcase, Newspaper } from "lucide-react";
 
 interface DashboardSidebarProps {
   userProfile: {
@@ -73,15 +73,15 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
             )}
           </Button>
           
-          {/* Stories & Resources Dropdown */}
+          {/* My News Feed with dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
                 className="justify-start w-full"
               >
-                <BookOpen className="mr-2 h-4 w-4" />
-                Stories & Resources
+                <Newspaper className="mr-2 h-4 w-4" />
+                My News Feed
                 <ChevronDown className="ml-auto h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>

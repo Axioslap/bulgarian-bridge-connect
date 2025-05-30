@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -22,6 +21,7 @@ const Register = () => {
   const [yearsInUs, setYearsInUs] = useState("");
   const [usEducation, setUsEducation] = useState("");
   const [usEducationDetails, setUsEducationDetails] = useState("");
+  const [visibleToSupporters, setVisibleToSupporters] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -223,6 +223,28 @@ const Register = () => {
                       />
                     </div>
                   )}
+                </div>
+              )}
+              
+              {/* Supporter Visibility Option for Members */}
+              {membershipType === "member" && (
+                <div className="space-y-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                  <h3 className="font-semibold text-green-900">Profile Visibility Settings</h3>
+                  <div className="flex items-start space-x-2">
+                    <Checkbox 
+                      id="visibleToSupporters" 
+                      checked={visibleToSupporters}
+                      onCheckedChange={(checked) => setVisibleToSupporters(checked as boolean)}
+                    />
+                    <div className="space-y-1">
+                      <Label htmlFor="visibleToSupporters" className="font-medium cursor-pointer">
+                        Make my profile visible to supporters
+                      </Label>
+                      <p className="text-sm text-gray-600">
+                        Allow supporters to see your profile information and connect with you. You can change this setting later in your profile.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               )}
               

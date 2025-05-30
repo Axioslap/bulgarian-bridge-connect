@@ -4,6 +4,33 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
+  const partners = [
+    {
+      id: 1,
+      name: "TechCorp",
+      logo: "/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png",
+      description: "Leading technology solutions provider"
+    },
+    {
+      id: 2,
+      name: "Innovation Labs",
+      logo: "/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png",
+      description: "Cutting-edge research and development"
+    },
+    {
+      id: 3,
+      name: "Global Ventures",
+      logo: "/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png",
+      description: "International business expansion"
+    },
+    {
+      id: 4,
+      name: "StartupHub",
+      logo: "/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png",
+      description: "Entrepreneurship and innovation support"
+    }
+  ];
+  
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -14,18 +41,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-8">
-              <div className="relative mr-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center shadow-xl border border-white/10">
+              <div className="relative mr-3">
+                <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center shadow-2xl border border-white/20 p-1">
                   <img 
                     src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
                     alt="ABTC Bulgaria Logo" 
-                    className="h-9 w-9"
+                    className="h-16 w-16 object-contain filter drop-shadow-lg"
                   />
                 </div>
               </div>
               <div className="flex items-center">
-                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mr-1 tracking-tight">ABTC</span>
-                <span className="text-2xl font-bold bg-gradient-to-r from-secondary to-secondary/80 bg-clip-text text-transparent tracking-tight">Bulgaria</span>
+                <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mr-2 tracking-tight">ABTC</span>
+                <span className="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent tracking-tight">Bulgaria</span>
               </div>
             </div>
             <p className="text-gray-300 max-w-md leading-relaxed mb-8">
@@ -100,6 +127,33 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Partners Section */}
+        <div className="mt-16 border-t border-white/10 pt-12">
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">Our Partners</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {partners.map((partner) => (
+              <div 
+                key={partner.id}
+                className="group cursor-pointer"
+                onClick={() => {
+                  // This would normally navigate to a partner detail page
+                  console.log(`Learn more about ${partner.name}`);
+                }}
+              >
+                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 group-hover:bg-white/10 text-center">
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} Logo`}
+                    className="w-16 h-16 mx-auto mb-4 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
+                  <h4 className="text-white font-semibold mb-2">{partner.name}</h4>
+                  <p className="text-gray-400 text-sm">{partner.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         
