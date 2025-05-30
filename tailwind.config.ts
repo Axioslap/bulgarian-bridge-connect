@@ -23,11 +23,12 @@ export default {
 				'sans': ['Open Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 			},
 			colors: {
-				// ABTC Professional Color Palette
-				'abtc-navy': '#002147',
-				'abtc-red': '#B22234',
-				'abtc-gold': '#C6A664',
-				'abtc-gray': '#F5F5F5',
+				// ABTC Exact Color Palette
+				'abtc-navy': '#002147',    // Primary Blue
+				'abtc-red': '#B22234',     // Accent Red  
+				'abtc-white': '#FFFFFF',   // Background White
+				'abtc-gray': '#F5F5F5',    // Light Gray
+				'abtc-gold': '#C6A664',    // Prestige Gold
 				
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
