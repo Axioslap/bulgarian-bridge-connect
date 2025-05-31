@@ -16,6 +16,7 @@ import VideosTab from "@/components/dashboard/tabs/VideosTab";
 import ArticlesTab from "@/components/dashboard/tabs/ArticlesTab";
 import JobsTab from "@/components/dashboard/tabs/JobsTab";
 import NewsTab from "@/components/dashboard/tabs/NewsTab";
+import CommunityImpactTab from "@/components/dashboard/tabs/CommunityImpactTab";
 import { mockMessages } from "@/data/mockData";
 
 const MemberDashboard = () => {
@@ -62,6 +63,8 @@ const MemberDashboard = () => {
         return <ResourcesTab />;
       case "videos":
         return <VideosTab />;
+      case "community-impact":
+        return <CommunityImpactTab />;
       case "articles":
         return <ArticlesTab />;
       case "jobs":

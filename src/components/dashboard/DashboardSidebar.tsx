@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, BookOpen, Calendar, Search, MessageCircle, Users, Video, FileText, Briefcase } from "lucide-react";
+import { User, BookOpen, Calendar, Search, MessageCircle, Users, Video, FileText, Heart } from "lucide-react";
 
 interface DashboardSidebarProps {
   userProfile: {
@@ -74,6 +74,15 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
           >
             <Video className="mr-2 h-4 w-4" />
             Storytelling - Videos
+          </Button>
+
+          <Button
+            variant={activeTab === "community-impact" ? "default" : "ghost"}
+            className="justify-start"
+            onClick={() => setActiveTab("community-impact")}
+          >
+            <Heart className="mr-2 h-4 w-4" />
+            Community Impact
           </Button>
 
           <Button
