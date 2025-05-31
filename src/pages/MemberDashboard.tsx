@@ -15,11 +15,13 @@ import ResourcesTab from "@/components/dashboard/tabs/ResourcesTab";
 import VideosTab from "@/components/dashboard/tabs/VideosTab";
 import ArticlesTab from "@/components/dashboard/tabs/ArticlesTab";
 import JobsTab from "@/components/dashboard/tabs/JobsTab";
+import NewsTab from "@/components/dashboard/tabs/NewsTab";
 import { mockMessages } from "@/data/mockData";
 
 const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [userSkills, setUserSkills] = useState<string[]>(["Business Strategy", "Marketing", "Leadership"]);
+  const [newsInterests, setNewsInterests] = useState<string[]>(["AI", "Fintech", "Blockchain", "Startup"]);
   const { toast } = useToast();
 
   // This would normally come from an auth context/provider
@@ -64,6 +66,8 @@ const MemberDashboard = () => {
         return <ArticlesTab />;
       case "jobs":
         return <JobsTab />;
+      case "news":
+        return <NewsTab newsInterests={newsInterests} setNewsInterests={setNewsInterests} />;
       default:
         return <DashboardTab userProfile={userProfile} />;
     }

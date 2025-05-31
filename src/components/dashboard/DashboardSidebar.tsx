@@ -24,22 +24,22 @@ interface DashboardSidebarProps {
 const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageCount }: DashboardSidebarProps) => {
   return (
     <div className="w-full md:w-64 mb-6 md:mb-0">
-      <Card className="border-[#F5F5F5] bg-white">
-        <CardHeader className="pb-3 bg-gradient-to-r from-[#002147] to-[#B22234] text-white rounded-t-lg">
+      <Card>
+        <CardHeader className="pb-3">
           <CardTitle className="text-lg">
             <div className="flex items-center">
               <User className="mr-2 h-5 w-5" />
               <Button 
                 variant="ghost" 
-                className="p-0 h-auto font-semibold text-lg justify-start text-white hover:text-white"
+                className="p-0 h-auto font-semibold text-lg justify-start"
                 onClick={() => setActiveTab("profile")}
               >
                 {userProfile.name}
               </Button>
             </div>
           </CardTitle>
-          <CardDescription className="text-xs text-white/80">
-            Member since {userProfile.joinDate} 🇺🇸
+          <CardDescription className="text-xs">
+            Member since {userProfile.joinDate}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-1 pt-4">
@@ -85,7 +85,11 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
                 <ChevronDown className="ml-auto h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-56 bg-white">
+            <DropdownMenuContent align="start" className="w-56">
+              <DropdownMenuItem onClick={() => setActiveTab("news")}>
+                <Newspaper className="mr-2 h-4 w-4" />
+                News Feed
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setActiveTab("videos")}>
                 <Video className="mr-2 h-4 w-4" />
                 Storytelling - Videos

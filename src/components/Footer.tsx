@@ -5,98 +5,51 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-[#002147] relative overflow-hidden">
-      {/* USA-themed background elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(178,34,52,0.1),transparent)] opacity-60"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.05),transparent)] opacity-60"></div>
-      
-      {/* Stars pattern overlay for USA theme */}
-      <div className="absolute top-0 left-0 w-full h-32 opacity-10">
-        <div className="flex flex-wrap gap-8 p-4">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className="text-white text-xs">★</div>
-          ))}
-        </div>
-      </div>
-      
-      <div className="relative max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer className="bg-slate-900 text-white">
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-8">
-              <div className="relative mr-4">
-                <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center shadow-2xl border border-[#F5F5F5]/20 p-2">
-                  <img 
-                    src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
-                    alt="ABTC Bulgaria Logo" 
-                    className="h-16 w-16 object-contain filter drop-shadow-lg"
-                  />
-                </div>
-              </div>
-              <div className="flex items-center">
-                <span className="text-3xl font-bold text-white mr-2 tracking-tight">ABTC</span>
-                <span className="text-3xl font-bold text-[#B22234] tracking-tight">Bulgaria</span>
-              </div>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/d1cb6ba8-a5b8-4971-a54d-ffa39ade484f.png" 
+                alt="ABTC Bulgaria Logo" 
+                className="h-12 w-12 mr-3"
+              />
+              <span className="text-xl font-bold">ABTC Bulgaria</span>
             </div>
-            <p className="text-[#F5F5F5] max-w-md leading-relaxed mb-8">
+            <p className="text-gray-400 max-w-md">
               Connecting U.S.-educated Bulgarians, young professionals, and innovation 
               partners through events, mentorship, and curated opportunities.
             </p>
-            
-            {/* AAC Partnership with USA flag colors */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-[#F5F5F5]/10">
-              <p className="text-[#F5F5F5] text-sm mb-4">Proud member of</p>
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center border border-white/20">
-                  <span className="text-white font-bold text-lg">AAC</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold">Association of American Clubs</h4>
-                  <p className="text-[#F5F5F5] text-sm">Global network of American business communities</p>
-                </div>
-              </div>
-            </div>
-
-            {/* USA-themed decorative element */}
-            <div className="mt-6 flex items-center space-x-2 text-xs text-white/60">
-              <span>🇺🇸</span>
-              <span>Bridging Bulgaria & USA</span>
-              <span>🇧🇬</span>
-            </div>
           </div>
           
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-6 relative">
+            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">
               Navigation
-              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-[#B22234]"></div>
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-[#B22234] rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                <Link to="/" className="text-gray-300 hover:text-white">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-[#B22234] rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                <Link to="/about" className="text-gray-300 hover:text-white">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/partners" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-[#B22234] rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                <Link to="/partners" className="text-gray-300 hover:text-white">
                   Our Partners
                 </Link>
               </li>
               <li>
-                <Link to="/events" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-[#B22234] rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                <Link to="/events" className="text-gray-300 hover:text-white">
                   Events
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-[#B22234] rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                <Link to="/news" className="text-gray-300 hover:text-white">
                   Business/Tech News
                 </Link>
               </li>
@@ -104,20 +57,17 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-6 relative">
+            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase mb-4">
               Member Area
-              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-white"></div>
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               <li>
-                <Link to="/login" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-white rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                <Link to="/login" className="text-gray-300 hover:text-white">
                   Log in
                 </Link>
               </li>
               <li>
-                <Link to="/register" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium flex items-center group">
-                  <span className="w-1 h-1 bg-white rounded-full mr-3 group-hover:w-2 transition-all duration-200"></span>
+                <Link to="/register" className="text-gray-300 hover:text-white">
                   Join Us
                 </Link>
               </li>
@@ -125,16 +75,16 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-16 border-t border-[#F5F5F5]/10 pt-8">
+        <div className="mt-8 border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-[#F5F5F5] font-medium">
+            <p className="text-gray-400">
               &copy; {currentYear} American Business & Tech Club Bulgaria. All rights reserved.
             </p>
-            <div className="mt-4 md:mt-0 flex space-x-8">
-              <a href="#" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium">
+            <div className="mt-4 md:mt-0 flex space-x-6">
+              <a href="#" className="text-gray-400 hover:text-white">
                 Privacy Policy
               </a>
-              <a href="#" className="text-[#F5F5F5] hover:text-white transition-colors duration-200 font-medium">
+              <a href="#" className="text-gray-400 hover:text-white">
                 Terms of Service
               </a>
             </div>
