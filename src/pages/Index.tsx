@@ -1,9 +1,11 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import EventCard from "@/components/EventCard";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Play } from "lucide-react";
 
 const Index = () => {
   // Sample featured events
@@ -37,6 +39,38 @@ const Index = () => {
     },
   ];
 
+  // Sample storytelling videos
+  const featuredVideos = [
+    {
+      id: 1,
+      title: "Building Tech Bridges: Bulgaria-US Partnerships",
+      description: "A discussion on fostering international tech collaboration",
+      duration: "15:30",
+      thumbnail: "/placeholder.svg",
+    },
+    {
+      id: 2,
+      title: "Educational Excellence: My Harvard Experience",
+      description: "Personal story about studying at Harvard Business School",
+      duration: "22:45",
+      thumbnail: "/placeholder.svg",
+    },
+    {
+      id: 3,
+      title: "Starting a Business in Sofia",
+      description: "Entrepreneurship journey in Bulgaria's capital",
+      duration: "18:20",
+      thumbnail: "/placeholder.svg",
+    },
+    {
+      id: 4,
+      title: "Community Impact: Giving Back",
+      description: "How ABTC members are making a difference",
+      duration: "12:15",
+      thumbnail: "/placeholder.svg",
+    },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -59,7 +93,11 @@ const Index = () => {
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
                 American Business & 
-                <span className="block text-white/95 drop-shadow-xl">Tech Club Bulgaria</span>
+                <span className="block drop-shadow-xl">
+                  <span className="text-blue-100">Tech Club</span>
+                  <span className="text-white mx-2"> </span>
+                  <span className="text-red-300">Bulgaria</span>
+                </span>
               </h1>
               <p className="text-xl md:text-2xl mb-10 leading-relaxed text-white/95 max-w-3xl drop-shadow-lg">
                 Connecting U.S.-educated Bulgarians, young professionals, and innovation partners through meaningful experiences
@@ -137,6 +175,54 @@ const Index = () => {
                 Participate in our mentorship programs, either as a mentor or mentee, to foster professional development and leadership.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Storytelling Videos Section */}
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(30,64,175,0.03),transparent)] opacity-60"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(220,38,38,0.02),transparent)] opacity-60"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">Storytelling - Videos</h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-800 to-red-600 mx-auto mb-8 rounded-full"></div>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+              Discover inspiring stories and insights from our community members who are making an impact across the globe.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredVideos.map((video) => (
+              <Card key={video.id} className="hover:shadow-lg transition-shadow cursor-pointer group">
+                <div className="relative">
+                  <img 
+                    src={video.thumbnail} 
+                    alt={video.title}
+                    className="w-full h-40 object-cover rounded-t-lg"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-t-lg">
+                    <Play className="h-10 w-10 text-white" />
+                  </div>
+                  <Badge className="absolute bottom-2 right-2 bg-black/70 text-white">
+                    {video.duration}
+                  </Badge>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold text-sm mb-2 line-clamp-2">{video.title}</h3>
+                  <p className="text-gray-600 text-xs line-clamp-2">{video.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link to="/member">
+              <Button variant="outline" className="shadow-md hover:shadow-lg transition-shadow duration-200 font-medium border-slate-300 text-slate-700 hover:bg-slate-50">
+                View All Videos
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
