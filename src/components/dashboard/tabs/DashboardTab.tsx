@@ -4,14 +4,10 @@ import ResourceLibraryCard from "../ResourceLibraryCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import SkillSelector from "@/components/SkillSelector";
 import DiscussionPost from "@/components/DiscussionPost";
 import { upcomingEvents, resourceLinks, mockCuratedNews, mockDiscussionPosts } from "@/data/mockData";
 import { ExternalLink, Calendar, MessageSquare, Heart, Share2 } from "lucide-react";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 interface DashboardTabProps {
   userProfile: {
@@ -23,21 +19,9 @@ interface DashboardTabProps {
 }
 
 const DashboardTab = ({ userProfile }: DashboardTabProps) => {
-  const [newPostTitle, setNewPostTitle] = useState("");
-  const [newPostContent, setNewPostContent] = useState("");
-  const [newPostTags, setNewPostTags] = useState<string[]>([]);
-  const { toast } = useToast();
-
-  const handlePostSubmit = () => {
-    if (newPostTitle.trim() && newPostContent.trim()) {
-      toast({
-        title: "Post created successfully!",
-        description: "Your post has been shared with the community.",
-      });
-      setNewPostTitle("");
-      setNewPostContent("");
-      setNewPostTags([]);
-    }
+  const handlePostClick = (postId: number) => {
+    console.log(`Clicked on post ${postId}`);
+    // Navigate to post detail or expand post
   };
 
   return (
@@ -45,10 +29,17 @@ const DashboardTab = ({ userProfile }: DashboardTabProps) => {
       {/* My News Feed */}
       <Card>
         <CardHeader>
-          <CardTitle>My News Feed</CardTitle>
-          <CardDescription>
-            Latest stories based on your interests
-          </CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle>My News Feed</CardTitle>
+              <CardDescription>
+                Latest stories based on your interests
+              </CardDescription>
+            </div>
+            <Link to="/news">
+              <Button variant="outline">View All News</Button>
+            </Link>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -83,45 +74,22 @@ const DashboardTab = ({ userProfile }: DashboardTabProps) => {
         <CardHeader>
           <CardTitle>My Discussion</CardTitle>
           <CardDescription>
-            Your posts and discussions you've participated in
+            Your recent activity and posts
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Create New Post */}
-          <div className="space-y-4 p-4 border rounded-lg bg-gray-50">
-            <h4 className="font-medium">Create New Post</h4>
-            <Input
-              placeholder="Post title..."
-              value={newPostTitle}
-              onChange={(e) => setNewPostTitle(e.target.value)}
-            />
-            <Textarea
-              placeholder="What's on your mind?"
-              value={newPostContent}
-              onChange={(e) => setNewPostContent(e.target.value)}
-              rows={3}
-            />
-            <div>
-              <label className="text-sm font-medium mb-2 block">Tags</label>
-              <SkillSelector
-                skills={newPostTags}
-                onSkillsChange={setNewPostTags}
-                placeholder="Add tags (e.g., startup, networking)..."
-              />
-            </div>
-            <Button onClick={handlePostSubmit} className="w-full">
-              Share Post
-            </Button>
-          </div>
-
           {/* Recent Posts */}
           <div className="space-y-4">
             <h4 className="font-medium">Your Recent Activity</h4>
-            {mockDiscussionPosts.slice(0, 2).map((post) => (
-              <div key={post.id} className="p-4 border rounded-lg">
+            {mockDiscussionPosts.slice(0, 4).map((post) => (
+              <div 
+                key={post.id} 
+                className="p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
+                onClick={() => handlePostClick(post.id)}
+              >
                 <div className="flex justify-between items-start mb-2">
                   <h4 className="font-medium">{post.title}</h4>
-                  <Badge variant="outline" className="text-xs">{post.category}</Badge>
+                  <Badge variant="outline" className="text-xs">{post.tags[0]}</Badge>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">{post.content}</p>
                 <div className="flex items-center justify-between text-sm text-gray-500">
@@ -134,12 +102,8 @@ const DashboardTab = ({ userProfile }: DashboardTabProps) => {
                       <MessageSquare className="w-4 h-4" />
                       {post.comments}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <Share2 className="w-4 h-4" />
-                      {post.shares}
-                    </span>
                   </div>
-                  <span>{post.date}</span>
+                  <span>{post.timeAgo}</span>
                 </div>
               </div>
             ))}
