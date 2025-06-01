@@ -2,11 +2,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DollarSign, Heart, Clock, Users, Globe, GraduationCap, HandHeart } from "lucide-react";
+import { DollarSign, Heart, Clock, Users, Globe, GraduationCap, HandHeart, UserCheck, BookOpen } from "lucide-react";
 
 const CommunityImpactTab = () => {
-  // Mock user donation balance
+  // Mock user donation balance and volunteer hours
   const userBalance = 150.75;
+  const volunteerHours = 24; // Total hours volunteered as mentor
   
   // Mock charitable initiatives
   const charities = [
@@ -56,9 +57,42 @@ const CommunityImpactTab = () => {
     }
   ];
 
+  // Mock expertise donation opportunities
+  const expertiseOpportunities = [
+    {
+      id: 1,
+      title: "Business Strategy Consulting",
+      description: "Help Bulgarian startups develop their business strategies",
+      skillsNeeded: ["Business Strategy", "Marketing", "Finance"],
+      timeCommitment: "2-3 hours/month",
+      icon: BookOpen
+    },
+    {
+      id: 2,
+      title: "Tech Mentorship",
+      description: "Mentor young Bulgarian developers and engineers",
+      skillsNeeded: ["Software Development", "Engineering", "Product Management"],
+      timeCommitment: "1-2 hours/week",
+      icon: Users
+    },
+    {
+      id: 3,
+      title: "Career Guidance",
+      description: "Provide career advice to Bulgarian professionals in the US",
+      skillsNeeded: ["HR", "Career Counseling", "Leadership"],
+      timeCommitment: "1 hour/week",
+      icon: UserCheck
+    }
+  ];
+
   const handleDonate = (charityId: number, amount?: number) => {
     console.log(`Donating ${amount || 'time'} to charity ${charityId}`);
     // Here you would implement the donation logic
+  };
+
+  const handleExpertiseDonation = (opportunityId: number) => {
+    console.log(`Volunteering expertise for opportunity ${opportunityId}`);
+    // Here you would implement the expertise donation logic
   };
 
   const handleAddFunds = () => {
@@ -68,26 +102,104 @@ const CommunityImpactTab = () => {
 
   return (
     <div className="grid gap-6">
-      {/* Donation Balance Card */}
+      {/* User Impact Summary */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Donation Balance Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <DollarSign className="mr-2 h-5 w-5 text-green-600" />
+              Your Donation Balance
+            </CardTitle>
+            <CardDescription>
+              Funds available for charitable donations
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-3xl font-bold text-green-600">${userBalance.toFixed(2)}</div>
+                <p className="text-sm text-gray-500 mt-1">Available to donate</p>
+              </div>
+              <Button onClick={handleAddFunds} className="bg-blue-600 hover:bg-blue-700">
+                Add Funds
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Volunteer Hours Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Clock className="mr-2 h-5 w-5 text-blue-600" />
+              Your Volunteer Time
+            </CardTitle>
+            <CardDescription>
+              Time donated as a mentor
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div>
+              <div className="text-3xl font-bold text-blue-600">{volunteerHours} hours</div>
+              <p className="text-sm text-gray-500 mt-1">Total time volunteered</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Expertise Donation Opportunities */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <DollarSign className="mr-2 h-5 w-5 text-green-600" />
-            Your Donation Balance
+            <UserCheck className="mr-2 h-5 w-5 text-purple-500" />
+            Donate Your Expertise
           </CardTitle>
           <CardDescription>
-            Funds available for charitable donations
+            Share your knowledge and skills with the community
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-3xl font-bold text-green-600">${userBalance.toFixed(2)}</div>
-              <p className="text-sm text-gray-500 mt-1">Available to donate</p>
-            </div>
-            <Button onClick={handleAddFunds} className="bg-blue-600 hover:bg-blue-700">
-              Add Funds
-            </Button>
+          <div className="grid gap-4">
+            {expertiseOpportunities.map((opportunity) => {
+              const IconComponent = opportunity.icon;
+              
+              return (
+                <div key={opportunity.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start space-x-3">
+                      <div className="p-2 bg-purple-100 rounded-lg">
+                        <IconComponent className="h-5 w-5 text-purple-600" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-lg">{opportunity.title}</h4>
+                        <p className="text-sm text-gray-600 mb-2">{opportunity.description}</p>
+                        <div className="flex flex-wrap gap-1 mb-2">
+                          {opportunity.skillsNeeded.map((skill) => (
+                            <Badge key={skill} variant="outline" className="text-xs">
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                        <p className="text-xs text-gray-500">Time commitment: {opportunity.timeCommitment}</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-end">
+                    <Button 
+                      size="sm" 
+                      variant="secondary"
+                      onClick={() => handleExpertiseDonation(opportunity.id)}
+                      className="bg-purple-600 hover:bg-purple-700 text-white"
+                    >
+                      <UserCheck className="w-4 h-4 mr-1" />
+                      Volunteer Expertise
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </CardContent>
       </Card>

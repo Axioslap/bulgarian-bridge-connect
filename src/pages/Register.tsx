@@ -10,6 +10,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info, Users, Heart } from "lucide-react";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -119,6 +121,14 @@ const Register = () => {
                 />
               </div>
 
+              {/* Membership Interview Notice */}
+              <Alert>
+                <Info className="h-4 w-4" />
+                <AlertDescription>
+                  <strong>Important:</strong> All applicants will have an interview with a club member to better understand your needs and verify information provided.
+                </AlertDescription>
+              </Alert>
+
               {/* Membership Type */}
               <div className="space-y-4">
                 <Label className="text-base font-semibold">Membership Type</Label>
@@ -126,24 +136,36 @@ const Register = () => {
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3 p-4 border rounded-lg">
                       <RadioGroupItem value="member" id="member" className="mt-1" />
-                      <div className="space-y-1">
-                        <Label htmlFor="member" className="font-medium cursor-pointer">
+                      <div className="space-y-1 flex-1">
+                        <Label htmlFor="member" className="font-medium cursor-pointer flex items-center">
+                          <Users className="w-4 h-4 mr-2" />
                           Member
                         </Label>
                         <p className="text-sm text-gray-600">
                           Full access to our community, events, and resources. Requires US connection.
                         </p>
+                        <div className="bg-blue-50 p-3 rounded-md mt-2">
+                          <p className="text-sm text-blue-800">
+                            <strong>Pricing:</strong> First 3 months free, then $45/month. Part of the fees support charitable initiatives.
+                          </p>
+                        </div>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3 p-4 border rounded-lg">
                       <RadioGroupItem value="supporter" id="supporter" className="mt-1" />
-                      <div className="space-y-1">
-                        <Label htmlFor="supporter" className="font-medium cursor-pointer">
+                      <div className="space-y-1 flex-1">
+                        <Label htmlFor="supporter" className="font-medium cursor-pointer flex items-center">
+                          <Heart className="w-4 h-4 mr-2" />
                           Supporter
                         </Label>
                         <p className="text-sm text-gray-600">
                           Support our mission and get updates about our community and events.
                         </p>
+                        <div className="bg-green-50 p-3 rounded-md mt-2">
+                          <p className="text-sm text-green-800">
+                            <strong>Pricing:</strong> First 3 months free, then $45/month. Part of the fees support charitable initiatives.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
