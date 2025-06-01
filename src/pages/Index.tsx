@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -81,7 +82,7 @@ const Index = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+            backgroundImage: `url('/lovable-uploads/8d65834e-7077-4171-8395-2d2dc55fc632.png')`
           }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-800/95 via-blue-700/90 to-red-600/85"></div>
@@ -180,22 +181,28 @@ const Index = () => {
       </section>
       
       {/* Storytelling Videos Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(30,64,175,0.03),transparent)] opacity-60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(220,38,38,0.02),transparent)] opacity-60"></div>
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/lovable-uploads/65c1a96b-0098-4b43-9e35-3e825d4e89b8.png')`
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-800/80 to-slate-900/85"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">Storytelling - Videos</h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-800 to-red-600 mx-auto mb-8 rounded-full"></div>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Storytelling - Videos</h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-red-500 mx-auto mb-8 rounded-full"></div>
+            <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
               Discover inspiring stories and insights from our community members who are making an impact across the globe.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredVideos.map((video) => (
-              <Card key={video.id} className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card key={video.id} className="hover:shadow-lg transition-shadow cursor-pointer group bg-white/95 backdrop-blur-sm">
                 <div className="relative">
                   <img 
                     src={video.thumbnail} 
@@ -219,7 +226,7 @@ const Index = () => {
           
           <div className="text-center mt-8">
             <Link to="/member">
-              <Button variant="outline" className="shadow-md hover:shadow-lg transition-shadow duration-200 font-medium border-slate-300 text-slate-700 hover:bg-slate-50">
+              <Button variant="outline" className="shadow-md hover:shadow-lg transition-shadow duration-200 font-medium border-white/50 text-white hover:bg-white/10 backdrop-blur-sm">
                 View All Videos
               </Button>
             </Link>
