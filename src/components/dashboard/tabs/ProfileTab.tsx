@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import SkillSelector from "@/components/SkillSelector";
 import { Camera, MapPin, X } from "lucide-react";
 import { useState } from "react";
@@ -23,6 +24,7 @@ const ProfileTab = ({ userProfile, userSkills, setUserSkills }: ProfileTabProps)
   const [location, setLocation] = useState("Boston, MA");
   const [interests, setInterests] = useState<string[]>(["Technology", "Entrepreneurship", "Bulgarian Culture", "Networking"]);
   const [newInterest, setNewInterest] = useState("");
+  const [isProfileVisibleToSupporters, setIsProfileVisibleToSupporters] = useState(false);
 
   const handleProfilePictureUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -153,6 +155,29 @@ const ProfileTab = ({ userProfile, userSkills, setUserSkills }: ProfileTabProps)
                 className="flex-1"
               />
               <Button onClick={addInterest} size="sm">Add</Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Profile Visibility Settings */}
+        <div className="border-t pt-6">
+          <label className="text-sm font-medium mb-3 block">Profile Visibility Settings</label>
+          <div className="flex items-start space-x-3">
+            <Checkbox
+              id="profile-visibility"
+              checked={isProfileVisibleToSupporters}
+              onCheckedChange={(checked) => setIsProfileVisibleToSupporters(checked as boolean)}
+            />
+            <div className="grid gap-1.5 leading-none">
+              <label
+                htmlFor="profile-visibility"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Make my profile visible to supporters
+              </label>
+              <p className="text-xs text-muted-foreground">
+                Allow supporters to see your profile information and connect with you. You can change this setting later in your profile.
+              </p>
             </div>
           </div>
         </div>

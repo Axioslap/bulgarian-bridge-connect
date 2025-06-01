@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -114,11 +113,20 @@ const Events = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-primary/10 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/lovable-uploads/8d65834e-7077-4171-8395-2d2dc55fc632.png')`
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-800/90 via-blue-700/85 to-red-600/90"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-white">
           <div className="max-w-3xl">
-            <h1 className="text-4xl font-bold mb-6">Events</h1>
-            <p className="text-xl text-gray-600">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-xl">Events</h1>
+            <p className="text-xl md:text-2xl text-white/95 leading-relaxed drop-shadow-lg">
               Discover our upcoming events and past activities. Join us for networking, 
               workshops, panel discussions, and social gatherings.
             </p>

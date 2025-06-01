@@ -1,307 +1,322 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import SkillSelector from "@/components/SkillSelector";
 import { useToast } from "@/hooks/use-toast";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info, Users, Heart } from "lucide-react";
 
 const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [membershipType, setMembershipType] = useState("member");
-  const [usConnection, setUsConnection] = useState("");
-  const [yearsInUs, setYearsInUs] = useState("");
-  const [usEducation, setUsEducation] = useState("");
-  const [usEducationDetails, setUsEducationDetails] = useState("");
-  const [visibleToSupporters, setVisibleToSupporters] = useState(false);
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    usEducation: "",
+    currentRole: "",
+    company: "",
+    bio: "",
+    membershipType: "member",
+    agreeToTerms: false,
+    agreeToNewsletter: false,
+  });
   
-  const handleRegister = async (e: React.FormEvent) => {
+  const [skills, setSkills] = useState<string[]>([]);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleCheckboxChange = (name: string) => (checked: boolean | string) => {
+    setFormData(prev => ({
+      ...prev,
+      [name]: checked
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!agreedToTerms) {
+    if (formData.password !== formData.confirmPassword) {
       toast({
-        title: "Terms Required",
-        description: "You must agree to the terms and conditions to register.",
+        title: "Error",
+        description: "Passwords do not match",
         variant: "destructive",
       });
       return;
     }
     
-    if (membershipType === "member" && !usConnection) {
+    if (!formData.agreeToTerms) {
       toast({
-        title: "US Connection Required",
-        description: "Please specify your connection to the United States.",
+        title: "Error",
+        description: "Please agree to the terms and conditions",
         variant: "destructive",
       });
       return;
     }
+
+    // Here you would typically send the data to your backend
+    console.log("Registration data:", { ...formData, skills });
     
-    setIsLoading(true);
-    
-    // This is just a placeholder for registration logic
-    setTimeout(() => {
-      toast({
-        title: "Registration Successful!",
-        description: `Welcome to ABTC Bulgaria as a ${membershipType}!`,
-        duration: 5000,
-      });
-      setIsLoading(false);
-    }, 1500);
+    toast({
+      title: "Registration Successful!",
+      description: "Welcome to ABTC Bulgaria. You will receive a confirmation email shortly.",
+    });
   };
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <Card className="w-full max-w-2xl">
-          <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-2xl font-bold">Join ABTC Bulgaria</CardTitle>
-            <CardDescription>
-              Become part of our community connecting Bulgaria and the United States
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleRegister} className="space-y-6">
-              {/* Basic Information */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First name</Label>
-                  <Input
-                    id="firstName"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Last name</Label>
-                  <Input
-                    id="lastName"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="email@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
+      <div className="flex-1 bg-gray-50 py-12">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900">Join ABTC Bulgaria</h1>
+            <p className="mt-2 text-gray-600">
+              Connect with a community of professionals bridging the U.S. and Bulgaria
+            </p>
+          </div>
 
-              {/* Membership Interview Notice */}
-              <Alert>
-                <Info className="h-4 w-4" />
-                <AlertDescription>
-                  <strong>Important:</strong> All applicants will have an interview with a club member to better understand your needs and verify information provided.
-                </AlertDescription>
-              </Alert>
-
-              {/* Membership Type */}
-              <div className="space-y-4">
-                <Label className="text-base font-semibold">Membership Type</Label>
-                <RadioGroup value={membershipType} onValueChange={setMembershipType}>
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3 p-4 border rounded-lg">
-                      <RadioGroupItem value="member" id="member" className="mt-1" />
-                      <div className="space-y-1 flex-1">
-                        <Label htmlFor="member" className="font-medium cursor-pointer flex items-center">
-                          <Users className="w-4 h-4 mr-2" />
-                          Member
-                        </Label>
-                        <p className="text-sm text-gray-600">
-                          Full access to our community, events, and resources. Requires US connection.
-                        </p>
-                        <div className="bg-blue-50 p-3 rounded-md mt-2">
-                          <p className="text-sm text-blue-800">
-                            <strong>Pricing:</strong> First 3 months free, then $45/month. Part of the fees support charitable initiatives.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-3 p-4 border rounded-lg">
-                      <RadioGroupItem value="supporter" id="supporter" className="mt-1" />
-                      <div className="space-y-1 flex-1">
-                        <Label htmlFor="supporter" className="font-medium cursor-pointer flex items-center">
-                          <Heart className="w-4 h-4 mr-2" />
-                          Supporter
-                        </Label>
-                        <p className="text-sm text-gray-600">
-                          Support our mission and get updates about our community and events.
-                        </p>
-                        <div className="bg-green-50 p-3 rounded-md mt-2">
-                          <p className="text-sm text-green-800">
-                            <strong>Pricing:</strong> First 3 months free, then $45/month. Part of the fees support charitable initiatives.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </RadioGroup>
-              </div>
-
-              {/* US Connection Questions (only for members) */}
-              {membershipType === "member" && (
-                <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <h3 className="font-semibold text-blue-900">US Connection Details</h3>
-                  
-                  <div className="space-y-2">
-                    <Label className="font-medium">What is your connection to the United States?</Label>
-                    <RadioGroup value={usConnection} onValueChange={setUsConnection}>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="currently_living" id="currently_living" />
-                        <Label htmlFor="currently_living" className="cursor-pointer">
-                          Currently living in the US
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="previously_lived" id="previously_lived" />
-                        <Label htmlFor="previously_lived" className="cursor-pointer">
-                          Previously lived in the US
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="education" id="education" />
-                        <Label htmlFor="education" className="cursor-pointer">
-                          Studied in the US
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="work" id="work" />
-                        <Label htmlFor="work" className="cursor-pointer">
-                          Worked in the US
-                        </Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-
-                  {(usConnection === "currently_living" || usConnection === "previously_lived") && (
-                    <div className="space-y-2">
-                      <Label htmlFor="yearsInUs">How long have you lived/did you live in the US?</Label>
-                      <Input
-                        id="yearsInUs"
-                        placeholder="e.g., 3 years, 6 months"
-                        value={yearsInUs}
-                        onChange={(e) => setYearsInUs(e.target.value)}
-                      />
-                    </div>
-                  )}
-
-                  <div className="space-y-2">
-                    <Label className="font-medium">Do you have US education?</Label>
-                    <RadioGroup value={usEducation} onValueChange={setUsEducation}>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="us_education_yes" />
-                        <Label htmlFor="us_education_yes" className="cursor-pointer">Yes</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="us_education_no" />
-                        <Label htmlFor="us_education_no" className="cursor-pointer">No</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-
-                  {usEducation === "yes" && (
-                    <div className="space-y-2">
-                      <Label htmlFor="usEducationDetails">Please specify your US education</Label>
-                      <Textarea
-                        id="usEducationDetails"
-                        placeholder="e.g., MBA from Harvard Business School (2018-2020), BS Computer Science from MIT (2014-2018)"
-                        value={usEducationDetails}
-                        onChange={(e) => setUsEducationDetails(e.target.value)}
-                        rows={3}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-              
-              {/* Supporter Visibility Option for Members */}
-              {membershipType === "member" && (
-                <div className="space-y-4 p-4 bg-green-50 rounded-lg border border-green-200">
-                  <h3 className="font-semibold text-green-900">Profile Visibility Settings</h3>
-                  <div className="flex items-start space-x-2">
-                    <Checkbox 
-                      id="visibleToSupporters" 
-                      checked={visibleToSupporters}
-                      onCheckedChange={(checked) => setVisibleToSupporters(checked as boolean)}
+          <Card>
+            <CardHeader>
+              <CardTitle>Registration Form</CardTitle>
+              <CardDescription>
+                Please fill out all required fields to complete your registration
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Personal Information */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="firstName">First Name *</Label>
+                    <Input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      required
+                      value={formData.firstName}
+                      onChange={handleInputChange}
                     />
-                    <div className="space-y-1">
-                      <Label htmlFor="visibleToSupporters" className="font-medium cursor-pointer">
-                        Make my profile visible to supporters
+                  </div>
+                  <div>
+                    <Label htmlFor="lastName">Last Name *</Label>
+                    <Input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      required
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="password">Password *</Label>
+                    <Input
+                      id="password"
+                      name="password"
+                      type="password"
+                      required
+                      value={formData.password}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="confirmPassword">Confirm Password *</Label>
+                    <Input
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      type="password"
+                      required
+                      value={formData.confirmPassword}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+
+                {/* Professional Information */}
+                <div>
+                  <Label htmlFor="usEducation">U.S. Education Background</Label>
+                  <Input
+                    id="usEducation"
+                    name="usEducation"
+                    type="text"
+                    placeholder="e.g., MBA Harvard Business School, BS Computer Science MIT"
+                    value={formData.usEducation}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="currentRole">Current Role</Label>
+                    <Input
+                      id="currentRole"
+                      name="currentRole"
+                      type="text"
+                      placeholder="e.g., Software Engineer"
+                      value={formData.currentRole}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="company">Company/Organization</Label>
+                    <Input
+                      id="company"
+                      name="company"
+                      type="text"
+                      placeholder="e.g., Tech Company Inc."
+                      value={formData.company}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+
+                {/* Skills Section */}
+                <div>
+                  <Label>Skills & Expertise</Label>
+                  <div className="mt-2">
+                    <SkillSelector
+                      skills={skills}
+                      onSkillsChange={setSkills}
+                      placeholder="Add your skills and areas of expertise..."
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="bio">Brief Bio</Label>
+                  <Textarea
+                    id="bio"
+                    name="bio"
+                    rows={4}
+                    placeholder="Tell us about yourself, your interests, and what you hope to gain from the ABTC Bulgaria community..."
+                    value={formData.bio}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                {/* Membership Type */}
+                <div>
+                  <Label className="text-base font-medium">Membership Type *</Label>
+                  <RadioGroup
+                    value={formData.membershipType}
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, membershipType: value }))}
+                    className="mt-3"
+                  >
+                    <div className="space-y-4">
+                      <div className="border rounded-lg p-4">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="member" id="member" />
+                          <Label htmlFor="member" className="font-medium">Member</Label>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-2 ml-6">
+                          For U.S.-educated Bulgarians and young professionals. Access to networking events, 
+                          resources, and community features. You will have an interview with a member from the club 
+                          to understand better your needs and to verify all the information. The first 3 months will be free, 
+                          after that you will need to pay a monthly subscription of $45 and part of the money will go for charity.
+                        </p>
+                      </div>
+                      <div className="border rounded-lg p-4">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="supporter" id="supporter" />
+                          <Label htmlFor="supporter" className="font-medium">Supporter</Label>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-2 ml-6">
+                          Support our mission and get updates about our community and events. You will have an interview with a member from the club 
+                          to understand better your needs and to verify all the information. The first 3 months will be free, 
+                          after that you will need to pay a monthly subscription of $45 and part of the money will go for charity.
+                        </p>
+                      </div>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                {/* Terms and Conditions */}
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="terms"
+                      checked={formData.agreeToTerms}
+                      onCheckedChange={handleCheckboxChange("agreeToTerms")}
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <Label
+                        htmlFor="terms"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        I agree to the Terms and Conditions *
                       </Label>
-                      <p className="text-sm text-gray-600">
-                        Allow supporters to see your profile information and connect with you. You can change this setting later in your profile.
+                      <p className="text-xs text-muted-foreground">
+                        By checking this box, you agree to our terms of service and privacy policy.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="newsletter"
+                      checked={formData.agreeToNewsletter}
+                      onCheckedChange={handleCheckboxChange("agreeToNewsletter")}
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <Label
+                        htmlFor="newsletter"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        Subscribe to newsletter and updates
+                      </Label>
+                      <p className="text-xs text-muted-foreground">
+                        Receive updates about events, news, and community activities.
                       </p>
                     </div>
                   </div>
                 </div>
-              )}
-              
-              <div className="flex items-start space-x-2">
-                <Checkbox 
-                  id="terms" 
-                  checked={agreedToTerms}
-                  onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
-                  required
-                />
-                <label
-                  htmlFor="terms"
-                  className="text-sm text-gray-600"
-                >
-                  I agree to the{" "}
-                  <a href="#" className="text-primary hover:underline">terms of service</a>{" "}
-                  and{" "}
-                  <a href="#" className="text-primary hover:underline">privacy policy</a>.
-                </label>
+
+                <Button type="submit" className="w-full">
+                  Create Account
+                </Button>
+              </form>
+
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600">
+                  Already have an account?{" "}
+                  <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
+                    Sign in here
+                  </Link>
+                </p>
               </div>
-              
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Creating account..." : `Join as ${membershipType === "member" ? "Member" : "Supporter"}`}
-              </Button>
-            </form>
-          </CardContent>
-          <CardFooter className="text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{" "}
-              <Link to="/login" className="text-primary hover:underline">
-                Sign in
-              </Link>
-            </p>
-          </CardFooter>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </div>
       
       <Footer />
