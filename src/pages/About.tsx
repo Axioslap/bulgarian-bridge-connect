@@ -58,12 +58,19 @@ const About = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      {/* Hero Section */}
-      <section className="bg-primary/10 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Background */}
+      <section className="relative overflow-hidden py-20 bg-gradient-to-br from-blue-800 via-blue-700 to-red-600">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
           <div className="max-w-3xl">
-            <h1 className="text-4xl font-bold mb-6">About ABTC Bulgaria</h1>
-            <p className="text-xl text-gray-600 mb-4">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">About ABTC Bulgaria</h1>
+            <p className="text-xl md:text-2xl mb-4 leading-relaxed">
               The American Business & Tech Club Bulgaria is an initiative designed to connect U.S.-educated Bulgarians, young professionals, and innovation partners.
             </p>
           </div>

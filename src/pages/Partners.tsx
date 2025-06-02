@@ -49,9 +49,15 @@ const Partners = () => {
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-800 via-blue-700 to-red-600 py-24">
-        <div className="absolute inset-0 bg-black/10"></div>
+      {/* Hero Section with Background */}
+      <section className="relative overflow-hidden py-24">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-800/90 via-blue-700/90 to-red-600/90"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Partners</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
