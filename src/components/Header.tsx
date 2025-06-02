@@ -13,8 +13,17 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-[#002147] shadow-lg sticky top-0 z-50 border-b border-[#B22234]/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="relative shadow-lg sticky top-0 z-50 border-b border-[#B22234]/20 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/lovable-uploads/f859debb-46e9-47a6-8caa-36391fff2d87.png')`
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#002147]/90 to-[#002147]/95"></div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-14 items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center group">
