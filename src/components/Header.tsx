@@ -18,7 +18,7 @@ const Header = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/lovable-uploads/f859debb-46e9-47a6-8caa-36391fff2d87.png')`
+          backgroundImage: `url('/lovable-uploads/dcbe10b3-93a8-43c9-a2d8-a936a90e0bf6.png')`
         }}
       ></div>
       <div className="absolute inset-0 bg-gradient-to-r from-[#002147]/95 via-[#002147]/90 to-[#002147]/95"></div>
