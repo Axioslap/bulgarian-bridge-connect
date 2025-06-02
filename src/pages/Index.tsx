@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -92,26 +91,32 @@ const Index = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 text-white">
           <div className="max-w-4xl">
             <div className="animate-fade-in">
-              <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-                American Business & 
-                <span className="block drop-shadow-xl">
-                  <span className="text-blue-100">Tech Club</span>
-                  <span className="text-white mx-2"> </span>
-                  <span className="text-red-300">Bulgaria</span>
-                </span>
-              </h1>
+              {/* Club Logo */}
+              <div className="flex items-center mb-8">
+                <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mr-6 border border-white/20">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white">ABTC</div>
+                    <div className="text-xs text-red-300">Bulgaria</div>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                    American Business & 
+                    <span className="block drop-shadow-xl">
+                      <span className="text-blue-100">Tech Club</span>
+                      <span className="text-white mx-2"> </span>
+                      <span className="text-red-300">Bulgaria</span>
+                    </span>
+                  </h1>
+                </div>
+              </div>
               <p className="text-xl md:text-2xl mb-10 leading-relaxed text-white/95 max-w-3xl drop-shadow-lg">
                 Connecting U.S.-educated Bulgarians, young professionals, and innovation partners through meaningful experiences
               </p>
-              <div className="flex flex-col sm:flex-row gap-6">
+              <div className="flex justify-center">
                 <Link to="/register">
                   <Button size="lg" className="bg-white text-blue-800 hover:bg-slate-100 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg border-0">
                     Join Our Community
-                  </Button>
-                </Link>
-                <Link to="/about">
-                  <Button size="lg" variant="outline" className="text-white border-2 border-white/80 hover:bg-white/15 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold px-8 py-4 text-lg hover:border-white">
-                    Learn More
                   </Button>
                 </Link>
               </div>
@@ -144,7 +149,7 @@ const Index = () => {
             <div className="text-center group">
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-800/10 to-blue-800/20 text-blue-800 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-10 h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">Networking</h3>
@@ -182,7 +187,6 @@ const Index = () => {
       
       {/* Storytelling Videos Section */}
       <section className="py-24 relative overflow-hidden">
-        {/* Background Image with Overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -224,9 +228,9 @@ const Index = () => {
             ))}
           </div>
           
-          <div className="text-center mt-8">
+          <div className="text-center mt-12">
             <Link to="/member">
-              <Button variant="outline" className="shadow-md hover:shadow-lg transition-shadow duration-200 font-medium border-white/50 text-white hover:bg-white/10 backdrop-blur-sm">
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
                 View All Videos
               </Button>
             </Link>
