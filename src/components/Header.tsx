@@ -25,21 +25,8 @@ const Header = () => {
 
   return (
     <header className={`relative shadow-lg sticky top-0 z-50 border-b border-[#B22234]/20 overflow-hidden transition-all duration-300 ${
-      isScrolled ? 'bg-black/80 backdrop-blur-md' : ''
+      isScrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-black/90'
     }`}>
-      {/* Background Image - only visible when not scrolled */}
-      <div 
-        className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300 ${
-          isScrolled ? 'opacity-0' : 'opacity-100'
-        }`}
-        style={{
-          backgroundImage: `url('/lovable-uploads/dcbe10b3-93a8-43c9-a2d8-a936a90e0bf6.png')`
-        }}
-      ></div>
-      <div className={`absolute inset-0 transition-all duration-300 ${
-        isScrolled ? 'bg-transparent' : 'bg-black/30'
-      }`}></div>
-      
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo space */}
