@@ -32,14 +32,11 @@ const Header = () => {
           {/* Logo space */}
           <div className="flex-shrink-0">
             <div className="flex items-center">
-              <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mr-4 border border-white/20">
+              <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/20">
                 <div className="text-center">
                   <div className="text-lg font-bold text-white">ABTC</div>
                   <div className="text-xs text-red-300">BG</div>
                 </div>
-              </div>
-              <div className="hidden md:block">
-                <h1 className="text-xl font-bold text-white">American Business & Tech Club</h1>
               </div>
             </div>
           </div>
