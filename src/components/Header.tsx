@@ -1,32 +1,61 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const isActiveRoute = (path: string) => {
     return location.pathname === path;
   };
 
   return (
-    <header className="relative shadow-lg sticky top-0 z-50 border-b border-[#B22234]/20 overflow-hidden">
-      {/* Background Image */}
+    <header className={`relative shadow-lg sticky top-0 z-50 border-b border-[#B22234]/20 overflow-hidden transition-all duration-300 ${
+      isScrolled ? 'bg-black/80 backdrop-blur-md' : ''
+    }`}>
+      {/* Background Image - only visible when not scrolled */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300 ${
+          isScrolled ? 'opacity-0' : 'opacity-100'
+        }`}
         style={{
           backgroundImage: `url('/lovable-uploads/dcbe10b3-93a8-43c9-a2d8-a936a90e0bf6.png')`
         }}
       ></div>
-      <div className="absolute inset-0 bg-black/30"></div>
+      <div className={`absolute inset-0 transition-all duration-300 ${
+        isScrolled ? 'bg-transparent' : 'bg-black/30'
+      }`}></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Empty space where logo was */}
-          <div className="flex-shrink-0"></div>
+          {/* Logo space */}
+          <div className="flex-shrink-0">
+            <div className="flex items-center">
+              <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mr-4 border border-white/20">
+                <div className="text-center">
+                  <div className="text-lg font-bold text-white">ABTC</div>
+                  <div className="text-xs text-red-300">BG</div>
+                </div>
+              </div>
+              <div className="hidden md:block">
+                <h1 className="text-xl font-bold text-white">American Business & Tech Club</h1>
+              </div>
+            </div>
+          </div>
           
           {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-8">
