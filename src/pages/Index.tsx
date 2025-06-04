@@ -87,10 +87,10 @@ const Index = () => {
         <div className="absolute inset-0 bg-white/70"></div>
         
         {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 text-slate-900">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-slate-900">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in">
-              <p className="text-xl md:text-2xl mb-10 leading-relaxed text-slate-700 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl mb-8 leading-relaxed text-slate-700 max-w-3xl mx-auto">
                 Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.
               </p>
               <div className="flex justify-center">
