@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -56,7 +55,7 @@ const Header = () => {
     <div className="flex items-center space-x-4">
       <img 
         src="/lovable-uploads/609c968f-d22b-421b-85af-4a464f96c2e3.png" 
-        alt="American Business & Tech Club Bulgaria Logo" 
+        alt="Club Logo" 
         className="w-16 h-16"
       />
       <div className="hidden md:block">
