@@ -75,9 +75,7 @@ const Index = () => {
         <div className="relative max-w-6xl px-4 sm:px-6 py-20 text-slate-900 md:py-[240px] lg:px-[240px] my-[240px] mx-[240px] rounded-md">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in">
-              <p className="text-lg md:text-xl mb-8 leading-relaxed text-slate-700 max-w-3xl mx-auto">
-                Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.
-              </p>
+              <p className="text-lg md:text-xl mb-8 leading-relaxed text-slate-700 max-w-3xl mx-auto"></p>
               <div className="flex justify-center">
                 <Link to="/register">
                   <Button size="lg" className="bg-blue-800 text-white hover:bg-blue-900 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
