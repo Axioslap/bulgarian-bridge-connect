@@ -79,12 +79,12 @@ const Index = () => {
       <section className="relative overflow-hidden">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
           style={{
-            backgroundImage: `url('/lovable-uploads/f030017c-3b21-4931-a236-77cab2f47aef.png')`
+            backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
           }}
         ></div>
-        <div className="absolute inset-0 bg-white"></div>
+        <div className="absolute inset-0 bg-white/70"></div>
         
         {/* Content */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 text-slate-900">
