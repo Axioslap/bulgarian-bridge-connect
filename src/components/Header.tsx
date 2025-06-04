@@ -70,7 +70,7 @@ const Header = () => {
       </Link>
     </div>;
   const MobileMenuButton = () => <div className="md:hidden">
-      <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-neutral-950">
+      <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-neutral-950 rounded-2xl bg-slate-50 font-bold text-xl px-0 py-[17px] my-0 mx-[119px]">
         {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
       </Button>
     </div>;
