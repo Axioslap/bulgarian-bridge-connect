@@ -78,9 +78,7 @@ const Index = () => {
               <p className="text-lg md:text-xl mb-8 leading-relaxed text-slate-700 max-w-3xl mx-auto"></p>
               <div className="flex justify-center">
                 <Link to="/register">
-                  <Button size="lg" className="bg-blue-800 text-white hover:bg-blue-900 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
-                    Join Our Community
-                  </Button>
+                  
                 </Link>
               </div>
             </div>
