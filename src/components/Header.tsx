@@ -94,7 +94,7 @@ const Header = () => {
       </div>;
   return <header className={`bg-white shadow-sm sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center my-[3px] py-0 bg-sky-300">
+        <div className="flex justify-between items-center my-[3px] py-0 bg-slate-50">
           <Logo />
           
           <nav className="hidden md:flex space-x-8">
