@@ -76,9 +76,7 @@ const Header = () => {
     </div>;
   const MobileMenu = () => mobileMenuOpen && <div className="md:hidden bg-white shadow-lg border-t">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <div className="px-3 py-2 mb-4 bg-black">
-            
-          </div>
+          
           {navLinks.map(link => <MobileNavLink key={link.path} path={link.path} label={link.label} onClick={() => setMobileMenuOpen(false)} />)}
           <div className="pt-3 pb-2 border-t border-gray-200 mt-3">
             <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
