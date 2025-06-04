@@ -77,45 +77,25 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
-            backgroundImage: `url('/lovable-uploads/8d65834e-7077-4171-8395-2d2dc55fc632.png')`
+            backgroundImage: `url('/lovable-uploads/f030017c-3b21-4931-a236-77cab2f47aef.png')`
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-800/95 via-blue-700/90 to-red-600/85"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10"></div>
+        <div className="absolute inset-0 bg-white"></div>
         
         {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 text-white">
-          <div className="max-w-4xl">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 text-slate-900">
+          <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in">
-              {/* Club Logo */}
-              <div className="flex items-center mb-8">
-                <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mr-6 border border-white/20">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white">ABTC</div>
-                    <div className="text-xs text-red-300">Bulgaria</div>
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                    American Business & 
-                    <span className="block drop-shadow-xl">
-                      <span className="text-blue-100">Tech Club</span>
-                      <span className="text-white mx-2"> </span>
-                      <span className="text-red-300">Bulgaria</span>
-                    </span>
-                  </h1>
-                </div>
-              </div>
-              <p className="text-xl md:text-2xl mb-10 leading-relaxed text-white/95 max-w-3xl drop-shadow-lg">
-                Connecting U.S.-educated Bulgarians, young professionals, and innovation partners through meaningful experiences
+              <p className="text-xl md:text-2xl mb-10 leading-relaxed text-slate-700 max-w-3xl mx-auto">
+                Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.
               </p>
               <div className="flex justify-center">
                 <Link to="/register">
-                  <Button size="lg" className="bg-white text-blue-800 hover:bg-slate-100 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg border-0">
+                  <Button size="lg" className="bg-blue-800 text-white hover:bg-blue-900 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
                     Join Our Community
                   </Button>
                 </Link>
@@ -123,11 +103,6 @@ const Index = () => {
             </div>
           </div>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-white/10 animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 rounded-full bg-white/5 animate-pulse delay-200"></div>
-        <div className="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-red-500/20 animate-pulse delay-500"></div>
       </section>
       
       {/* Mission Section */}
