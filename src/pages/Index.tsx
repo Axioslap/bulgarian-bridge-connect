@@ -97,10 +97,7 @@ const Index = () => {
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">Our Mission</h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-800 to-red-600 mx-auto mb-8 rounded-full"></div>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              To foster a dynamic community that strengthens ties between the United States and 
-              Bulgaria through business innovation, knowledge sharing, and professional development.
-            </p>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
