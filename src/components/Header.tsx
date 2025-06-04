@@ -77,9 +77,7 @@ const Header = () => {
   const MobileMenu = () => mobileMenuOpen && <div className="md:hidden bg-white shadow-lg border-t">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <div className="px-3 py-2 mb-4 bg-black">
-            <p className="text-xs text-gray-600 leading-tight">
-              Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.
-            </p>
+            
           </div>
           {navLinks.map(link => <MobileNavLink key={link.path} path={link.path} label={link.label} onClick={() => setMobileMenuOpen(false)} />)}
           <div className="pt-3 pb-2 border-t border-gray-200 mt-3">
