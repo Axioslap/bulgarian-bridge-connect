@@ -6,88 +6,73 @@ import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
-
 const Index = () => {
   // Sample featured events
-  const featuredEvents = [
-    {
-      id: 1,
-      title: "Tech Networking Mixer",
-      date: "June 15, 2025 • 6:30 PM",
-      location: "Sofia Tech Park",
-      description: "Connect with fellow tech professionals and U.S. alumni in a casual networking event designed to foster new connections and potential collaborations.",
-      type: "networking" as const,
-      isUpcoming: true,
-    },
-    {
-      id: 2,
-      title: "Entrepreneurship Workshop: From Idea to Business Plan",
-      date: "June 28, 2025 • 10:00 AM",
-      location: "American Corner Sofia",
-      description: "Learn how to transform your innovative ideas into viable business plans with guidance from experienced entrepreneurs and mentors from the U.S.",
-      type: "workshop" as const,
-      isUpcoming: true,
-    },
-    {
-      id: 3,
-      title: "Panel Discussion: U.S.-Bulgaria Tech Partnerships",
-      date: "July 10, 2025 • 5:00 PM",
-      location: "U.S. Embassy Sofia",
-      description: "Join industry leaders and diplomats for an insightful discussion on strengthening technological partnerships between the United States and Bulgaria.",
-      type: "panel" as const,
-      isUpcoming: true,
-    },
-  ];
+  const featuredEvents = [{
+    id: 1,
+    title: "Tech Networking Mixer",
+    date: "June 15, 2025 • 6:30 PM",
+    location: "Sofia Tech Park",
+    description: "Connect with fellow tech professionals and U.S. alumni in a casual networking event designed to foster new connections and potential collaborations.",
+    type: "networking" as const,
+    isUpcoming: true
+  }, {
+    id: 2,
+    title: "Entrepreneurship Workshop: From Idea to Business Plan",
+    date: "June 28, 2025 • 10:00 AM",
+    location: "American Corner Sofia",
+    description: "Learn how to transform your innovative ideas into viable business plans with guidance from experienced entrepreneurs and mentors from the U.S.",
+    type: "workshop" as const,
+    isUpcoming: true
+  }, {
+    id: 3,
+    title: "Panel Discussion: U.S.-Bulgaria Tech Partnerships",
+    date: "July 10, 2025 • 5:00 PM",
+    location: "U.S. Embassy Sofia",
+    description: "Join industry leaders and diplomats for an insightful discussion on strengthening technological partnerships between the United States and Bulgaria.",
+    type: "panel" as const,
+    isUpcoming: true
+  }];
 
   // Sample storytelling videos
-  const featuredVideos = [
-    {
-      id: 1,
-      title: "Building Tech Bridges: Bulgaria-US Partnerships",
-      description: "A discussion on fostering international tech collaboration",
-      duration: "15:30",
-      thumbnail: "/placeholder.svg",
-    },
-    {
-      id: 2,
-      title: "Educational Excellence: My Harvard Experience",
-      description: "Personal story about studying at Harvard Business School",
-      duration: "22:45",
-      thumbnail: "/placeholder.svg",
-    },
-    {
-      id: 3,
-      title: "Starting a Business in Sofia",
-      description: "Entrepreneurship journey in Bulgaria's capital",
-      duration: "18:20",
-      thumbnail: "/placeholder.svg",
-    },
-    {
-      id: 4,
-      title: "Community Impact: Giving Back",
-      description: "How ABTC members are making a difference",
-      duration: "12:15",
-      thumbnail: "/placeholder.svg",
-    },
-  ];
-
-  return (
-    <div className="flex flex-col min-h-screen">
+  const featuredVideos = [{
+    id: 1,
+    title: "Building Tech Bridges: Bulgaria-US Partnerships",
+    description: "A discussion on fostering international tech collaboration",
+    duration: "15:30",
+    thumbnail: "/placeholder.svg"
+  }, {
+    id: 2,
+    title: "Educational Excellence: My Harvard Experience",
+    description: "Personal story about studying at Harvard Business School",
+    duration: "22:45",
+    thumbnail: "/placeholder.svg"
+  }, {
+    id: 3,
+    title: "Starting a Business in Sofia",
+    description: "Entrepreneurship journey in Bulgaria's capital",
+    duration: "18:20",
+    thumbnail: "/placeholder.svg"
+  }, {
+    id: 4,
+    title: "Community Impact: Giving Back",
+    description: "How ABTC members are making a difference",
+    duration: "12:15",
+    thumbnail: "/placeholder.svg"
+  }];
+  return <div className="flex flex-col min-h-screen">
       <Header />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-          style={{
-            backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
+        backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
+      }}></div>
         <div className="absolute inset-0 bg-white/70"></div>
         
         {/* Content */}
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-slate-900">
+        <div className="relative max-w-6xl px-4 sm:px-6 py-20 text-slate-900 md:py-[240px] lg:px-[240px] my-[240px] mx-[240px] rounded-md">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in">
               <p className="text-lg md:text-xl mb-8 leading-relaxed text-slate-700 max-w-3xl mx-auto">
@@ -162,12 +147,9 @@ const Index = () => {
       
       {/* Storytelling Videos Section */}
       <section className="py-24 relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/lovable-uploads/65c1a96b-0098-4b43-9e35-3e825d4e89b8.png')`
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+        backgroundImage: `url('/lovable-uploads/65c1a96b-0098-4b43-9e35-3e825d4e89b8.png')`
+      }}></div>
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-800/80 to-slate-900/85"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -180,14 +162,9 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredVideos.map((video) => (
-              <Card key={video.id} className="hover:shadow-lg transition-shadow cursor-pointer group bg-white/95 backdrop-blur-sm">
+            {featuredVideos.map(video => <Card key={video.id} className="hover:shadow-lg transition-shadow cursor-pointer group bg-white/95 backdrop-blur-sm">
                 <div className="relative">
-                  <img 
-                    src={video.thumbnail} 
-                    alt={video.title}
-                    className="w-full h-40 object-cover rounded-t-lg"
-                  />
+                  <img src={video.thumbnail} alt={video.title} className="w-full h-40 object-cover rounded-t-lg" />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-t-lg">
                     <Play className="h-10 w-10 text-white" />
                   </div>
@@ -199,8 +176,7 @@ const Index = () => {
                   <h3 className="font-semibold text-sm mb-2 line-clamp-2">{video.title}</h3>
                   <p className="text-gray-600 text-xs line-clamp-2">{video.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
           
           <div className="text-center mt-12">
@@ -232,17 +208,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredEvents.map((event) => (
-              <EventCard
-                key={event.id}
-                title={event.title}
-                date={event.date}
-                location={event.location}
-                description={event.description}
-                type={event.type}
-                isUpcoming={event.isUpcoming}
-              />
-            ))}
+            {featuredEvents.map(event => <EventCard key={event.id} title={event.title} date={event.date} location={event.location} description={event.description} type={event.type} isUpcoming={event.isUpcoming} />)}
           </div>
         </div>
       </section>
@@ -275,8 +241,6 @@ const Index = () => {
       </section>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
