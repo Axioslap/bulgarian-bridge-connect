@@ -6,6 +6,7 @@ import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
+
 const Index = () => {
   // Sample featured events
   const featuredEvents = [{
@@ -64,23 +65,38 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
-        backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
-      }}></div>
-        <div className="absolute inset-0 bg-white/0"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+          style={{
+            backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
+          }}
+        ></div>
+        
+        {/* Professional Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-800/60 to-slate-900/70"></div>
         
         {/* Content */}
-        <div className="relative max-w-6xl px-4 sm:px-6 py-20 text-slate-900 md:py-[240px] lg:px-[240px] my-[240px] mx-[240px] rounded-md">
-          <div className="max-w-4xl text-center px-0 py-[219px] my-[240px] mx-0">
-            <div className="animate-fade-in">
-              <p className="text-lg md:text-xl mb-8 leading-relaxed text-slate-700 max-w-3xl mx-auto"></p>
-              <div className="flex justify-center">
-                <Link to="/register">
-                  
-                </Link>
-              </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              American-Bulgarian Tech Community
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Connecting business and tech professionals with strong US-Bulgaria ties to foster innovation, partnerships, and growth opportunities.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/register">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
+                  Join Our Community
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button size="lg" variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold px-8 py-4 text-lg">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
