@@ -6,7 +6,6 @@ import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
-
 const Index = () => {
   // Sample featured events
   const featuredEvents = [{
@@ -67,26 +66,19 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style={{
         backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
       }}></div>
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-white/0"></div>
         
         {/* Content */}
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-32 text-white md:py-40 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="relative max-w-6xl px-4 sm:px-6 py-20 text-slate-900 md:py-[240px] lg:px-[240px] my-[240px] mx-[240px] rounded-md">
+          <div className="max-w-4xl text-center px-0 py-[219px] my-[240px] mx-0">
             <div className="animate-fade-in">
-              <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-                American Business & Tech Club Bulgaria
-              </h1>
-              <p className="text-xl md:text-2xl mb-12 leading-relaxed text-white/90 max-w-4xl mx-auto">
-                Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.
-              </p>
+              <p className="text-lg md:text-xl mb-8 leading-relaxed text-slate-700 max-w-3xl mx-auto"></p>
               <div className="flex justify-center">
                 <Link to="/register">
-                  <Button size="lg" className="bg-blue-800 text-white hover:bg-blue-700 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-10 py-4 text-lg">
-                    Join ABTC Bulgaria
-                  </Button>
+                  
                 </Link>
               </div>
             </div>
