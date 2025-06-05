@@ -74,30 +74,14 @@ const Index = () => {
           }}
         ></div>
         
-        {/* Professional Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/70 to-slate-900/80"></div>
-        
-        {/* Content */}
+        {/* Content - Only Button */}
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              American-Bulgarian Tech Community
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
-                  Join Our Community
-                </Button>
-              </Link>
-              <Link to="/about">
-                <Button size="lg" variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold px-8 py-4 text-lg">
-                  Learn More
-                </Button>
-              </Link>
-            </div>
+            <Link to="/register">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg">
+                Join Our Community
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
