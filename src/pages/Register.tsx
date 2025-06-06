@@ -24,6 +24,8 @@ const Register = () => {
     currentRole: "",
     company: "",
     bio: "",
+    businessInterest: "",
+    companyExpansionNeeds: "",
     membershipType: "member",
     agreeToTerms: false,
     agreeToNewsletter: false,
@@ -209,6 +211,62 @@ const Register = () => {
                       skills={skills}
                       onSkillsChange={setSkills}
                       placeholder="Add your skills and areas of expertise..."
+                    />
+                  </div>
+                </div>
+
+                {/* Business Interests Section */}
+                <div className="border-t pt-6">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-900">Business Interests & Goals</h3>
+                  
+                  <div>
+                    <Label htmlFor="businessInterest">Business Interest</Label>
+                    <RadioGroup
+                      value={formData.businessInterest}
+                      onValueChange={(value) => setFormData(prev => ({ ...prev, businessInterest: value }))}
+                      className="mt-3"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="expand-existing" id="expand-existing" />
+                        <Label htmlFor="expand-existing">I have a company and want to expand</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="start-company" id="start-company" />
+                        <Label htmlFor="start-company">I'm looking to start a company</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="join-company" id="join-company" />
+                        <Label htmlFor="join-company">I'm looking to join an existing company</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="other" id="other" />
+                        <Label htmlFor="other">Other business interests</Label>
+                      </div>
+                    </RadioGroup>
+                  </div>
+
+                  <div className="mt-4">
+                    <Label htmlFor="companyExpansionNeeds">
+                      {formData.businessInterest === "expand-existing" && "What do you need to expand your company?"}
+                      {formData.businessInterest === "start-company" && "What do you need to start your company?"}
+                      {formData.businessInterest === "join-company" && "What type of company are you looking to join?"}
+                      {(formData.businessInterest === "other" || !formData.businessInterest) && "Please describe your business interests and needs"}
+                    </Label>
+                    <Textarea
+                      id="companyExpansionNeeds"
+                      name="companyExpansionNeeds"
+                      rows={4}
+                      placeholder={
+                        formData.businessInterest === "expand-existing" 
+                          ? "e.g., funding, partnerships, talent acquisition, market entry, technology solutions..."
+                          : formData.businessInterest === "start-company"
+                          ? "e.g., co-founders, funding, mentorship, business plan development, market research..."
+                          : formData.businessInterest === "join-company"
+                          ? "e.g., tech startup, consulting firm, fintech company, specific role preferences..."
+                          : "Tell us about your business goals, what you're looking for, or how you'd like to contribute..."
+                      }
+                      value={formData.companyExpansionNeeds}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
