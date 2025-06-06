@@ -65,7 +65,7 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative h-[400px] flex items-center justify-center">
+      <section className="relative h-[500px] flex items-center justify-center">
         {/* Background Image - Contained to fit fully */}
         <div 
           className="absolute inset-0 bg-contain bg-center bg-no-repeat" 
