@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -64,19 +65,22 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-20" style={{
-        backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
-      }}></div>
+      <section className="relative h-[400px] flex items-center justify-center">
+        {/* Background Image - Full visibility */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+          style={{
+            backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
+          }}
+        ></div>
         
         {/* Content - Only Button */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16">
-          <div className="animate-fade-in">
-            <Link to="/register">
-              
-            </Link>
-          </div>
+        <div className="relative z-10 text-center">
+          <Link to="/register">
+            <Button size="lg" className="bg-blue-800 text-white hover:bg-blue-900 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-10 py-4 text-lg">
+              Join Our Community
+            </Button>
+          </Link>
         </div>
       </section>
       
