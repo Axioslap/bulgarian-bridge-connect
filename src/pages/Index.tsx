@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,6 +6,7 @@ import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
+
 const Index = () => {
   // Sample featured events
   const featuredEvents = [{
@@ -66,9 +66,9 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative h-[400px] flex items-center justify-center">
-        {/* Background Image - Full visibility */}
+        {/* Background Image - Contained to fit fully */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat" 
           style={{
             backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
           }}
