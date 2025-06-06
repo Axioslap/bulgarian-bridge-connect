@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import SkillTag from "@/components/SkillTag";
 import { mockMembers } from "@/data/mockData";
 
@@ -12,7 +13,8 @@ const SearchTab = () => {
   const [searchFilters, setSearchFilters] = useState({
     location: "",
     interest: "",
-    education: ""
+    education: "",
+    businessInterest: ""
   });
 
   const filteredMembers = mockMembers.filter(member => {
@@ -22,8 +24,10 @@ const SearchTab = () => {
     const matchesLocation = !searchFilters.location || member.location.toLowerCase().includes(searchFilters.location.toLowerCase());
     const matchesInterest = !searchFilters.interest || member.interests.some(interest => interest.toLowerCase().includes(searchFilters.interest.toLowerCase()));
     const matchesEducation = !searchFilters.education || member.education.toLowerCase().includes(searchFilters.education.toLowerCase());
+    const matchesBusinessInterest = !searchFilters.businessInterest || 
+      (member.businessInterest && member.businessInterest === searchFilters.businessInterest);
     
-    return matchesSearch && matchesLocation && matchesInterest && matchesEducation;
+    return matchesSearch && matchesLocation && matchesInterest && matchesEducation && matchesBusinessInterest;
   });
 
   return (
@@ -46,7 +50,7 @@ const SearchTab = () => {
               />
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               <Input
                 placeholder="Filter by location..."
                 value={searchFilters.location}
@@ -62,6 +66,28 @@ const SearchTab = () => {
                 value={searchFilters.education}
                 onChange={(e) => setSearchFilters({...searchFilters, education: e.target.value})}
               />
+              <Select
+                value={searchFilters.businessInterest}
+                onValueChange={(value) => setSearchFilters({...searchFilters, businessInterest: value})}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Business Interest" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All Interests</SelectItem>
+                  <SelectItem value="expand-existing">Want to Expand Company</SelectItem>
+                  <SelectItem value="start-company">Looking to Start Company</SelectItem>
+                  <SelectItem value="join-company">Looking to Join Company</SelectItem>
+                  <SelectItem value="other">Other Interests</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button 
+                variant="outline" 
+                onClick={() => setSearchFilters({location: "", interest: "", education: "", businessInterest: ""})}
+                className="whitespace-nowrap"
+              >
+                Clear Filters
+              </Button>
             </div>
           </div>
         </CardContent>
@@ -80,10 +106,24 @@ const SearchTab = () => {
                     <div className="flex items-center space-x-2 mb-2">
                       <h4 className="font-medium">{member.name}</h4>
                       <Badge variant="outline">{member.role}</Badge>
+                      {member.businessInterest && (
+                        <Badge variant="secondary" className="text-xs">
+                          {member.businessInterest === "expand-existing" && "Expanding Company"}
+                          {member.businessInterest === "start-company" && "Starting Company"}
+                          {member.businessInterest === "join-company" && "Seeking to Join"}
+                          {member.businessInterest === "other" && "Other Goals"}
+                        </Badge>
+                      )}
                     </div>
                     <p className="text-sm text-gray-600 mb-1">📍 {member.location}</p>
                     <p className="text-sm text-gray-600 mb-2">🎓 {member.education}</p>
                     <p className="text-sm text-gray-700 mb-3">{member.bio}</p>
+                    {member.companyExpansionNeeds && (
+                      <div className="mb-3">
+                        <span className="text-xs font-medium text-gray-500">Business Goals:</span>
+                        <p className="text-sm text-gray-700 mt-1 bg-blue-50 p-2 rounded">{member.companyExpansionNeeds}</p>
+                      </div>
+                    )}
                     <div className="space-y-2">
                       <div>
                         <span className="text-xs font-medium text-gray-500">Interests:</span>
