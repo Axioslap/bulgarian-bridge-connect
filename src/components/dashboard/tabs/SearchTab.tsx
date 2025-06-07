@@ -14,7 +14,7 @@ const SearchTab = () => {
     location: "",
     interest: "",
     education: "",
-    businessInterest: ""
+    businessInterest: "all"
   });
 
   const filteredMembers = mockMembers.filter(member => {
@@ -24,7 +24,7 @@ const SearchTab = () => {
     const matchesLocation = !searchFilters.location || member.location.toLowerCase().includes(searchFilters.location.toLowerCase());
     const matchesInterest = !searchFilters.interest || member.interests.some(interest => interest.toLowerCase().includes(searchFilters.interest.toLowerCase()));
     const matchesEducation = !searchFilters.education || member.education.toLowerCase().includes(searchFilters.education.toLowerCase());
-    const matchesBusinessInterest = !searchFilters.businessInterest || 
+    const matchesBusinessInterest = searchFilters.businessInterest === "all" || 
       (member.businessInterest && member.businessInterest === searchFilters.businessInterest);
     
     return matchesSearch && matchesLocation && matchesInterest && matchesEducation && matchesBusinessInterest;
@@ -74,7 +74,7 @@ const SearchTab = () => {
                   <SelectValue placeholder="Business Interest" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Interests</SelectItem>
+                  <SelectItem value="all">All Interests</SelectItem>
                   <SelectItem value="expand-existing">Want to Expand Company</SelectItem>
                   <SelectItem value="start-company">Looking to Start Company</SelectItem>
                   <SelectItem value="join-company">Looking to Join Company</SelectItem>
@@ -83,7 +83,7 @@ const SearchTab = () => {
               </Select>
               <Button 
                 variant="outline" 
-                onClick={() => setSearchFilters({location: "", interest: "", education: "", businessInterest: ""})}
+                onClick={() => setSearchFilters({location: "", interest: "", education: "", businessInterest: "all"})}
                 className="whitespace-nowrap"
               >
                 Clear Filters
