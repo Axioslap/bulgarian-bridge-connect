@@ -1,63 +1,34 @@
+
 export const mockMembers = [
   {
     id: 1,
-    name: "Maria Ivanova",
+    name: "Maria Dimitrova",
     location: "Sofia, Bulgaria",
-    education: "MBA from Wharton School",
-    interests: ["FinTech", "Digital Banking", "Blockchain"],
-    skills: ["Strategic Planning", "Team Leadership", "Product Management"],
-    role: "Senior Product Manager at TechCorp",
-    bio: "Passionate about bridging US-Bulgaria tech partnerships with 8+ years in product management.",
-    businessInterest: "start-company",
-    companyExpansionNeeds: ["Technical Co-founder", "Seed Funding", "Market Research"]
+    education: "MBA, Stanford University",
+    interests: ["Technology", "Startups", "Marketing"],
+    skills: ["Digital Marketing", "Product Management", "Data Analytics"],
+    role: "Entrepreneur",
+    bio: "Tech entrepreneur building the next generation of fintech solutions for Eastern Europe."
   },
   {
     id: 2,
-    name: "Ivan Petrov",
+    name: "Alex Petrov",
     location: "Plovdiv, Bulgaria",
-    education: "Computer Science at MIT",
-    interests: ["AI/ML", "Startups", "Innovation"],
-    skills: ["Machine Learning", "Python", "Data Science"],
-    role: "AI Engineer at DataTech",
-    bio: "MIT graduate specializing in machine learning applications for business intelligence.",
-    businessInterest: "join-company",
-    companyExpansionNeeds: ["AI Development", "Data Analytics", "Technical Leadership"]
+    education: "MS Computer Science, MIT",
+    interests: ["AI", "Software Development", "Innovation"],
+    skills: ["Machine Learning", "Python", "Cloud Architecture"],
+    role: "Tech Professional",
+    bio: "AI researcher and software architect with expertise in scalable systems."
   },
   {
     id: 3,
-    name: "Elena Dimitrova",
+    name: "Elena Georgiev",
     location: "Varna, Bulgaria",
-    education: "Harvard Business School",
-    interests: ["E-commerce", "Digital Marketing", "Growth"],
-    skills: ["Digital Strategy", "Marketing Analytics", "Business Development"],
-    role: "Growth Manager at RetailTech",
-    bio: "Harvard MBA focused on scaling e-commerce businesses across European markets.",
-    businessInterest: "start-company",
-    companyExpansionNeeds: ["Marketing Expertise", "Business Development", "European Market Entry"]
-  },
-  {
-    id: 4,
-    name: "Georgi Stoyanov",
-    location: "Burgas, Bulgaria",
-    education: "Stanford University",
-    interests: ["SaaS", "Enterprise Software", "Cloud Computing"],
-    skills: ["Software Architecture", "Cloud Technologies", "Enterprise Sales"],
-    role: "Solutions Architect at CloudTech",
-    bio: "Stanford graduate with expertise in enterprise software solutions and cloud architecture.",
-    businessInterest: "join-company",
-    companyExpansionNeeds: ["Cloud Infrastructure", "Enterprise Solutions", "Technical Architecture"]
-  },
-  {
-    id: 5,
-    name: "Desislava Velkova",
-    location: "Sofia, Bulgaria",
-    education: "NYU Stern School of Business",
-    interests: ["Impact Investing", "Social Innovation", "Sustainability"],
-    skills: ["Impact Measurement", "Financial Modeling", "Stakeholder Management"],
-    role: "Impact Investment Manager",
-    bio: "NYU graduate focused on sustainable business models and social impact investing.",
-    businessInterest: "start-company",
-    companyExpansionNeeds: ["Impact Investment", "Sustainability Consulting", "Social Innovation"]
+    education: "PhD Economics, Harvard University",
+    interests: ["Finance", "Economics", "Policy"],
+    skills: ["Economic Analysis", "Financial Modeling", "Policy Research"],
+    role: "Academic",
+    bio: "Economic policy researcher focused on EU-US trade relationships."
   }
 ];
 

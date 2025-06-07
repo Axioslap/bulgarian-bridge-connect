@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Play, Users, Target, Globe } from "lucide-react";
-
+import { Play } from "lucide-react";
 const Index = () => {
   // Sample featured events
   const featuredEvents = [{
@@ -65,76 +64,18 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background with overlay */}
-        <div className="absolute inset-0">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-            style={{
-              backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
-            }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-800/75 to-blue-900/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        </div>
+      <section className="relative h-[500px] flex items-center justify-center">
+        {/* Background Image - Contained to fit fully */}
+        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat" style={{
+        backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
+      }}></div>
         
-        {/* Content */}
-        <div className="relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Bridging 
-              <span className="block bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
-                US-Bulgaria
-              </span>
-              <span className="block">Tech Communities</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Connect, collaborate, and create opportunities with professionals who share educational and business experiences across both nations.
-            </p>
+        {/* Content - Only Button */}
+        <div className="relative z-10 text-center">
+          <Link to="/register">
             
-            {/* Stats */}
-            <div className="flex flex-wrap justify-center gap-8 mb-10">
-              <div className="flex items-center gap-2 text-white/80">
-                <Users className="h-5 w-5 text-blue-400" />
-                <span className="text-lg font-semibold">500+ Members</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/80">
-                <Target className="h-5 w-5 text-red-400" />
-                <span className="text-lg font-semibold">50+ Events</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/80">
-                <Globe className="h-5 w-5 text-blue-400" />
-                <span className="text-lg font-semibold">2 Countries</span>
-              </div>
-            </div>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 py-4 text-lg w-full sm:w-auto"
-                >
-                  Join Our Community
-                </Button>
-              </Link>
-              <Link to="/about">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm shadow-xl transition-all duration-300 font-semibold px-8 py-4 text-lg w-full sm:w-auto"
-                >
-                  Learn More
-                </Button>
-              </Link>
-            </div>
-          </div>
+          </Link>
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-blue-500/10 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-16 h-16 rounded-full bg-red-500/10 animate-pulse delay-200"></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 rounded-full bg-white/5 animate-pulse delay-500"></div>
       </section>
       
       {/* Mission Section */}
@@ -153,7 +94,7 @@ const Index = () => {
             <div className="text-center group">
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-800/10 to-blue-800/20 text-blue-800 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-10 h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20h7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">Networking</h3>
