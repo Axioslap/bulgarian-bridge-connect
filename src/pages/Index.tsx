@@ -6,7 +6,6 @@ import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
-
 const Index = () => {
   // Sample featured events
   const featuredEvents = [{
@@ -67,19 +66,14 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center">
         {/* Background Image - Contained to fit fully */}
-        <div 
-          className="absolute inset-0 bg-contain bg-center bg-no-repeat" 
-          style={{
-            backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat" style={{
+        backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
+      }}></div>
         
         {/* Content - Only Button */}
         <div className="relative z-10 text-center">
           <Link to="/register">
-            <Button size="lg" className="bg-blue-800 text-white hover:bg-blue-900 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-10 py-4 text-lg">
-              Join Our Community
-            </Button>
+            
           </Link>
         </div>
       </section>
