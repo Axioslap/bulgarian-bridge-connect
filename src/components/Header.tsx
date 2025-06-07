@@ -1,11 +1,14 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -13,7 +16,9 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const isActiveRoute = (path: string) => location.pathname === path;
+
   const navLinks = [{
     path: "/",
     label: "Home"
@@ -30,6 +35,7 @@ const Header = () => {
     path: "/news",
     label: "Business/Tech News"
   }];
+
   const NavLink = ({
     path,
     label
@@ -40,6 +46,7 @@ const Header = () => {
       {label}
       <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-900 transition-transform origin-left duration-300 ${isActiveRoute(path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
     </Link>;
+
   const MobileNavLink = ({
     path,
     label,
@@ -51,12 +58,14 @@ const Header = () => {
   }) => <Link to={path} className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors" onClick={onClick}>
       {label}
     </Link>;
+
   const Logo = () => <div className="flex items-center space-x-4">
       
       <div className="hidden md:block">
         <p className="text-sm text-gray-700 max-w-md leading-tight"></p>
       </div>
     </div>;
+
   const AuthButtons = () => <div className="hidden md:flex items-center space-x-3">
       <Link to="/login">
         <Button variant="ghost" size="sm" className="font-medium text-gray-700 hover:text-gray-900">
@@ -69,11 +78,18 @@ const Header = () => {
         </Button>
       </Link>
     </div>;
-  const MobileMenuButton = () => <div className="md:hidden">
-      <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-neutral-950 rounded-2xl bg-slate-50 font-bold text-xl px-0 py-[17px] my-0 mx-[138px]">
-        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+
+  const MobileMenuButton = () => <div className="md:hidden flex justify-center flex-1">
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+        className="h-10 w-10 bg-gray-100 hover:bg-gray-200 border border-gray-300 shadow-sm"
+      >
+        {mobileMenuOpen ? <X size={24} className="text-gray-700" /> : <Menu size={24} className="text-gray-700" />}
       </Button>
     </div>;
+
   const MobileMenu = () => mobileMenuOpen && <div className="md:hidden bg-white shadow-lg border-t">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           
@@ -92,6 +108,7 @@ const Header = () => {
           </div>
         </div>
       </div>;
+
   return <header className={`bg-white shadow-sm sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center my-[3px] py-0 bg-slate-50">
@@ -109,4 +126,5 @@ const Header = () => {
       <MobileMenu />
     </header>;
 };
+
 export default Header;
