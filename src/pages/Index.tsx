@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,10 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Play, Users, Award, Globe, ArrowRight, CheckCircle } from "lucide-react";
 import { useState, useEffect } from "react";
-
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -43,7 +40,6 @@ const Index = () => {
     type: "panel" as const,
     isUpcoming: true
   }];
-
   const featuredVideos = [{
     id: 1,
     title: "Building Tech Bridges: Bulgaria-US Partnerships",
@@ -69,36 +65,31 @@ const Index = () => {
     duration: "12:15",
     thumbnail: "/placeholder.svg"
   }];
-
-  const stats = [
-    { number: "500+", label: "Active Members", icon: Users },
-    { number: "50+", label: "Partner Companies", icon: Globe },
-    { number: "100+", label: "Events Hosted", icon: Award },
-  ];
-
-  const benefits = [
-    "Access to exclusive networking events",
-    "Mentorship opportunities with industry leaders",
-    "Professional development workshops",
-    "Job placement assistance",
-    "Business partnership connections",
-    "Cultural exchange programs"
-  ];
-
+  const stats = [{
+    number: "500+",
+    label: "Active Members",
+    icon: Users
+  }, {
+    number: "50+",
+    label: "Partner Companies",
+    icon: Globe
+  }, {
+    number: "100+",
+    label: "Events Hosted",
+    icon: Award
+  }];
+  const benefits = ["Access to exclusive networking events", "Mentorship opportunities with industry leaders", "Professional development workshops", "Job placement assistance", "Business partnership connections", "Cultural exchange programs"];
   return <div className="flex flex-col min-h-screen scroll-smooth">
       <Header />
       
       {/* Hero Section */}
       <section className="relative h-[700px] flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 overflow-hidden">
         {/* Background Image - Optimized */}
-        <div 
-          className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-15 transition-opacity duration-1000" 
-          style={{
-            backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`,
-            transform: isLoaded ? 'scale(1)' : 'scale(1.1)',
-            transition: 'transform 2s ease-out'
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-15 transition-opacity duration-1000" style={{
+        backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`,
+        transform: isLoaded ? 'scale(1)' : 'scale(1.1)',
+        transition: 'transform 2s ease-out'
+      }}></div>
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
@@ -114,12 +105,7 @@ const Index = () => {
         <div className={`relative z-10 text-center max-w-5xl mx-auto px-4 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* ABTC Bulgaria Logo */}
           <div className="mb-10 transform hover:scale-105 transition-transform duration-300">
-            <img 
-              src="/lovable-uploads/e202c3e1-d60e-466f-875a-f0ebd6c42c43.png" 
-              alt="American Business & Technology Club Bulgaria - Connecting professionals across US-Bulgaria business corridor" 
-              className="mx-auto w-72 h-72 md:w-96 md:h-96 object-contain drop-shadow-2xl filter hover:brightness-110 transition-all duration-300"
-              loading="eager"
-            />
+            
           </div>
           
           {/* Welcome Text */}
@@ -135,14 +121,12 @@ const Index = () => {
           
           {/* Stats Preview */}
           <div className="grid grid-cols-3 gap-4 md:gap-8 mb-12 max-w-2xl mx-auto">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center group hover:scale-105 transition-transform duration-200">
+            {stats.map((stat, index) => <div key={index} className="text-center group hover:scale-105 transition-transform duration-200">
                 <div className="text-2xl md:text-4xl font-bold text-blue-700 mb-2 group-hover:text-blue-800 transition-colors">
                   {stat.number}
                 </div>
                 <div className="text-sm md:text-base text-slate-600">{stat.label}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
           
           {/* Call to Action */}
@@ -174,12 +158,10 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group">
+            {benefits.map((benefit, index) => <div key={index} className="flex items-center space-x-3 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow group">
                 <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
                 <span className="text-slate-700 font-medium">{benefit}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -188,8 +170,8 @@ const Index = () => {
       <section className="py-24 relative overflow-hidden">
         {/* Lincoln Memorial background */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-          backgroundImage: `url('/lovable-uploads/66a0a30f-3a78-4303-b40a-40d8e5809465.png')`
-        }}></div>
+        backgroundImage: `url('/lovable-uploads/66a0a30f-3a78-4303-b40a-40d8e5809465.png')`
+      }}></div>
         
         {/* Dark overlay for text visibility */}
         <div className="absolute inset-0 bg-black/70"></div>
@@ -314,14 +296,7 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredEvents.map(event => <div key={event.id} className="transform hover:scale-105 transition-transform duration-300">
-                <EventCard 
-                  title={event.title} 
-                  date={event.date} 
-                  location={event.location} 
-                  description={event.description} 
-                  type={event.type} 
-                  isUpcoming={event.isUpcoming} 
-                />
+                <EventCard title={event.title} date={event.date} location={event.location} description={event.description} type={event.type} isUpcoming={event.isUpcoming} />
               </div>)}
           </div>
         </div>
@@ -331,8 +306,8 @@ const Index = () => {
       <section className="py-24 relative overflow-hidden">
         {/* USA Flag Background */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-          backgroundImage: `url('/lovable-uploads/2cc62f2e-d04c-4da0-8baf-406cc6eccd43.png')`
-        }}></div>
+        backgroundImage: `url('/lovable-uploads/2cc62f2e-d04c-4da0-8baf-406cc6eccd43.png')`
+      }}></div>
         
         {/* Dark overlay for text visibility */}
         <div className="absolute inset-0 bg-black/60"></div>
@@ -377,5 +352,4 @@ const Index = () => {
       <Footer />
     </div>;
 };
-
 export default Index;
