@@ -116,36 +116,36 @@ const MemberDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex flex-col">
       {/* Top navigation */}
-      <header className="bg-white shadow-lg border-b border-blue-100 sticky top-0 z-40">
+      <header className="bg-white shadow-lg border-b border-blue-100 sticky top-0 z-40 flex-shrink-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <div className="flex justify-between h-14 md:h-16 items-center">
+            <Link to="/" className="flex items-center space-x-2 md:space-x-3 hover:opacity-80 transition-opacity">
               <img 
                 src="/lovable-uploads/a622b81f-1bc6-4b70-90bc-fdf0fd79ae53.png" 
                 alt="ABTC Bulgaria Logo" 
-                className="h-10 w-10 object-contain"
+                className="h-8 w-8 md:h-10 md:w-10 object-contain"
               />
               <div>
-                <span className="text-lg font-bold text-blue-700 mr-1">ABTC</span>
-                <span className="text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
+                <span className="text-base md:text-lg font-bold text-blue-700 mr-1">ABTC</span>
+                <span className="text-base md:text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
                 <p className="text-xs text-gray-600 leading-tight hidden md:block">Member Portal</p>
               </div>
             </Link>
             
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600 hidden md:inline">
+            <div className="flex items-center space-x-2 md:space-x-4">
+              <span className="text-xs md:text-sm text-gray-600 hidden sm:inline truncate max-w-32 md:max-w-none">
                 Welcome, {userProfile.name}
               </span>
-              <Badge variant="outline" className="mr-2 hidden md:inline-flex border-blue-200 text-blue-700 bg-blue-50">
+              <Badge variant="outline" className="mr-1 md:mr-2 hidden sm:inline-flex border-blue-200 text-blue-700 bg-blue-50 text-xs">
                 {userProfile.role}
               </Badge>
               <Button 
                 variant="ghost" 
                 size="sm" 
                 onClick={handleLogout}
-                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 text-xs md:text-sm px-2 md:px-3"
               >
                 Log out
               </Button>
@@ -154,19 +154,33 @@ const MemberDashboard = () => {
         </div>
       </header>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex flex-col lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0">
-          <DashboardSidebar
-            userProfile={userProfile}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            unreadMessageCount={unreadMessageCount}
-          />
-          
-          {/* Main content area */}
-          <div className="flex-1 min-h-0">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6 h-full">
-              {renderTabContent()}
+      {/* Main content area - optimized for mobile */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-2 flex-1 flex flex-col">
+          <div className="flex flex-col lg:flex-row lg:space-x-6 space-y-2 lg:space-y-0 flex-1 min-h-0">
+            <div className="lg:hidden">
+              <DashboardSidebar
+                userProfile={userProfile}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                unreadMessageCount={unreadMessageCount}
+              />
+            </div>
+            
+            <div className="hidden lg:block lg:w-64 flex-shrink-0">
+              <DashboardSidebar
+                userProfile={userProfile}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                unreadMessageCount={unreadMessageCount}
+              />
+            </div>
+            
+            {/* Main content area */}
+            <div className="flex-1 min-h-0 overflow-auto">
+              <div className="bg-white rounded-lg md:rounded-xl shadow-sm border border-gray-100 p-3 md:p-4 lg:p-6 h-full">
+                {renderTabContent()}
+              </div>
             </div>
           </div>
         </div>

@@ -43,6 +43,18 @@ export const isValidAuthToken = (token: string): boolean => {
   }
 };
 
+export const validateToken = (token: string): any => {
+  try {
+    const tokenData = JSON.parse(atob(token));
+    if (tokenData.exp < Date.now()) {
+      return null;
+    }
+    return tokenData;
+  } catch {
+    return null;
+  }
+};
+
 export const generateCSRFToken = (): string => {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
