@@ -85,10 +85,25 @@ const Index = () => {
       
       {/* Mission Section */}
       <section className="py-24 relative overflow-hidden">
-        {/* Business and USA themed background */}
+        {/* Business buildings background */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=80')`
+          backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80')`
         }}></div>
+        
+        {/* USA Flag overlay pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-700 via-transparent to-red-700"></div>
+          <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-r from-blue-800/40 to-blue-600/40"></div>
+          <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-blue-900/60"></div>
+          {/* Flag stripes effect */}
+          {Array.from({ length: 13 }).map((_, i) => (
+            <div 
+              key={i}
+              className={`absolute w-full h-[7.7%] ${i % 2 === 0 ? 'bg-red-600/30' : 'bg-white/10'}`}
+              style={{ top: `${7.7 * i}%` }}
+            />
+          ))}
+        </div>
         
         {/* Patriotic gradient overlay with business sophistication */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/92 via-slate-800/88 to-red-900/85"></div>
