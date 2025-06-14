@@ -1,11 +1,14 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PartnersSlider from "@/components/PartnersSlider";
 import { Button } from "@/components/ui/button";
 import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
+
 const Index = () => {
   // Sample featured events
   const featuredEvents = [{
@@ -34,7 +37,6 @@ const Index = () => {
     isUpcoming: true
   }];
 
-  // Sample storytelling videos
   const featuredVideos = [{
     id: 1,
     title: "Building Tech Bridges: Bulgaria-US Partnerships",
@@ -60,8 +62,10 @@ const Index = () => {
     duration: "12:15",
     thumbnail: "/placeholder.svg"
   }];
+
   return <div className="flex flex-col min-h-screen">
       <Header />
+      <PartnersSlider />
       
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center">
@@ -228,4 +232,5 @@ const Index = () => {
       <Footer />
     </div>;
 };
+
 export default Index;
