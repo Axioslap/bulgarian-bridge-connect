@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +18,7 @@ import JobsTab from "@/components/dashboard/tabs/JobsTab";
 import NewsTab from "@/components/dashboard/tabs/NewsTab";
 import CommunityImpactTab from "@/components/dashboard/tabs/CommunityImpactTab";
 import { mockMessages } from "@/data/mockData";
+import { validateToken, sanitizeInput } from "@/utils/security";
 
 const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
@@ -36,32 +38,23 @@ const MemberDashboard = () => {
       return;
     }
     
-    // Validate token expiry (basic check)
-    try {
-      const tokenData = JSON.parse(atob(authToken));
-      if (tokenData.exp < Date.now()) {
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('user_email');
-        navigate('/login');
-        return;
-      }
-      
-      // Set user profile from token
-      setUserProfile({
-        name: userEmail.split('@')[0].replace(/\./g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
-        email: userEmail,
-        usEducation: "MBA, Harvard Business School",
-        joinDate: "May 2023",
-        role: tokenData.role || "Member",
-        skills: userSkills,
-        bio: "Experienced business strategist with 8+ years in tech startups. Passionate about connecting Bulgarian talent with global opportunities."
-      });
-    } catch (error) {
-      console.error('Invalid token:', error);
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('user_email');
+    // Validate token
+    const tokenData = validateToken(authToken);
+    if (!tokenData) {
       navigate('/login');
+      return;
     }
+    
+    // Set user profile from token
+    setUserProfile({
+      name: sanitizeInput(userEmail.split('@')[0].replace(/\./g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())),
+      email: sanitizeInput(userEmail),
+      usEducation: "MBA, Harvard Business School",
+      joinDate: "May 2023",
+      role: tokenData.role || "Member",
+      skills: userSkills,
+      bio: "Experienced business strategist with 8+ years in tech startups. Passionate about connecting Bulgarian talent with global opportunities."
+    });
   }, [navigate]);
 
   const handleLogout = () => {
@@ -161,8 +154,8 @@ const MemberDashboard = () => {
         </div>
       </header>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row md:space-x-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex flex-col lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0">
           <DashboardSidebar
             userProfile={userProfile}
             activeTab={activeTab}
@@ -171,8 +164,8 @@ const MemberDashboard = () => {
           />
           
           {/* Main content area */}
-          <div className="flex-1">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <div className="flex-1 min-h-0">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6 h-full">
               {renderTabContent()}
             </div>
           </div>
