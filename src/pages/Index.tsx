@@ -7,7 +7,6 @@ import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Play } from "lucide-react";
-
 const Index = () => {
   // Sample featured events
   const featuredEvents = [{
@@ -35,7 +34,6 @@ const Index = () => {
     type: "panel" as const,
     isUpcoming: true
   }];
-
   const featuredVideos = [{
     id: 1,
     title: "Building Tech Bridges: Bulgaria-US Partnerships",
@@ -61,16 +59,15 @@ const Index = () => {
     duration: "12:15",
     thumbnail: "/placeholder.svg"
   }];
-
   return <div className="flex flex-col min-h-screen">
       <Header />
       
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center">
         {/* Background Image - Contained to fit fully */}
-        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat" style={{
+        <div style={{
         backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
-      }}></div>
+      }} className="absolute inset-0 bg-contain bg-center bg-no-repeat bg-slate-50"></div>
         
         {/* Content - Only Button */}
         <div className="relative z-10 text-center">
@@ -230,5 +227,4 @@ const Index = () => {
       <Footer />
     </div>;
 };
-
 export default Index;
