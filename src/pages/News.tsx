@@ -146,7 +146,7 @@ const News = () => {
 
   const handleReadMore = (article: any) => {
     if (article.memberOnly && !isLoggedIn) {
-      setShowMembershipModal(true);
+      window.location.href = '/register';
     } else {
       window.location.href = `/news?article=${article.id}`;
     }
@@ -214,7 +214,7 @@ const News = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      {/* Hero Section with Background */}
+      {/* Hero Section with USA flag colors */}
       <section className="relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -222,7 +222,7 @@ const News = () => {
             backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-blue-900/70 to-gray-800/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-red-900/70 to-blue-800/80"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent)] opacity-60"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.05),transparent)] opacity-60"></div>
         
@@ -289,29 +289,29 @@ const News = () => {
         </div>
       </section>
 
-      {/* Member-Only Articles Section */}
-      <section className="py-16 bg-gradient-to-br from-amber-50/50 to-orange-50/50 border-t-4 border-gradient-to-r from-primary to-secondary">
+      {/* Member-Only Articles Section with USA flag colors */}
+      <section className="py-16 bg-gradient-to-br from-blue-50/50 to-red-50/50 border-t-4 border-gradient-to-r from-blue-600 to-red-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <Star className="w-8 h-8 text-amber-500" />
+              <Star className="w-8 h-8 text-blue-600" />
               <h2 className="text-4xl font-bold text-gray-900">Premium Member Content</h2>
-              <Star className="w-8 h-8 text-amber-500" />
+              <Star className="w-8 h-8 text-red-600" />
             </div>
             <p className="text-xl text-gray-700 mb-6 max-w-3xl mx-auto">
               Unlock exclusive insights, in-depth analysis, and premium content from industry leaders
             </p>
-            <div className="w-32 h-1 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full mx-auto"></div>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-600 to-red-600 rounded-full mx-auto"></div>
           </div>
 
           {!isLoggedIn && (
             <div className="mb-12">
-              <div className="bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-amber-200 rounded-2xl p-8 text-center shadow-lg">
+              <div className="bg-gradient-to-br from-blue-100 to-red-100 border-2 border-blue-200 rounded-2xl p-8 text-center shadow-lg">
                 <div className="flex justify-center mb-6">
                   <div className="relative">
-                    <Lock className="w-16 h-16 text-amber-600" />
+                    <Lock className="w-16 h-16 text-blue-600" />
                     <div className="absolute -top-2 -right-2">
-                      <Star className="w-6 h-6 text-amber-500" />
+                      <Star className="w-6 h-6 text-red-600" />
                     </div>
                   </div>
                 </div>
@@ -322,13 +322,13 @@ const News = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link to="/register">
-                    <Button size="lg" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
+                    <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
                       <Star className="w-5 h-5 mr-2" />
                       Become a Member
                     </Button>
                   </Link>
                   <Link to="/register">
-                    <Button variant="outline" size="lg" className="border-amber-400 text-amber-700 hover:bg-amber-50">
+                    <Button variant="outline" size="lg" className="border-blue-400 text-blue-700 hover:bg-blue-50">
                       Learn More
                     </Button>
                   </Link>
@@ -339,19 +339,7 @@ const News = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {memberOnlyArticles.map((article) => (
-              <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-2 border-amber-200 hover:border-amber-300 relative bg-white/90 backdrop-blur-sm">
-                {!isLoggedIn && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/95 to-amber-50/95 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
-                    <div className="text-center p-6">
-                      <div className="relative mb-4">
-                        <Lock className="w-12 h-12 mx-auto text-amber-600" />
-                        <Star className="w-4 h-4 absolute -top-1 -right-1 text-amber-500" />
-                      </div>
-                      <p className="text-lg font-semibold text-amber-800 mb-2">Premium Content</p>
-                      <p className="text-sm text-amber-700">Member Access Required</p>
-                    </div>
-                  </div>
-                )}
+              <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -359,14 +347,14 @@ const News = () => {
                         {getCategoryIcon(article.category)}
                         {article.category}
                       </Badge>
-                      <Badge className="bg-amber-100 text-amber-800 border-amber-300 text-xs">
+                      <Badge className="bg-blue-100 text-blue-800 border-blue-300 text-xs">
                         <Star className="w-3 h-3 mr-1" />
                         Premium
                       </Badge>
                     </div>
                     <span className="text-sm text-gray-500">{article.date}</span>
                   </div>
-                  <CardTitle className="text-lg group-hover:text-amber-700 transition-colors leading-tight">
+                  <CardTitle className="text-lg group-hover:text-blue-700 transition-colors leading-tight">
                     {article.title}
                   </CardTitle>
                   <CardDescription className="text-gray-600 text-sm leading-relaxed">
@@ -377,12 +365,13 @@ const News = () => {
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-500">{article.source}</span>
                     <Button 
-                      variant="ghost" 
+                      variant="outline" 
                       size="sm" 
-                      className="group-hover:text-amber-600 transition-colors p-2"
+                      className="group-hover:bg-blue-600 group-hover:text-white transition-colors"
                       onClick={() => handleReadMore(article)}
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      Read More
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
                 </CardContent>
@@ -390,16 +379,16 @@ const News = () => {
             ))}
           </div>
 
-          {/* Bottom CTA for Premium Content */}
+          {/* Bottom CTA for Premium Content with USA flag colors */}
           {!isLoggedIn && (
             <div className="mt-16 text-center">
-              <div className="bg-gradient-to-r from-primary via-amber-500 to-secondary p-8 rounded-2xl shadow-2xl">
-                <h3 className="text-3xl font-bold text-white mb-4">Ready to Unlock Premium Content?</h3>
-                <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              <div className="bg-gradient-to-r from-blue-600 via-white to-red-600 p-8 rounded-2xl shadow-2xl">
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">Ready to Unlock Premium Content?</h3>
+                <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
                   Join our community of business leaders and get unlimited access to all premium articles
                 </p>
                 <Link to="/register">
-                  <Button size="lg" className="bg-white text-primary hover:bg-gray-100 shadow-lg transform hover:scale-105 transition-all duration-200">
+                  <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200">
                     <Star className="w-5 h-5 mr-2" />
                     Become a Member to See Full Articles
                   </Button>
