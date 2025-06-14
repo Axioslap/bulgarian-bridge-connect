@@ -6,63 +6,6 @@ import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate();
 
-  const boardMembers = [
-    {
-      id: "maria-dimitrova",
-      name: "Maria Dimitrova",
-      position: "Chairman of the Board",
-      country: "United States",
-      organization: "Tech Innovation Labs, Senior Director",
-      quote: "Bridging cultures through innovation and entrepreneurship.",
-      image: "/placeholder.svg"
-    },
-    {
-      id: "alexander-petrov",
-      name: "Alexander Petrov",
-      position: "Vice Chairman",
-      country: "Bulgaria",
-      organization: "Sofia Tech Park, CEO",
-      quote: "Building tomorrow's tech ecosystem in Bulgaria.",
-      image: "/placeholder.svg"
-    },
-    {
-      id: "elena-stoyanova",
-      name: "Dr. Elena Stoyanova",
-      position: "Board Member",
-      country: "United States",
-      organization: "MIT Research Lab, Principal Scientist",
-      quote: "Advancing science and technology for global impact.",
-      image: "/placeholder.svg"
-    },
-    {
-      id: "dimitar-georgiev",
-      name: "Dimitar Georgiev",
-      position: "Board Member",
-      country: "Bulgaria",
-      organization: "Bulgarian-American Chamber of Commerce, Director",
-      quote: "Fostering business partnerships across continents.",
-      image: "/placeholder.svg"
-    },
-    {
-      id: "kristina-marinova",
-      name: "Kristina Marinova",
-      position: "Board Member",
-      country: "United States",
-      organization: "Google, Senior Product Manager",
-      quote: "Empowering the next generation of Bulgarian tech leaders.",
-      image: "/placeholder.svg"
-    },
-    {
-      id: "plamen-todorov",
-      name: "Plamen Todorov",
-      position: "Board Member",
-      country: "Bulgaria",
-      organization: "Innovation Capital, Managing Partner",
-      quote: "Investing in Bulgaria's future through strategic partnerships.",
-      image: "/placeholder.svg"
-    }
-  ];
-
   const advisoryBoardMembers = [
     {
       id: "ron-banks",
@@ -181,50 +124,9 @@ const About = () => {
           </div>
         </div>
       </section>
-      
-      {/* Board Members */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-6 text-center">Our Board Members</h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-16"></div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {boardMembers.map((member, index) => (
-              <div 
-                key={index} 
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                onClick={() => handleMemberClick(member.id)}
-              >
-                <div className="flex flex-col items-center mb-4">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-primary/10"
-                  />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1 text-center">{member.name}</h3>
-                  <p className="text-primary font-medium mb-2 text-center">{member.position}</p>
-                </div>
-                <div className="mb-4">
-                  <p className="text-sm text-gray-600 mb-1">
-                    <span className="font-medium">Location:</span> {member.country}
-                  </p>
-                  <p className="text-sm text-gray-600 mb-4">
-                    <span className="font-medium">Organization:</span> {member.organization}
-                  </p>
-                </div>
-                {member.quote && (
-                  <blockquote className="text-sm text-gray-700 italic border-l-4 border-primary pl-4">
-                    "{member.quote}"
-                  </blockquote>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Advisory Board Members */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-6 text-center">Our Advisory Board Members</h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-16"></div>
