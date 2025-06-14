@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -67,19 +66,39 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative h-[500px] flex items-center justify-center">
+      <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100">
         {/* Background Image - Contained to fit fully */}
-        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-90" style={{
+        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-20" style={{
         backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
       }}></div>
         
         {/* Subtle overlay for better blending */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/50"></div>
         
-        {/* Content - Only Button */}
-        <div className="relative z-10 text-center">
+        {/* Content - Logo and CTA */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+          {/* ABTC Bulgaria Logo */}
+          <div className="mb-8">
+            <img 
+              src="/lovable-uploads/e202c3e1-d60e-466f-875a-f0ebd6c42c43.png" 
+              alt="American Business & Technology Club Bulgaria" 
+              className="mx-auto w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-xl"
+            />
+          </div>
+          
+          {/* Welcome Text */}
+          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 drop-shadow-lg">
+            Welcome to ABTC Bulgaria
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-700 mb-8 leading-relaxed drop-shadow-md">
+            Connecting business and tech professionals with strong US-Bulgaria ties
+          </p>
+          
+          {/* Call to Action */}
           <Link to="/register">
-            
+            <Button size="lg" className="bg-blue-800 hover:bg-blue-900 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-10 py-4 text-lg">
+              Join Our Community
+            </Button>
           </Link>
         </div>
       </section>
@@ -113,7 +132,7 @@ const Index = () => {
             <div className="text-center group">
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500/30 to-blue-600/40 text-blue-200 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg backdrop-blur-sm border border-white/20">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-10 h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20h7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white drop-shadow-lg">Networking</h3>
