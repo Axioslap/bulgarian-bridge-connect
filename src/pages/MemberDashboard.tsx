@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,7 @@ const MemberDashboard = () => {
   const [userProfile, setUserProfile] = useState<any>(null);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Validate authentication and load user profile
@@ -56,6 +57,20 @@ const MemberDashboard = () => {
       bio: "Experienced business strategist with 8+ years in tech startups. Passionate about connecting Bulgarian talent with global opportunities."
     });
   }, [navigate]);
+
+  const handleTabChange = (newTab: string) => {
+    setActiveTab(newTab);
+    
+    // Auto-scroll to content on mobile after tab change
+    setTimeout(() => {
+      if (contentRef.current && window.innerWidth < 1024) {
+        contentRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
+  };
 
   const handleLogout = () => {
     // Clear authentication data
@@ -162,7 +177,7 @@ const MemberDashboard = () => {
               <DashboardSidebar
                 userProfile={userProfile}
                 activeTab={activeTab}
-                setActiveTab={setActiveTab}
+                setActiveTab={handleTabChange}
                 unreadMessageCount={unreadMessageCount}
               />
             </div>
@@ -171,13 +186,13 @@ const MemberDashboard = () => {
               <DashboardSidebar
                 userProfile={userProfile}
                 activeTab={activeTab}
-                setActiveTab={setActiveTab}
+                setActiveTab={handleTabChange}
                 unreadMessageCount={unreadMessageCount}
               />
             </div>
             
             {/* Main content area */}
-            <div className="flex-1 min-h-0 overflow-auto">
+            <div ref={contentRef} className="flex-1 min-h-0 overflow-auto">
               <div className="bg-white rounded-lg md:rounded-xl shadow-sm border border-gray-100 p-3 md:p-4 lg:p-6 h-full">
                 {renderTabContent()}
               </div>
