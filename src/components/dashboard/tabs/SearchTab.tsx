@@ -21,14 +21,25 @@ const SearchTab = () => {
     const matchesSearch = member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          member.interests.some(interest => interest.toLowerCase().includes(searchQuery.toLowerCase())) ||
                          member.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()));
+    
     const matchesLocation = !searchFilters.location || member.location.toLowerCase().includes(searchFilters.location.toLowerCase());
     const matchesInterest = !searchFilters.interest || member.interests.some(interest => interest.toLowerCase().includes(searchFilters.interest.toLowerCase()));
     const matchesEducation = !searchFilters.education || member.education.toLowerCase().includes(searchFilters.education.toLowerCase());
-    const matchesBusinessInterest = searchFilters.businessInterest === "all" || 
-      (member.businessInterest && member.businessInterest === searchFilters.businessInterest);
+    
+    // Since businessInterest doesn't exist in mock data, we'll skip this filter for now
+    const matchesBusinessInterest = searchFilters.businessInterest === "all";
     
     return matchesSearch && matchesLocation && matchesInterest && matchesEducation && matchesBusinessInterest;
   });
+
+  const clearFilters = () => {
+    setSearchFilters({
+      location: "", 
+      interest: "", 
+      education: "", 
+      businessInterest: "all"
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -41,14 +52,12 @@ const SearchTab = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-4">
-            <div>
-              <Input
-                placeholder="Search by name, interests, or skills..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full"
-              />
-            </div>
+            <Input
+              placeholder="Search by name, interests, or skills..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full"
+            />
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               <Input
@@ -83,7 +92,7 @@ const SearchTab = () => {
               </Select>
               <Button 
                 variant="outline" 
-                onClick={() => setSearchFilters({location: "", interest: "", education: "", businessInterest: "all"})}
+                onClick={clearFilters}
                 className="whitespace-nowrap"
               >
                 Clear Filters
@@ -100,30 +109,17 @@ const SearchTab = () => {
         <CardContent>
           <div className="space-y-4">
             {filteredMembers.map((member) => (
-              <div key={member.id} className="p-4 border rounded-lg hover:bg-gray-50">
+              <div key={member.id} className="p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
                       <h4 className="font-medium">{member.name}</h4>
                       <Badge variant="outline">{member.role}</Badge>
-                      {member.businessInterest && (
-                        <Badge variant="secondary" className="text-xs">
-                          {member.businessInterest === "expand-existing" && "Expanding Company"}
-                          {member.businessInterest === "start-company" && "Starting Company"}
-                          {member.businessInterest === "join-company" && "Seeking to Join"}
-                          {member.businessInterest === "other" && "Other Goals"}
-                        </Badge>
-                      )}
                     </div>
                     <p className="text-sm text-gray-600 mb-1">📍 {member.location}</p>
                     <p className="text-sm text-gray-600 mb-2">🎓 {member.education}</p>
                     <p className="text-sm text-gray-700 mb-3">{member.bio}</p>
-                    {member.companyExpansionNeeds && (
-                      <div className="mb-3">
-                        <span className="text-xs font-medium text-gray-500">Business Goals:</span>
-                        <p className="text-sm text-gray-700 mt-1 bg-blue-50 p-2 rounded">{member.companyExpansionNeeds}</p>
-                      </div>
-                    )}
+                    
                     <div className="space-y-2">
                       <div>
                         <span className="text-xs font-medium text-gray-500">Interests:</span>
