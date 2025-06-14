@@ -62,29 +62,16 @@ const Header = () => {
 
   const Logo = () => (
     <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-      <div className="text-left">
+      <img 
+        src="/lovable-uploads/a622b81f-1bc6-4b70-90bc-fdf0fd79ae53.png" 
+        alt="ABTC Bulgaria Logo" 
+        className="h-12 w-12 object-contain"
+      />
+      <div className="hidden md:block">
         <span className="text-lg font-bold text-gray-900">ABTC Bulgaria</span>
         <p className="text-xs text-gray-600 leading-tight">American Business & Technology Club</p>
       </div>
     </Link>
-  );
-
-  const TargetStats = () => (
-    <div className="hidden lg:flex items-center space-x-6 text-sm">
-      <div className="text-center">
-        <div className="font-bold text-blue-600">500+</div>
-        <div className="text-gray-600 text-xs">Active Members</div>
-      </div>
-      <div className="text-center">
-        <div className="font-bold text-blue-600">50+</div>
-        <div className="text-gray-600 text-xs">Partner Companies</div>
-      </div>
-      <div className="text-center">
-        <div className="font-bold text-blue-600">15+</div>
-        <div className="text-gray-600 text-xs">Events Hosted</div>
-      </div>
-      <div className="text-gray-500 text-xs">by 2027</div>
-    </div>
   );
 
   const AuthButtons = () => (
@@ -154,7 +141,6 @@ const Header = () => {
             ))}
           </nav>
           
-          <TargetStats />
           <AuthButtons />
           <MobileMenuButton />
         </div>
