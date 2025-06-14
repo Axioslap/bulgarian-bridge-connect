@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -74,7 +75,7 @@ const Index = () => {
     label: "Partner Companies",
     icon: Globe
   }, {
-    number: "100+",
+    number: "15+",
     label: "Events Hosted",
     icon: Award
   }];
@@ -115,11 +116,14 @@ const Index = () => {
           <p className="text-xl md:text-3xl text-slate-700 mb-6 leading-relaxed drop-shadow-md max-w-4xl mx-auto">
             Connecting business and tech professionals with strong <span className="font-semibold text-blue-700">US-Bulgaria</span> ties
           </p>
-          <p className="text-lg md:text-xl text-slate-600 mb-12 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
             Join a thriving community of innovators, entrepreneurs, and leaders shaping the future of business and technology
           </p>
           
-          {/* Stats Preview */}
+          {/* Target Goals for 2027 */}
+          <div className="mb-4 text-center">
+            <p className="text-lg font-semibold text-slate-700 mb-6">Our Target by 2027:</p>
+          </div>
           <div className="grid grid-cols-3 gap-4 md:gap-8 mb-12 max-w-2xl mx-auto">
             {stats.map((stat, index) => <div key={index} className="text-center group hover:scale-105 transition-transform duration-200">
                 <div className="text-2xl md:text-4xl font-bold text-blue-700 mb-2 group-hover:text-blue-800 transition-colors">
