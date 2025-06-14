@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -68,9 +69,12 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center">
         {/* Background Image - Contained to fit fully */}
-        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat" style={{
+        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-90" style={{
         backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
       }}></div>
+        
+        {/* Subtle overlay for better blending */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/30"></div>
         
         {/* Content - Only Button */}
         <div className="relative z-10 text-center">
