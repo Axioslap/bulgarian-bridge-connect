@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ExternalLink, Calendar, TrendingUp, Briefcase, Lock, ArrowLeft } from "lucide-react";
+import { ExternalLink, Calendar, TrendingUp, Briefcase, Lock, ArrowLeft, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const News = () => {
@@ -290,49 +290,83 @@ const News = () => {
       </section>
 
       {/* Member-Only Articles Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gradient-to-br from-amber-50/50 to-orange-50/50 border-t-4 border-gradient-to-r from-primary to-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-4">
-              <h2 className="text-3xl font-bold text-gray-900">Premium Member Content</h2>
-              <Lock className="w-6 h-6 text-primary" />
+          <div className="mb-12 text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Star className="w-8 h-8 text-amber-500" />
+              <h2 className="text-4xl font-bold text-gray-900">Premium Member Content</h2>
+              <Star className="w-8 h-8 text-amber-500" />
             </div>
-            <p className="text-gray-600 mb-6">Exclusive insights and analysis for ABTC Bulgaria members</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+            <p className="text-xl text-gray-700 mb-6 max-w-3xl mx-auto">
+              Unlock exclusive insights, in-depth analysis, and premium content from industry leaders
+            </p>
+            <div className="w-32 h-1 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full mx-auto"></div>
           </div>
 
           {!isLoggedIn && (
-            <div className="mb-8">
-              <MembershipPrompt />
+            <div className="mb-12">
+              <div className="bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-amber-200 rounded-2xl p-8 text-center shadow-lg">
+                <div className="flex justify-center mb-6">
+                  <div className="relative">
+                    <Lock className="w-16 h-16 text-amber-600" />
+                    <div className="absolute -top-2 -right-2">
+                      <Star className="w-6 h-6 text-amber-500" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Premium Articles Await</h3>
+                <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+                  Get access to exclusive business insights, detailed market analysis, and insider perspectives 
+                  on the U.S.-Bulgaria business corridor. Our premium content is crafted by industry experts.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link to="/register">
+                    <Button size="lg" className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
+                      <Star className="w-5 h-5 mr-2" />
+                      Become a Member
+                    </Button>
+                  </Link>
+                  <Link to="/register">
+                    <Button variant="outline" size="lg" className="border-amber-400 text-amber-700 hover:bg-amber-50">
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           )}
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {memberOnlyArticles.map((article) => (
-              <Card key={article.id} className="group hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-primary/20 relative">
+              <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-2 border-amber-200 hover:border-amber-300 relative bg-white/90 backdrop-blur-sm">
                 {!isLoggedIn && (
-                  <div className="absolute inset-0 bg-white/90 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
-                    <div className="text-center p-4">
-                      <Lock className="w-8 h-8 mx-auto mb-2 text-primary" />
-                      <p className="text-sm font-medium text-gray-700">Members Only</p>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/95 to-amber-50/95 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
+                    <div className="text-center p-6">
+                      <div className="relative mb-4">
+                        <Lock className="w-12 h-12 mx-auto text-amber-600" />
+                        <Star className="w-4 h-4 absolute -top-1 -right-1 text-amber-500" />
+                      </div>
+                      <p className="text-lg font-semibold text-amber-800 mb-2">Premium Content</p>
+                      <p className="text-sm text-amber-700">Member Access Required</p>
                     </div>
                   </div>
                 )}
                 <CardHeader>
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <Badge variant="outline" className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
+                      <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
                         {getCategoryIcon(article.category)}
                         {article.category}
                       </Badge>
-                      <Badge variant="outline" className="text-xs">
-                        <Lock className="w-3 h-3 mr-1" />
+                      <Badge className="bg-amber-100 text-amber-800 border-amber-300 text-xs">
+                        <Star className="w-3 h-3 mr-1" />
                         Premium
                       </Badge>
                     </div>
                     <span className="text-sm text-gray-500">{article.date}</span>
                   </div>
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">
+                  <CardTitle className="text-lg group-hover:text-amber-700 transition-colors leading-tight">
                     {article.title}
                   </CardTitle>
                   <CardDescription className="text-gray-600 text-sm leading-relaxed">
@@ -345,7 +379,7 @@ const News = () => {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="group-hover:text-primary transition-colors p-2"
+                      className="group-hover:text-amber-600 transition-colors p-2"
                       onClick={() => handleReadMore(article)}
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -355,6 +389,24 @@ const News = () => {
               </Card>
             ))}
           </div>
+
+          {/* Bottom CTA for Premium Content */}
+          {!isLoggedIn && (
+            <div className="mt-16 text-center">
+              <div className="bg-gradient-to-r from-primary via-amber-500 to-secondary p-8 rounded-2xl shadow-2xl">
+                <h3 className="text-3xl font-bold text-white mb-4">Ready to Unlock Premium Content?</h3>
+                <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                  Join our community of business leaders and get unlimited access to all premium articles
+                </p>
+                <Link to="/register">
+                  <Button size="lg" className="bg-white text-primary hover:bg-gray-100 shadow-lg transform hover:scale-105 transition-all duration-200">
+                    <Star className="w-5 h-5 mr-2" />
+                    Become a Member to See Full Articles
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
