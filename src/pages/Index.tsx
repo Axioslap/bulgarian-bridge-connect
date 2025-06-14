@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -219,21 +220,30 @@ const Index = () => {
         </div>
       </section>
       
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(30,64,175,0.05),transparent)] opacity-60"></div>
+      {/* CTA Section with USA Flag Background */}
+      <section className="py-24 relative overflow-hidden">
+        {/* USA Flag Background */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+          backgroundImage: `url('/lovable-uploads/2cc62f2e-d04c-4da0-8baf-406cc6eccd43.png')`
+        }}></div>
+        
+        {/* Dark overlay for text visibility */}
+        <div className="absolute inset-0 bg-black/60"></div>
+        
+        {/* Additional patriotic gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-transparent to-red-900/40"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-r from-blue-800 via-blue-700 to-red-600 rounded-3xl shadow-2xl p-12 md:p-16 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent"></div>
+          <div className="relative bg-black/30 rounded-3xl shadow-2xl p-12 md:p-16 text-center overflow-hidden backdrop-blur-sm border border-white/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
             <div className="absolute top-10 right-10 w-24 h-24 rounded-full bg-white/10 animate-pulse"></div>
             <div className="absolute bottom-10 left-10 w-16 h-16 rounded-full bg-white/5 animate-pulse delay-200"></div>
             
             <div className="relative">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-2xl">
                 Ready to Join Our Community?
               </h2>
-              <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-white/95 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
                 Become a member today and gain access to exclusive events, resources, and a network of professionals bridging the U.S. and Bulgaria.
               </p>
               <Link to="/register">
