@@ -1,12 +1,16 @@
+
 import { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ExternalLink, Calendar, TrendingUp, Briefcase, Lock, ArrowLeft, Star } from "lucide-react";
+import { Lock } from "lucide-react";
+import NewsHero from "@/components/news/NewsHero";
+import ArticleCard from "@/components/news/ArticleCard";
+import PremiumContentSection from "@/components/news/PremiumContentSection";
+import NewsletterSection from "@/components/news/NewsletterSection";
+import ArticleView from "@/components/news/ArticleView";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const News = () => {
@@ -96,54 +100,6 @@ const News = () => {
   const publicArticles = newsArticles.filter(article => !article.memberOnly);
   const memberOnlyArticles = newsArticles.filter(article => article.memberOnly);
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "Tech":
-        return <TrendingUp className="w-4 h-4" />;
-      case "Business":
-        return <Briefcase className="w-4 h-4" />;
-      default:
-        return <Calendar className="w-4 h-4" />;
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Tech":
-        return "bg-primary/10 text-primary border-primary/20";
-      case "Business":
-        return "bg-secondary/10 text-secondary border-secondary/20";
-      case "Startups":
-        return "bg-green-50 text-green-700 border-green-200";
-      case "Education":
-        return "bg-purple-50 text-purple-700 border-purple-200";
-      default:
-        return "bg-gray-50 text-gray-700 border-gray-200";
-    }
-  };
-
-  const MembershipPrompt = () => (
-    <div className="bg-gradient-to-br from-primary/5 to-secondary/5 border border-primary/20 rounded-xl p-6 text-center">
-      <Lock className="w-12 h-12 mx-auto mb-4 text-primary" />
-      <h3 className="text-xl font-bold text-gray-900 mb-2">Member-Exclusive Content</h3>
-      <p className="text-gray-600 mb-6">
-        Join ABTC Bulgaria to access our full collection of business and tech news, insights, and analysis.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <Link to="/register">
-          <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
-            Become a Member
-          </Button>
-        </Link>
-        <Link to="/register">
-          <Button variant="outline">
-            Support Our Community
-          </Button>
-        </Link>
-      </div>
-    </div>
-  );
-
   const handleReadMore = (article: any) => {
     if (article.memberOnly && !isLoggedIn) {
       window.location.href = '/register';
@@ -154,57 +110,10 @@ const News = () => {
 
   // If viewing a specific article
   if (selectedArticle) {
-    const truncatedContent = selectedArticle.fullContent.split(' ').slice(0, 50).join(' ') + '...';
-    const shouldShowMembership = selectedArticle.memberOnly && !isLoggedIn;
-
     return (
       <div className="flex flex-col min-h-screen">
         <Header />
-        
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-8">
-              <Link to="/news" className="inline-flex items-center text-primary hover:text-primary/80 mb-6">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to News
-              </Link>
-              
-              <div className="flex items-center gap-2 mb-4">
-                <Badge className={`${getCategoryColor(selectedArticle.category)} flex items-center gap-1`}>
-                  {getCategoryIcon(selectedArticle.category)}
-                  {selectedArticle.category}
-                </Badge>
-                {selectedArticle.memberOnly && (
-                  <Badge variant="outline" className="text-xs">
-                    <Lock className="w-3 h-3 mr-1" />
-                    Members Only
-                  </Badge>
-                )}
-                <span className="text-sm text-gray-500 flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  {selectedArticle.date}
-                </span>
-              </div>
-              
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{selectedArticle.title}</h1>
-              <p className="text-xl text-gray-600 mb-6">{selectedArticle.description}</p>
-              <span className="text-sm font-medium text-gray-500">By {selectedArticle.source}</span>
-            </div>
-            
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-700 leading-relaxed text-lg">
-                {shouldShowMembership ? truncatedContent : selectedArticle.fullContent}
-              </p>
-              
-              {shouldShowMembership && (
-                <div className="mt-8">
-                  <MembershipPrompt />
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
+        <ArticleView article={selectedArticle} isLoggedIn={isLoggedIn} />
         <Footer />
       </div>
     );
@@ -214,30 +123,7 @@ const News = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      {/* Hero Section with USA flag colors */}
-      <section className="relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
-          }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-red-900/70 to-blue-800/80"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent)] opacity-60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.05),transparent)] opacity-60"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Business & Tech News
-            </h1>
-            <p className="text-xl max-w-3xl mx-auto leading-relaxed opacity-90">
-              Stay informed with the latest developments in business and technology affecting 
-              the U.S.-Bulgaria corridor and our global community.
-            </p>
-          </div>
-        </div>
-      </section>
+      <NewsHero />
 
       {/* Public Articles Section */}
       <section className="py-16 bg-gradient-to-br from-white to-gray-50">
@@ -250,167 +136,19 @@ const News = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {publicArticles.map((article) => (
-              <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
-                      {getCategoryIcon(article.category)}
-                      {article.category}
-                    </Badge>
-                    <span className="text-sm text-gray-500 flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {article.date}
-                    </span>
-                  </div>
-                  <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                    {article.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-600 leading-relaxed">
-                    {article.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-500">{article.source}</span>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="group-hover:bg-primary group-hover:text-white transition-colors"
-                      onClick={() => handleReadMore(article)}
-                    >
-                      Read More
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <ArticleCard key={article.id} article={article} onReadMore={handleReadMore} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Member-Only Articles Section with USA flag colors */}
-      <section className="py-16 bg-gradient-to-br from-blue-50/50 to-red-50/50 border-t-4 border-gradient-to-r from-blue-600 to-red-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Star className="w-8 h-8 text-blue-600" />
-              <h2 className="text-4xl font-bold text-gray-900">Premium Member Content</h2>
-              <Star className="w-8 h-8 text-red-600" />
-            </div>
-            <p className="text-xl text-gray-700 mb-6 max-w-3xl mx-auto">
-              Unlock exclusive insights, in-depth analysis, and premium content from industry leaders
-            </p>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-600 to-red-600 rounded-full mx-auto"></div>
-          </div>
+      <PremiumContentSection 
+        articles={memberOnlyArticles} 
+        isLoggedIn={isLoggedIn} 
+        onReadMore={handleReadMore} 
+      />
 
-          {!isLoggedIn && (
-            <div className="mb-12">
-              <div className="bg-gradient-to-br from-blue-100 to-red-100 border-2 border-blue-200 rounded-2xl p-8 text-center shadow-lg">
-                <div className="flex justify-center mb-6">
-                  <div className="relative">
-                    <Lock className="w-16 h-16 text-blue-600" />
-                    <div className="absolute -top-2 -right-2">
-                      <Star className="w-6 h-6 text-red-600" />
-                    </div>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Premium Articles Await</h3>
-                <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                  Get access to exclusive business insights, detailed market analysis, and insider perspectives 
-                  on the U.S.-Bulgaria business corridor. Our premium content is crafted by industry experts.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/register">
-                    <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
-                      <Star className="w-5 h-5 mr-2" />
-                      Become a Member
-                    </Button>
-                  </Link>
-                  <Link to="/register">
-                    <Button variant="outline" size="lg" className="border-blue-400 text-blue-700 hover:bg-blue-50">
-                      Learn More
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {memberOnlyArticles.map((article) => (
-              <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
-                        {getCategoryIcon(article.category)}
-                        {article.category}
-                      </Badge>
-                      <Badge className="bg-blue-100 text-blue-800 border-blue-300 text-xs">
-                        <Star className="w-3 h-3 mr-1" />
-                        Premium
-                      </Badge>
-                    </div>
-                    <span className="text-sm text-gray-500">{article.date}</span>
-                  </div>
-                  <CardTitle className="text-lg group-hover:text-blue-700 transition-colors leading-tight">
-                    {article.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-600 text-sm leading-relaxed">
-                    {article.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-500">{article.source}</span>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="group-hover:bg-blue-600 group-hover:text-white transition-colors"
-                      onClick={() => handleReadMore(article)}
-                    >
-                      Read More
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Bottom CTA for Premium Content with USA flag colors */}
-          {!isLoggedIn && (
-            <div className="mt-16 text-center">
-              <div className="bg-gradient-to-r from-blue-600 via-white to-red-600 p-8 rounded-2xl shadow-2xl">
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">Ready to Unlock Premium Content?</h3>
-                <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-                  Join our community of business leaders and get unlimited access to all premium articles
-                </p>
-                <Link to="/register">
-                  <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200">
-                    <Star className="w-5 h-5 mr-2" />
-                    Become a Member to See Full Articles
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section className="py-16 bg-gradient-to-br from-blue-50/50 to-red-50/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated</h2>
-          <p className="text-gray-600 mb-8 text-lg">
-            Get the latest business and tech news delivered to your inbox weekly.
-          </p>
-          <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 shadow-lg text-white">
-            Subscribe to Newsletter
-          </Button>
-        </div>
-      </section>
+      <NewsletterSection />
 
       {/* Membership Modal */}
       <Dialog open={showMembershipModal} onOpenChange={setShowMembershipModal}>
