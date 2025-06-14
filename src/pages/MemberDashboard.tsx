@@ -1,6 +1,5 @@
-
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -23,25 +22,72 @@ const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
   const [userSkills, setUserSkills] = useState<string[]>(["Business Strategy", "Marketing", "Leadership"]);
   const [newsInterests, setNewsInterests] = useState<string[]>(["AI", "Fintech", "Blockchain", "Startup"]);
+  const [userProfile, setUserProfile] = useState<any>(null);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
-  // This would normally come from an auth context/provider
-  const userProfile = {
-    name: "John Smith",
-    usEducation: "MBA, Harvard Business School",
-    joinDate: "May 2023",
-    role: "Member",
-    skills: userSkills,
-    bio: "Experienced business strategist with 8+ years in tech startups. Passionate about connecting Bulgarian talent with global opportunities."
-  };
+  useEffect(() => {
+    // Validate authentication and load user profile
+    const authToken = localStorage.getItem('auth_token');
+    const userEmail = localStorage.getItem('user_email');
+    
+    if (!authToken || !userEmail) {
+      navigate('/login');
+      return;
+    }
+    
+    // Validate token expiry (basic check)
+    try {
+      const tokenData = JSON.parse(atob(authToken));
+      if (tokenData.exp < Date.now()) {
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('user_email');
+        navigate('/login');
+        return;
+      }
+      
+      // Set user profile from token
+      setUserProfile({
+        name: userEmail.split('@')[0].replace(/\./g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+        email: userEmail,
+        usEducation: "MBA, Harvard Business School",
+        joinDate: "May 2023",
+        role: tokenData.role || "Member",
+        skills: userSkills,
+        bio: "Experienced business strategist with 8+ years in tech startups. Passionate about connecting Bulgarian talent with global opportunities."
+      });
+    } catch (error) {
+      console.error('Invalid token:', error);
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('user_email');
+      navigate('/login');
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
+    // Clear authentication data
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('user_email');
+    
     toast({
       title: "Logged out successfully",
       description: "You have been logged out of your account.",
     });
-    // Here you would clear auth state and redirect
+    
+    navigate('/login');
   };
+
+  // Show loading if user profile not loaded yet
+  if (!userProfile) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading your dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   const unreadMessageCount = mockMessages.filter(m => m.unread).length;
 
@@ -96,6 +142,9 @@ const MemberDashboard = () => {
             </Link>
             
             <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-600 hidden md:inline">
+                Welcome, {userProfile.name}
+              </span>
               <Badge variant="outline" className="mr-2 hidden md:inline-flex border-blue-200 text-blue-700 bg-blue-50">
                 {userProfile.role}
               </Badge>

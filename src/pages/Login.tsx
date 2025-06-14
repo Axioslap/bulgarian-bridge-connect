@@ -20,17 +20,62 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // This is just a placeholder for authentication logic
-    // In a real application, you would connect to Supabase or another auth provider
-    setTimeout(() => {
+    // Input validation
+    if (!email || !password) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+    
+    try {
+      // Simulate authentication API call
+      // In production, this would call Supabase auth
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Generate a mock JWT token (in production, this comes from Supabase)
+      const mockToken = btoa(JSON.stringify({
+        email,
+        userId: Math.random().toString(36).substr(2, 9),
+        exp: Date.now() + 86400000, // 24 hours
+        role: 'member'
+      }));
+      
+      // Store auth token securely
+      localStorage.setItem('auth_token', mockToken);
+      localStorage.setItem('user_email', email);
+      
       toast({
         title: "Login Successful",
         description: "Welcome back to American Business & Tech Club Bulgaria!",
         duration: 3000,
       });
-      setIsLoading(false);
+      
       navigate("/member");
-    }, 1500);
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: "Invalid credentials or server error",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -55,6 +100,7 @@ const Login = () => {
                   placeholder="email@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  maxLength={100}
                   required
                 />
               </div>
@@ -70,6 +116,7 @@ const Login = () => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  maxLength={128}
                   required
                 />
               </div>

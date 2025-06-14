@@ -14,9 +14,10 @@ const ProtectedRoute = ({
 }: ProtectedRouteProps) => {
   const { toast } = useToast();
   
-  // This would normally check an auth context/store
-  // For now, we'll use a mock implementation
-  const isAuthenticated = true; // Mock authenticated for demo purposes
+  // Check for authentication token or session
+  // This will be properly implemented when Supabase is connected
+  const authToken = localStorage.getItem('auth_token');
+  const isAuthenticated = !!authToken;
   
   if (!isAuthenticated) {
     toast({
