@@ -1,4 +1,3 @@
-
 export const mockMembers = [
   {
     id: 1,
@@ -8,7 +7,9 @@ export const mockMembers = [
     interests: ["Technology", "Startups", "Marketing"],
     skills: ["Digital Marketing", "Product Management", "Data Analytics"],
     role: "Entrepreneur",
-    bio: "Tech entrepreneur building the next generation of fintech solutions for Eastern Europe."
+    bio: "Tech entrepreneur building the next generation of fintech solutions for Eastern Europe.",
+    businessInterest: "expand-existing",
+    companyExpansionNeeds: "Looking to expand our fintech platform to US markets and seeking strategic partnerships with American investors and technology companies."
   },
   {
     id: 2,
@@ -18,7 +19,9 @@ export const mockMembers = [
     interests: ["AI", "Software Development", "Innovation"],
     skills: ["Machine Learning", "Python", "Cloud Architecture"],
     role: "Tech Professional",
-    bio: "AI researcher and software architect with expertise in scalable systems."
+    bio: "AI researcher and software architect with expertise in scalable systems.",
+    businessInterest: "start-company",
+    companyExpansionNeeds: "Planning to start an AI consultancy firm and seeking mentors and potential co-founders with business development expertise."
   },
   {
     id: 3,
@@ -28,7 +31,9 @@ export const mockMembers = [
     interests: ["Finance", "Economics", "Policy"],
     skills: ["Economic Analysis", "Financial Modeling", "Policy Research"],
     role: "Academic",
-    bio: "Economic policy researcher focused on EU-US trade relationships."
+    bio: "Economic policy researcher focused on EU-US trade relationships.",
+    businessInterest: "join-company",
+    companyExpansionNeeds: "Interested in joining a research institution or consulting firm that specializes in international economic policy and trade analysis."
   }
 ];
 
