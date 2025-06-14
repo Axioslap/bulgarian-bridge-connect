@@ -62,32 +62,42 @@ const Index = () => {
     thumbnail: "/placeholder.svg"
   }];
 
-  return <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen font-sans bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative h-[500px] flex items-center justify-center">
-        {/* Background Image - Contained to fit fully */}
-        <div className="absolute inset-0 bg-contain bg-center bg-no-repeat" style={{
+      <section className="relative h-[520px] flex items-center justify-center overflow-hidden animate-fade-in">
+        {/* Background Image - more pronounced overlay and use bg-cover */}
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
         backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
       }}></div>
-        
-        {/* Content - Only Button */}
-        <div className="relative z-10 text-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 to-slate-900/50"></div>
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-bold font-playfair text-white drop-shadow-lg mb-6 animate-fade-in">
+            Bridging US &amp; Bulgaria’s Tech and Business Leaders
+          </h1>
+          <p className="text-xl md:text-2xl font-light text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in delay-100">
+            Where U.S. alumni, entrepreneurs, and forward-thinkers connect, collaborate, and thrive.
+          </p>
           <Link to="/register">
-            
+            <Button size="lg" className="bg-gradient-to-r from-blue-800 via-blue-600 to-red-600 text-white shadow-2xl font-semibold px-10 py-4 text-lg rounded-2xl hover:scale-105 hover:shadow-3xl transition-all duration-300 animate-fade-in delay-200">
+              Join the Community
+            </Button>
           </Link>
         </div>
       </section>
       
       {/* Mission Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden animate-fade-in">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(30,64,175,0.03),transparent)] opacity-60"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(220,38,38,0.02),transparent)] opacity-60"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">Our Mission</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-6 text-slate-900">
+              Our Mission
+            </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-800 to-red-600 mx-auto mb-8 rounded-full"></div>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.</p>
           </div>
@@ -96,7 +106,7 @@ const Index = () => {
             <div className="text-center group">
               <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-800/10 to-blue-800/20 text-blue-800 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-10 h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20h7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">Networking</h3>
@@ -132,8 +142,13 @@ const Index = () => {
         </div>
       </section>
       
+      {/* Partners Slider - Add fade-in and new section headline */}
+      <div className="animate-fade-in">
+        <PartnersSlider />
+      </div>
+      
       {/* Storytelling Videos Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden animate-fade-in">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
         backgroundImage: `url('/lovable-uploads/65c1a96b-0098-4b43-9e35-3e825d4e89b8.png')`
       }}></div>
@@ -141,7 +156,7 @@ const Index = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Storytelling - Videos</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-playfair mb-6 text-white">Storytelling - Videos</h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-red-500 mx-auto mb-8 rounded-full"></div>
             <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
               Discover inspiring stories and insights from our community members who are making an impact across the globe.
@@ -177,18 +192,18 @@ const Index = () => {
       </section>
       
       {/* Featured Events */}
-      <section className="py-24 bg-gradient-to-br from-white via-slate-50 to-white relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-white via-slate-50 to-white relative overflow-hidden animate-fade-in">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(30,64,175,0.04),transparent)] opacity-60"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.03),transparent)] opacity-60"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-16">
             <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-4">Upcoming Events</h2>
+              <h2 className="text-4xl font-bold font-playfair text-slate-900 mb-4">Upcoming Events</h2>
               <p className="text-slate-600 text-lg">Join us for exciting networking and learning opportunities</p>
             </div>
             <Link to="/events">
-              <Button variant="outline" className="shadow-md hover:shadow-lg transition-shadow duration-200 font-medium border-slate-300 text-slate-700 hover:bg-slate-50">
+              <Button variant="outline" className="shadow-md hover:shadow-lg transition-shadow duration-200 font-medium border-slate-300 text-slate-700 hover:bg-slate-50 rounded-xl">
                 View All Events
               </Button>
             </Link>
@@ -201,7 +216,7 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden animate-fade-in">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(30,64,175,0.05),transparent)] opacity-60"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -211,14 +226,14 @@ const Index = () => {
             <div className="absolute bottom-10 left-10 w-16 h-16 rounded-full bg-white/5 animate-pulse delay-200"></div>
             
             <div className="relative">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold font-playfair text-white mb-6">
                 Ready to Join Our Community?
               </h2>
               <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
                 Become a member today and gain access to exclusive events, resources, and a network of professionals bridging the U.S. and Bulgaria.
               </p>
               <Link to="/register">
-                <Button size="lg" className="bg-white text-blue-800 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-10 py-4 text-lg">
+                <Button size="lg" className="bg-white text-blue-800 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-10 py-4 text-lg rounded-2xl">
                   Join ABTC Bulgaria
                 </Button>
               </Link>
