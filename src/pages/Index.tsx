@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -86,23 +85,24 @@ const Index = () => {
       
       {/* Mission Section */}
       <section className="py-24 relative overflow-hidden">
-        {/* Professional tech/business background */}
+        {/* Business and USA themed background */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80')`
+          backgroundImage: `url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=80')`
         }}></div>
         
-        {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-blue-900/90"></div>
+        {/* Patriotic gradient overlay with business sophistication */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/92 via-slate-800/88 to-red-900/85"></div>
         
-        {/* Additional subtle overlay patterns */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.1),transparent)] opacity-60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(239,68,68,0.08),transparent)] opacity-60"></div>
+        {/* Additional USA-themed overlay patterns */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.15),transparent)] opacity-70"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(239,68,68,0.12),transparent)] opacity-70"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,rgba(255,255,255,0.02)_50%,transparent_60%)]"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Our Mission</h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-red-500 mx-auto mb-8 rounded-full"></div>
-            <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.</p>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-400 via-white to-red-500 mx-auto mb-8 rounded-full"></div>
+            <p className="text-xl text-white/95 max-w-4xl mx-auto leading-relaxed">Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
