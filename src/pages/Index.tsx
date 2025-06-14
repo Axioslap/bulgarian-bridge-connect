@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import EventCard from "@/components/EventCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Play } from "lucide-react";
+import { Play, Users, BookOpen, Award, ArrowRight, Sparkles } from "lucide-react";
 
 const Index = () => {
   // Sample featured events
@@ -62,81 +63,155 @@ const Index = () => {
     thumbnail: "/placeholder.svg"
   }];
 
+  const testimonials = [
+    {
+      quote: "ABTC has been instrumental in expanding my professional network and opening doors to opportunities I never thought possible.",
+      author: "Maria Petrova",
+      role: "CEO, TechStart Bulgaria",
+      company: "Harvard Business School '18"
+    },
+    {
+      quote: "The mentorship program connected me with industry leaders who helped shape my career trajectory in ways I couldn't have imagined.",
+      author: "Dimitar Georgiev",
+      role: "Senior Product Manager",
+      company: "Stanford University '16"
+    }
+  ];
+
   return <div className="flex flex-col min-h-screen font-sans bg-white">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative h-[560px] md:h-[600px] flex items-center justify-center overflow-hidden animate-fade-in">
-        {/* Premium Background Image with subtle overlay */}
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 blur-[1px]" style={{
-        backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
-      }}></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-slate-900/60"></div>
-        {/* Content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-4">
-          <h1 className="text-5xl md:text-7xl font-bold font-playfair text-white drop-shadow-2xl mb-8 animate-fade-in">
-            Bridging US &amp; Bulgaria’s Tech and Business Leaders
+      {/* Hero Section - Enhanced with better imagery and typography */}
+      <section className="relative h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
+        {/* Premium Background with Overlay */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105"
+            style={{
+              backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/80 to-slate-800/85" />
+          {/* Subtle Pattern Overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_50%)] opacity-20" />
+        </div>
+        
+        {/* Enhanced Content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-6xl mx-auto animate-fade-in">
+          <div className="mb-6 inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+            <Sparkles className="h-5 w-5 text-yellow-400 mr-2" />
+            <span className="text-white/90 text-sm font-medium">Premium Professional Network</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-playfair text-white mb-8 leading-tight">
+            Bridging Exceptional
+            <span className="block bg-gradient-to-r from-blue-400 via-white to-red-400 bg-clip-text text-transparent">
+              Minds & Markets
+            </span>
           </h1>
-          <p className="text-2xl md:text-2xl font-light text-white/90 mb-10 max-w-2xl mx-auto animate-fade-in delay-100">
-            Where U.S. alumni, entrepreneurs, and forward-thinkers connect, collaborate, and thrive.
+          
+          <p className="text-xl md:text-2xl font-light text-white/95 mb-12 max-w-4xl leading-relaxed">
+            Where U.S. alumni, innovative entrepreneurs, and visionary leaders unite to shape the future of business and technology between America and Bulgaria.
           </p>
-          <Link to="/register">
-            <Button size="lg" className="bg-gradient-to-r from-blue-800 via-blue-600 to-red-600 text-white shadow-2xl font-semibold px-12 py-4 text-lg rounded-full hover:scale-105 hover:shadow-3xl transition-all duration-300 animate-fade-in delay-200">
-              Join the Community
-            </Button>
-          </Link>
+          
+          <div className="flex flex-col sm:flex-row gap-6 items-center">
+            <Link to="/register">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-2xl font-semibold px-10 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-blue-500/25">
+                <Users className="h-5 w-5 mr-2" />
+                Join Our Elite Network
+                <ArrowRight className="h-5 w-5 ml-2" />
+              </Button>
+            </Link>
+            
+            <Link to="/events">
+              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white hover:text-slate-900 backdrop-blur-sm font-medium px-8 py-6 text-lg rounded-full transition-all duration-300">
+                Explore Events
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       
-      {/* Mission Section */}
-      <section className="py-28 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden animate-fade-in">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(30,64,175,0.03),transparent)] opacity-60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(220,38,38,0.02),transparent)] opacity-60"></div>
+      {/* Testimonials Section - New Premium Addition */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden animate-slide-up">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.05),transparent)]" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-playfair font-bold mb-7 text-slate-900">
-              Our Mission
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-slate-900 mb-6">
+              Trusted by Industry Leaders
             </h2>
-            <div className="w-40 h-1 bg-gradient-to-r from-blue-800 to-red-600 mx-auto mb-10 rounded-full"></div>
-            <p className="text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">Connecting business and tech professionals with strong US-Bulgaria ties to opportunities for business expansion, new ventures, and strategic partnerships.</p>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-red-600 mx-auto rounded-full" />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
-            {/* Card 1 */}
-            <div className="text-center group rounded-3xl bg-white/90 shadow-md hover:shadow-2xl p-8 transition-all duration-300">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-800/10 to-blue-800/20 text-blue-800 flex items-center justify-center mx-auto mb-7 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-10 h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20h7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20h2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
+          <div className="grid md:grid-cols-2 gap-12">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="bg-white/80 backdrop-blur-sm border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl">
+                <CardContent className="p-10">
+                  <blockquote className="text-xl text-slate-700 italic mb-8 leading-relaxed">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                      {testimonial.author.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-slate-900">{testimonial.author}</div>
+                      <div className="text-slate-600 text-sm">{testimonial.role}</div>
+                      <div className="text-blue-600 text-sm font-medium">{testimonial.company}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Mission Section - Enhanced with Better Spacing */}
+      <section className="py-32 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 relative overflow-hidden animate-fade-in">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.06),transparent)]" />
+        
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-playfair font-bold mb-8 text-slate-900">
+              Our Mission
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-600 to-red-600 mx-auto mb-12 rounded-full" />
+            <p className="text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
+              Empowering exceptional professionals to build bridges between innovation ecosystems, create meaningful partnerships, and drive transformative change.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Enhanced Mission Cards */}
+            <div className="text-center group bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl p-10 transition-all duration-500 hover:-translate-y-2 border border-slate-200/50">
+              <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-blue-600/20 to-blue-700/30 text-blue-700 flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Users className="w-12 h-12" />
               </div>
-              <h3 className="text-2xl font-playfair font-semibold mb-4 text-slate-900">Networking</h3>
-              <p className="text-slate-600 leading-relaxed text-lg font-light">
-                Connect with like-minded professionals who share educational and professional experiences between the U.S. and Bulgaria.
+              <h3 className="text-2xl font-playfair font-semibold mb-6 text-slate-900">Elite Networking</h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
+                Connect with carefully curated professionals who share exceptional educational and career achievements across both nations.
               </p>
             </div>
-            {/* Card 2 */}
-            <div className="text-center group rounded-3xl bg-white/90 shadow-md hover:shadow-2xl p-8 transition-all duration-300">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-red-600/10 to-red-600/20 text-red-600 flex items-center justify-center mx-auto mb-7 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-10 h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+            
+            <div className="text-center group bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl p-10 transition-all duration-500 hover:-translate-y-2 border border-slate-200/50">
+              <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-red-600/20 to-red-700/30 text-red-700 flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <BookOpen className="w-12 h-12" />
               </div>
-              <h3 className="text-2xl font-playfair font-semibold mb-4 text-slate-900">Knowledge Sharing</h3>
-              <p className="text-slate-600 leading-relaxed text-lg font-light">
-                Access exclusive resources, workshops, and educational content designed to enhance your professional growth.
+              <h3 className="text-2xl font-playfair font-semibold mb-6 text-slate-900">Knowledge Exchange</h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
+                Access exclusive insights, best practices, and cutting-edge knowledge from industry leaders and academic institutions.
               </p>
             </div>
-            {/* Card 3 */}
-            <div className="text-center group rounded-3xl bg-white/90 shadow-md hover:shadow-2xl p-8 transition-all duration-300">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-800/10 to-blue-800/20 text-blue-800 flex items-center justify-center mx-auto mb-7 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-10 h-10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+            
+            <div className="text-center group bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl p-10 transition-all duration-500 hover:-translate-y-2 border border-slate-200/50">
+              <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-blue-600/20 to-blue-700/30 text-blue-700 flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Award className="w-12 h-12" />
               </div>
-              <h3 className="text-2xl font-playfair font-semibold mb-4 text-slate-900">Mentorship</h3>
-              <p className="text-slate-600 leading-relaxed text-lg font-light">
-                Participate in our mentorship programs, either as a mentor or mentee, to foster professional development and leadership.
+              <h3 className="text-2xl font-playfair font-semibold mb-6 text-slate-900">Strategic Partnerships</h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
+                Facilitate high-impact collaborations that drive innovation and create lasting value across industries and borders.
               </p>
             </div>
           </div>
@@ -144,96 +219,137 @@ const Index = () => {
       </section>
       
       {/* Partners Slider */}
-      <div className="animate-fade-in">
+      <div className="animate-scale-in">
         <PartnersSlider />
       </div>
       
-      {/* Storytelling Videos Section */}
-      <section className="py-28 relative overflow-hidden animate-fade-in">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: `url('/lovable-uploads/65c1a96b-0098-4b43-9e35-3e825d4e89b8.png')`
-      }}></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-800/70 to-slate-900/85"></div>
+      {/* Featured Events - Enhanced Design */}
+      <section className="py-32 bg-gradient-to-br from-white via-slate-50 to-white relative overflow-hidden animate-fade-in">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_80%,rgba(220,38,38,0.04),transparent)]" />
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-playfair font-bold mb-6 text-white">Storytelling - Videos</h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-red-500 mx-auto mb-10 rounded-full"></div>
-            <p className="text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed font-light">
-              Discover inspiring stories and insights from our community members who are making an impact across the globe.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredVideos.map(video => <Card key={video.id} className="hover:shadow-xl transition-shadow cursor-pointer group bg-white/95 backdrop-blur-sm rounded-2xl">
-                <div className="relative">
-                  <img src={video.thumbnail} alt={video.title} className="w-full h-44 object-cover rounded-t-2xl" />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-t-2xl">
-                    <Play className="h-10 w-10 text-white" />
-                  </div>
-                  <Badge className="absolute bottom-2 right-2 bg-black/70 text-white rounded-full px-3 py-1 text-xs shadow-md">
-                    {video.duration}
-                  </Badge>
-                </div>
-                <CardContent className="p-5">
-                  <h3 className="font-semibold text-base mb-1 line-clamp-2 font-playfair">{video.title}</h3>
-                  <p className="text-gray-600 text-xs line-clamp-2">{video.description}</p>
-                </CardContent>
-              </Card>)}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link to="/member">
-              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 font-semibold px-8 py-4 text-lg rounded-full border border-slate-200">
-                View All Videos
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-      
-      {/* Featured Events */}
-      <section className="py-28 bg-gradient-to-br from-white via-slate-50 to-white relative overflow-hidden animate-fade-in">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(30,64,175,0.04),transparent)] opacity-60"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.03),transparent)] opacity-60"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-5">
-            <div className="text-center md:text-left">
-              <h2 className="text-5xl font-playfair font-bold text-slate-900 mb-4">Upcoming Events</h2>
-              <p className="text-slate-600 text-lg font-light">Join us for exciting networking and learning opportunities</p>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row justify-between items-center mb-20 gap-8">
+            <div className="text-center lg:text-left">
+              <h2 className="text-5xl font-playfair font-bold text-slate-900 mb-6">Upcoming Experiences</h2>
+              <p className="text-slate-600 text-xl max-w-2xl">Join us for carefully curated events designed to foster meaningful connections and drive professional growth.</p>
             </div>
             <Link to="/events">
-              <Button variant="outline" className="shadow-md hover:shadow-lg transition-shadow duration-200 font-medium border-slate-300 text-slate-700 hover:bg-slate-50 rounded-full px-7 py-3">
+              <Button variant="outline" className="shadow-lg hover:shadow-xl transition-all duration-300 font-medium border-slate-300 text-slate-700 hover:bg-slate-50 rounded-full px-8 py-4 text-lg">
+                <ArrowRight className="h-5 w-5 mr-2" />
                 View All Events
               </Button>
             </Link>
           </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {featuredEvents.map(event => <EventCard key={event.id} title={event.title} date={event.date} location={event.location} description={event.description} type={event.type} isUpcoming={event.isUpcoming} />)}
+            {featuredEvents.map(event => 
+              <EventCard 
+                key={event.id} 
+                title={event.title} 
+                date={event.date} 
+                location={event.location} 
+                description={event.description} 
+                type={event.type} 
+                isUpcoming={event.isUpcoming} 
+              />
+            )}
           </div>
         </div>
       </section>
       
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden animate-fade-in">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(30,64,175,0.07),transparent)] opacity-60"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-r from-blue-800 via-blue-700 to-red-600 rounded-3xl shadow-2xl p-12 md:p-16 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
-            <div className="absolute top-8 right-10 w-28 h-28 rounded-full bg-white/10 animate-pulse z-0"></div>
-            <div className="absolute bottom-8 left-12 w-16 h-16 rounded-full bg-white/10 animate-pulse delay-200 z-0"></div>
+      {/* Storytelling Videos Section - Enhanced */}
+      <section className="py-32 relative overflow-hidden animate-fade-in">
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+          backgroundImage: `url('/lovable-uploads/65c1a96b-0098-4b43-9e35-3e825d4e89b8.png')`
+        }} />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-blue-900/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_60%,rgba(59,130,246,0.2),transparent_70%)]" />
+        
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl font-playfair font-bold mb-8 text-white">Member Stories</h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-red-400 mx-auto mb-12 rounded-full" />
+            <p className="text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+              Discover inspiring journeys and transformative experiences from our global community of leaders and innovators.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredVideos.map(video => (
+              <Card key={video.id} className="hover:shadow-2xl transition-all duration-500 cursor-pointer group bg-white/95 backdrop-blur-sm rounded-2xl border-white/20 hover:-translate-y-2">
+                <div className="relative overflow-hidden rounded-t-2xl">
+                  <img src={video.thumbnail} alt={video.title} className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                      <Play className="h-8 w-8 text-white ml-1" />
+                    </div>
+                  </div>
+                  <Badge className="absolute bottom-3 right-3 bg-black/80 text-white rounded-full px-3 py-1 text-sm backdrop-blur-sm">
+                    {video.duration}
+                  </Badge>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="font-semibold text-lg mb-2 line-clamp-2 font-playfair text-slate-900">{video.title}</h3>
+                  <p className="text-slate-600 text-sm line-clamp-2 leading-relaxed">{video.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-16">
+            <Link to="/member">
+              <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white hover:text-slate-900 shadow-xl transition-all duration-300 hover:scale-105 font-semibold px-10 py-4 text-lg rounded-full">
+                <Play className="h-5 w-5 mr-2" />
+                View All Stories
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+      
+      {/* Enhanced CTA Section */}
+      <section className="py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden animate-fade-in">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.08),transparent)]" />
+        
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 rounded-3xl shadow-2xl p-16 md:p-20 text-center overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.3),transparent_50%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(220,38,38,0.2),transparent_50%)]" />
+            <div className="absolute top-10 right-16 w-32 h-32 rounded-full bg-white/10 animate-pulse" />
+            <div className="absolute bottom-10 left-16 w-20 h-20 rounded-full bg-white/10 animate-pulse delay-300" />
+            
             <div className="relative z-10">
-              <h2 className="text-5xl md:text-6xl font-playfair font-bold text-white mb-6">
-                Ready to Join Our Community?
+              <div className="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 mb-8">
+                <Sparkles className="h-5 w-5 text-yellow-400 mr-2" />
+                <span className="text-white font-medium">Exclusive Membership</span>
+              </div>
+              
+              <h2 className="text-5xl md:text-6xl font-playfair font-bold text-white mb-8">
+                Ready to Join Our
+                <span className="block bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
+                  Elite Community?
+                </span>
               </h2>
-              <p className="text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
-                Become a member today and gain access to exclusive events, resources, and a network of professionals bridging the U.S. and Bulgaria.
+              
+              <p className="text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed">
+                Become part of an exclusive network of visionaries, innovators, and leaders who are shaping the future of business and technology across continents.
               </p>
-              <Link to="/register">
-                <Button size="lg" className="bg-white text-blue-800 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 font-semibold px-12 py-4 text-lg rounded-full border-2 border-blue-800/10">
-                  Join ABTC Bulgaria
-                </Button>
-              </Link>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Link to="/register">
+                  <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 font-semibold px-12 py-6 text-lg rounded-full">
+                    <Users className="h-6 w-6 mr-3" />
+                    Join ABTC Bulgaria
+                    <ArrowRight className="h-6 w-6 ml-3" />
+                  </Button>
+                </Link>
+                
+                <Link to="/about">
+                  <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-medium px-10 py-6 text-lg rounded-full transition-all duration-300">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
