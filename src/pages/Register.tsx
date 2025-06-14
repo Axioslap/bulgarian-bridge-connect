@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -299,6 +298,11 @@ const Register = () => {
                         </div>
                         <div className="ml-7 space-y-3">
                           <p className="text-sm font-medium text-gray-800">Perfect for U.S.-educated Bulgarians and young professionals</p>
+                          <div className="p-3 bg-amber-100 border border-amber-300 rounded-md mb-3">
+                            <p className="text-sm font-medium text-amber-800">
+                              <strong>Eligibility Requirement:</strong> Must have lived in the USA for longer than 4 years to qualify for Community Member status.
+                            </p>
+                          </div>
                           <div className="space-y-2">
                             <p className="text-sm text-gray-700 flex items-start">
                               <span className="text-green-600 mr-2">✓</span>
