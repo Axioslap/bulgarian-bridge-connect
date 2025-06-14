@@ -77,24 +77,33 @@ const MemberDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Top navigation */}
-      <header className="bg-white shadow-sm sticky top-0 z-40">
+      <header className="bg-white shadow-lg border-b border-blue-100 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <Link to="/" className="flex items-center">
-              <span className="text-xl font-bold text-blue-700 mr-1">ABTC</span>
-              <span className="text-xl font-bold text-red-600 tracking-tight">Bulgaria</span>
+            <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <img 
+                src="/lovable-uploads/a622b81f-1bc6-4b70-90bc-fdf0fd79ae53.png" 
+                alt="ABTC Bulgaria Logo" 
+                className="h-10 w-10 object-contain"
+              />
+              <div>
+                <span className="text-lg font-bold text-blue-700 mr-1">ABTC</span>
+                <span className="text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
+                <p className="text-xs text-gray-600 leading-tight hidden md:block">Member Portal</p>
+              </div>
             </Link>
             
-            <div className="flex items-center">
-              <Badge variant="outline" className="mr-2 hidden md:inline-flex">
+            <div className="flex items-center space-x-4">
+              <Badge variant="outline" className="mr-2 hidden md:inline-flex border-blue-200 text-blue-700 bg-blue-50">
                 {userProfile.role}
               </Badge>
               <Button 
                 variant="ghost" 
                 size="sm" 
                 onClick={handleLogout}
+                className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
               >
                 Log out
               </Button>
@@ -114,7 +123,9 @@ const MemberDashboard = () => {
           
           {/* Main content area */}
           <div className="flex-1">
-            {renderTabContent()}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              {renderTabContent()}
+            </div>
           </div>
         </div>
       </div>
