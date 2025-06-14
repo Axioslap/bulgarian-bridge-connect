@@ -31,6 +31,18 @@ const News = () => {
       memberOnly: false,
     },
     {
+      id: 4,
+      title: "Digital Transformation Drives Bulgarian Economic Growth",
+      description: "Government initiatives in digitalization are attracting international businesses to establish operations in Bulgaria, creating new opportunities for tech professionals.",
+      fullContent: "Government initiatives in digitalization are attracting international businesses to establish operations in Bulgaria, creating unprecedented opportunities for tech professionals across the country. The Bulgarian Digital Transformation Strategy 2025 has successfully attracted over 150 international companies to set up operations in major cities including Sofia, Plovdiv, and Varna. These initiatives have resulted in the creation of more than 25,000 new tech jobs, with average salaries increasing by 35% year-over-year. The government's investment in digital infrastructure, including 5G network deployment and fiber optic expansion, has positioned Bulgaria as a leading destination for tech companies seeking European market access.",
+      category: "Tech",
+      date: "May 18, 2025",
+      source: "Digital Bulgaria",
+      url: "#",
+      featured: true,
+      memberOnly: false,
+    },
+    {
       id: 2,
       title: "US-Bulgaria Trade Partnership Expands to Include AI Research",
       description: "New bilateral agreement opens opportunities for joint artificial intelligence research projects between American and Bulgarian institutions.",
@@ -39,7 +51,7 @@ const News = () => {
       date: "May 23, 2025",
       source: "Business Bulgaria",
       url: "#",
-      featured: true,
+      featured: false,
       memberOnly: true,
     },
     {
@@ -53,18 +65,6 @@ const News = () => {
       url: "#",
       featured: false,
       memberOnly: true,
-    },
-    {
-      id: 4,
-      title: "Digital Transformation Drives Bulgarian Economic Growth",
-      description: "Government initiatives in digitalization are attracting international businesses to establish operations in Bulgaria, creating new opportunities for tech professionals.",
-      fullContent: "Government initiatives in digitalization are attracting international businesses to establish operations in Bulgaria, creating unprecedented opportunities for tech professionals across the country. The Bulgarian Digital Transformation Strategy 2025 has successfully attracted over 150 international companies to set up operations in major cities including Sofia, Plovdiv, and Varna. These initiatives have resulted in the creation of more than 25,000 new tech jobs, with average salaries increasing by 35% year-over-year. The government's investment in digital infrastructure, including 5G network deployment and fiber optic expansion, has positioned Bulgaria as a leading destination for tech companies seeking European market access.",
-      category: "Tech",
-      date: "May 18, 2025",
-      source: "Digital Bulgaria",
-      url: "#",
-      featured: false,
-      memberOnly: false,
     },
     {
       id: 5,
@@ -93,8 +93,8 @@ const News = () => {
   ];
 
   const selectedArticle = articleId ? newsArticles.find(article => article.id === parseInt(articleId)) : null;
-  const featuredArticles = newsArticles.filter(article => article.featured);
-  const regularArticles = newsArticles.filter(article => !article.featured);
+  const publicArticles = newsArticles.filter(article => !article.memberOnly);
+  const memberOnlyArticles = newsArticles.filter(article => article.memberOnly);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -239,31 +239,24 @@ const News = () => {
         </div>
       </section>
 
-      {/* Featured Articles */}
+      {/* Public Articles Section */}
       <section className="py-16 bg-gradient-to-br from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Stories</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Public News</h2>
+            <p className="text-gray-600 mb-6">Stay updated with the latest developments - no registration required</p>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredArticles.map((article) => (
+            {publicArticles.map((article) => (
               <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
-                        {getCategoryIcon(article.category)}
-                        {article.category}
-                      </Badge>
-                      {article.memberOnly && (
-                        <Badge variant="outline" className="text-xs">
-                          <Lock className="w-3 h-3 mr-1" />
-                          Members Only
-                        </Badge>
-                      )}
-                    </div>
+                    <Badge className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
+                      {getCategoryIcon(article.category)}
+                      {article.category}
+                    </Badge>
                     <span className="text-sm text-gray-500 flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {article.date}
@@ -296,61 +289,70 @@ const News = () => {
         </div>
       </section>
 
-      {/* Regular Articles */}
+      {/* Member-Only Articles Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Latest Updates</h2>
+            <div className="flex items-center gap-3 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900">Premium Member Content</h2>
+              <Lock className="w-6 h-6 text-primary" />
+            </div>
+            <p className="text-gray-600 mb-6">Exclusive insights and analysis for ABTC Bulgaria members</p>
             <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
           </div>
+
+          {!isLoggedIn && (
+            <div className="mb-8">
+              <MembershipPrompt />
+            </div>
+          )}
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {regularArticles.map((article, index) => (
-              <div key={article.id}>
-                {index === 2 && !isLoggedIn && (
-                  <div className="mb-6">
-                    <MembershipPrompt />
+            {memberOnlyArticles.map((article) => (
+              <Card key={article.id} className="group hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-primary/20 relative">
+                {!isLoggedIn && (
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-[1px] z-10 rounded-lg flex items-center justify-center">
+                    <div className="text-center p-4">
+                      <Lock className="w-8 h-8 mx-auto mb-2 text-primary" />
+                      <p className="text-sm font-medium text-gray-700">Members Only</p>
+                    </div>
                   </div>
                 )}
-                <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-primary/20">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline" className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
-                          {getCategoryIcon(article.category)}
-                          {article.category}
-                        </Badge>
-                        {article.memberOnly && (
-                          <Badge variant="outline" className="text-xs">
-                            <Lock className="w-3 h-3 mr-1" />
-                            Member
-                          </Badge>
-                        )}
-                      </div>
-                      <span className="text-sm text-gray-500">{article.date}</span>
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className={`${getCategoryColor(article.category)} flex items-center gap-1`}>
+                        {getCategoryIcon(article.category)}
+                        {article.category}
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        <Lock className="w-3 h-3 mr-1" />
+                        Premium
+                      </Badge>
                     </div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">
-                      {article.title}
-                    </CardTitle>
-                    <CardDescription className="text-gray-600 text-sm leading-relaxed">
-                      {article.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-500">{article.source}</span>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="group-hover:text-primary transition-colors p-2"
-                        onClick={() => handleReadMore(article)}
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+                    <span className="text-sm text-gray-500">{article.date}</span>
+                  </div>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors leading-tight">
+                    {article.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-600 text-sm leading-relaxed">
+                    {article.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-500">{article.source}</span>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="group-hover:text-primary transition-colors p-2"
+                      onClick={() => handleReadMore(article)}
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
