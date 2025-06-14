@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -65,7 +64,6 @@ const Index = () => {
 
   return <div className="flex flex-col min-h-screen">
       <Header />
-      <PartnersSlider />
       
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center">
@@ -133,6 +131,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Partners Section - Moved here after Mission */}
+      <PartnersSlider />
       
       {/* Storytelling Videos Section */}
       <section className="py-24 relative overflow-hidden">
