@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import MemberDashboard from "./pages/MemberDashboard";
 import Partners from "./pages/Partners";
 import PartnerDetail from "./pages/PartnerDetail";
+import BoardMember from "./pages/BoardMember";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -29,6 +30,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
+          <Route path="/board-member/:id" element={<BoardMember />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/partners/:id" element={<PartnerDetail />} />
           <Route path="/events" element={<Events />} />
