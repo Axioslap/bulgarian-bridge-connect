@@ -15,6 +15,7 @@ import MemberDashboard from "./pages/MemberDashboard";
 import Partners from "./pages/Partners";
 import PartnerDetail from "./pages/PartnerDetail";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
