@@ -129,7 +129,7 @@ const Index = () => {
           
           {/* Welcome Text */}
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-slate-900 mb-6 sm:mb-8 drop-shadow-lg leading-tight">
-            Welcome to <span className="bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text text-transparent">ABTC Bulgaria</span>
+            Welcome to <span className="bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text text-transparent">American Business & Technology Club</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-3xl text-slate-700 mb-4 sm:mb-6 leading-relaxed drop-shadow-md max-w-4xl mx-auto">
             Connecting business and tech professionals with strong <span className="font-semibold text-blue-700 whitespace-nowrap">US-Bulgaria</span> ties
@@ -175,7 +175,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-red-50/50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">Why Join ABTC Bulgaria?</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">Why Join American Business & Technology Club?</h2>
             <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto">
               Unlock exclusive opportunities and build meaningful connections in the US-Bulgaria business ecosystem
             </p>
@@ -304,7 +304,7 @@ const Index = () => {
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
                 <Link to="/register">
                   <Button size={isMobile ? "default" : "lg"} className="bg-white text-blue-800 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg group w-full sm:w-auto">
-                    Join ABTC Bulgaria
+                    Join American Business & Technology Club
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
