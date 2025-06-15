@@ -66,10 +66,15 @@ const Header = () => {
         src="/lovable-uploads/a622b81f-1bc6-4b70-90bc-fdf0fd79ae53.png" 
         alt="ABTC Bulgaria Logo" 
         className="h-12 w-12 object-contain"
+        loading="eager"
+        decoding="async"
       />
-      <div className="hidden md:block">
-        <span className="text-lg font-bold text-gray-900">ABTC Bulgaria</span>
-        <p className="text-xs text-gray-600 leading-tight">American Business & Technology Club</p>
+      <div className="flex flex-col">
+        <div className="flex items-center">
+          <span className="text-lg font-bold text-blue-700 mr-1">ABTC</span>
+          <span className="text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
+        </div>
+        <p className="text-xs text-gray-600 leading-tight hidden sm:block">American Business & Technology Club</p>
       </div>
     </Link>
   );
@@ -96,6 +101,7 @@ const Header = () => {
         size="icon" 
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
         className="h-10 w-10 bg-gray-100 hover:bg-gray-200 border border-gray-300 shadow-sm"
+        aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
       >
         {mobileMenuOpen ? <X size={24} className="text-gray-700" /> : <Menu size={24} className="text-gray-700" />}
       </Button>
@@ -104,6 +110,17 @@ const Header = () => {
 
   const MobileMenu = () => mobileMenuOpen && (
     <div className="md:hidden bg-white shadow-lg border-t">
+      {/* Mobile Organization Name */}
+      <div className="px-4 py-3 border-b border-gray-200 bg-slate-50">
+        <div className="text-center">
+          <div className="flex items-center justify-center mb-1">
+            <span className="text-lg font-bold text-blue-700 mr-1">ABTC</span>
+            <span className="text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
+          </div>
+          <p className="text-xs text-gray-600 leading-tight">American Business & Technology Club</p>
+        </div>
+      </div>
+      
       <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         {navLinks.map(link => (
           <MobileNavLink 
