@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,9 +12,17 @@ import { useState, useEffect } from "react";
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Preload the background image
+    const img = new Image();
+    img.onload = () => {
+      setImageLoaded(true);
+    };
+    img.src = '/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png';
   }, []);
 
   // Sample featured events
@@ -81,19 +90,23 @@ const Index = () => {
     icon: Award
   }];
   const benefits = ["Access to exclusive networking events", "Mentorship opportunities with industry leaders", "Professional development workshops", "Job placement assistance", "Business partnership connections", "Cultural exchange programs"];
+
   return (
     <div className="flex flex-col min-h-screen scroll-smooth">
       <Header />
       
       {/* Hero Section */}
       <section className="relative h-[700px] flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 overflow-hidden">
-        {/* Background Image - Optimized */}
+        {/* Background Image - Optimized for faster loading */}
         <div 
-          className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-15 transition-opacity duration-1000" 
+          className={`absolute inset-0 bg-contain bg-center bg-no-repeat transition-opacity duration-500 ${
+            imageLoaded ? 'opacity-15' : 'opacity-0'
+          }`}
           style={{
             backgroundImage: `url('/lovable-uploads/1184c5a6-8163-4552-9dba-3d1f2157fb51.png')`,
-            transform: isLoaded ? 'scale(1)' : 'scale(1.1)',
-            transition: 'transform 2s ease-out'
+            transform: isLoaded ? 'scale(1)' : 'scale(1.05)',
+            transition: 'transform 1s ease-out, opacity 500ms ease-in',
+            willChange: 'transform, opacity'
           }}
         ></div>
         
@@ -172,10 +185,8 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Partners Section */}
       <PartnersSlider />
       
-      {/* Storytelling Videos Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
         backgroundImage: `url('/lovable-uploads/65c1a96b-0098-4b43-9e35-3e825d4e89b8.png')`
@@ -222,7 +233,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Featured Events */}
       <section className="py-24 bg-gradient-to-br from-white via-slate-50 to-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(30,64,175,0.04),transparent)] opacity-60"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(220,38,38,0.03),transparent)] opacity-60"></div>
@@ -251,17 +261,13 @@ const Index = () => {
         </div>
       </section>
       
-      {/* CTA Section with USA Flag Background */}
       <section className="py-24 relative overflow-hidden">
-        {/* USA Flag Background */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
         backgroundImage: `url('/lovable-uploads/2cc62f2e-d04c-4da0-8baf-406cc6eccd43.png')`
       }}></div>
         
-        {/* Dark overlay for text visibility */}
         <div className="absolute inset-0 bg-black/60"></div>
         
-        {/* Additional patriotic gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-transparent to-red-900/40"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
