@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -113,11 +112,7 @@ const Header = () => {
       {/* Mobile Organization Name */}
       <div className="px-4 py-3 border-b border-gray-200 bg-slate-50">
         <div className="text-center">
-          <div className="flex items-center justify-center mb-1">
-            <span className="text-lg font-bold text-blue-700 mr-1">ABTC</span>
-            <span className="text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
-          </div>
-          <p className="text-xs text-gray-600 leading-tight">American Business & Technology Club</p>
+          <p className="text-base font-semibold text-gray-800 leading-tight">American Business & Technology Club</p>
         </div>
       </div>
       
