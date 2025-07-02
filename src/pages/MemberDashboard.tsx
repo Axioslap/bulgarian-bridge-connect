@@ -12,6 +12,7 @@ import ResourcesTab from "@/components/dashboard/tabs/ResourcesTab";
 import VideosTab from "@/components/dashboard/tabs/VideosTab";
 import ArticlesTab from "@/components/dashboard/tabs/ArticlesTab";
 import JobsTab from "@/components/dashboard/tabs/JobsTab";
+import ExpertsTab from "@/components/dashboard/tabs/ExpertsTab";
 import NewsTab from "@/components/dashboard/tabs/NewsTab";
 import CommunityImpactTab from "@/components/dashboard/tabs/CommunityImpactTab";
 import { useMemberAuth } from "@/hooks/useMemberAuth";
@@ -63,6 +64,8 @@ const MemberDashboard = () => {
         return <ArticlesTab />;
       case "jobs":
         return <JobsTab />;
+      case "experts":
+        return <ExpertsTab />;
       case "news":
         return <NewsTab newsInterests={newsInterests} setNewsInterests={setNewsInterests} />;
       default:

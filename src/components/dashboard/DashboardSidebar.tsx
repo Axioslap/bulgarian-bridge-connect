@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { User, BookOpen, Calendar, Search, MessageCircle, Users, Video, FileText, Heart } from "lucide-react";
+import { User, BookOpen, Calendar, Search, MessageCircle, Users, Video, FileText, Heart, UserCheck } from "lucide-react";
 
 interface DashboardSidebarProps {
   userProfile: {
@@ -92,6 +92,14 @@ const DashboardSidebar = ({ userProfile, activeTab, setActiveTab, unreadMessageC
           >
             <Search className="mr-2 h-4 w-4" />
             Find Members
+          </Button>
+          <Button
+            variant={activeTab === "experts" ? "default" : "ghost"}
+            className={`justify-start ${activeTab === "experts" ? "bg-blue-600 hover:bg-blue-700 text-white" : "text-gray-700 hover:text-blue-700 hover:bg-blue-50"}`}
+            onClick={() => setActiveTab("experts")}
+          >
+            <UserCheck className="mr-2 h-4 w-4" />
+            Find Experts
           </Button>
           <Button
             variant={activeTab === "events" ? "default" : "ghost"}
