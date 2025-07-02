@@ -28,6 +28,9 @@ const Header = () => {
     path: "/partners",
     label: "Our Partners"
   }, {
+    path: "/experts",
+    label: "Experts"
+  }, {
     path: "/events",
     label: "Events"
   }, {

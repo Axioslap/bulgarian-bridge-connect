@@ -7,7 +7,7 @@ import HeroSection from "@/components/home/HeroSection";
 import BenefitsSection from "@/components/home/BenefitsSection";
 import VideoSection from "@/components/home/VideoSection";
 import EventsSection from "@/components/home/EventsSection";
-import ExpertsSection from "@/components/home/ExpertsSection";
+
 import CTASection from "@/components/home/CTASection";
 
 const Index = () => {
@@ -27,7 +27,7 @@ const Index = () => {
       <PartnersSlider />
       <VideoSection />
       <EventsSection />
-      <ExpertsSection />
+      
       <CTASection />
       <Footer />
     </div>
