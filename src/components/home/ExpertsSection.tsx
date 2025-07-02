@@ -64,11 +64,38 @@ const ExpertsSection = () => {
           }`}>
             Meet Our <span className="bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text text-transparent">Experts</span>
           </h2>
-          <p className={`text-slate-600 max-w-3xl mx-auto leading-relaxed ${
+          <p className={`text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8 ${
             isIPhone ? 'text-lg sm:text-xl' : 'text-lg sm:text-xl'
           }`}>
             Connect with experienced professionals who can help your company grow and navigate the US-Bulgaria business landscape
           </p>
+          
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200/50 shadow-lg p-6 sm:p-8 max-w-4xl mx-auto">
+            <h3 className={`font-bold text-slate-900 mb-6 ${
+              isIPhone ? 'text-xl sm:text-2xl' : 'text-xl sm:text-2xl'
+            }`}>
+              Who This Is For
+            </h3>
+            <div className="text-left max-w-2xl mx-auto">
+              <p className="text-slate-700 font-medium mb-4">
+                ✅ Advisors, specialists, and freelancers who want to:
+              </p>
+              <ul className="space-y-3 text-slate-600">
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-3 mt-1">•</span>
+                  Offer trusted, high-value services to our members
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-3 mt-1">•</span>
+                  Connect with entrepreneurs, startups, and growing companies
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-3 mt-1">•</span>
+                  Build long-term, cross-border partnerships
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div className={`grid gap-6 sm:gap-8 ${
