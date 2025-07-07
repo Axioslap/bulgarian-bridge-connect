@@ -285,122 +285,75 @@ const Register = () => {
                 {/* Membership Type */}
                 <div>
                   <Label className="text-base font-medium">Membership Type *</Label>
-                  <RadioGroup
-                    value={formData.membershipType}
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, membershipType: value }))}
-                    className="mt-3"
-                  >
-                    <div className="space-y-4">
-                      <div className="border rounded-lg p-6 bg-blue-50/50">
-                        <div className="flex items-center space-x-3 mb-3">
-                          <RadioGroupItem value="member" id="member" />
-                          <Label htmlFor="member" className="text-lg font-semibold text-blue-800">Community Member</Label>
-                        </div>
-                        <div className="ml-7 space-y-3">
-                          <p className="text-sm font-medium text-gray-800">Perfect for U.S.-educated Bulgarians and young professionals</p>
-                          <div className="p-3 bg-amber-100 border border-amber-300 rounded-md mb-3">
-                            <p className="text-sm font-medium text-amber-800">
-                              <strong>Eligibility Requirement:</strong> Must have lived in the USA for longer than 4 years to qualify for Community Member status.
-                            </p>
-                          </div>
-                          <div className="space-y-2">
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Access to exclusive networking events and meetups
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Professional development resources and workshops
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Connect with like-minded professionals in your field
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Job opportunities and career advancement support
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Cultural events celebrating Bulgarian heritage
-                            </p>
-                          </div>
-                          <div className="mt-4 p-3 bg-blue-100 rounded-md">
-                            <p className="text-xs text-blue-800">
-                              <strong>Getting Started:</strong> Personal interview with a community member to understand your needs. 
-                              <br />
-                              <strong>Cost:</strong> First 3 months free, then $45/month (portion goes to charity).
-                            </p>
-                          </div>
-                        </div>
+                  <div className="mt-3">
+                    <div className="border rounded-lg p-6 bg-blue-50/50">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <div className="w-4 h-4 rounded-full bg-blue-600"></div>
+                        <Label className="text-lg font-semibold text-blue-800">Community Member</Label>
                       </div>
-                      
-                      <div className="border rounded-lg p-6 bg-red-50/50">
-                        <div className="flex items-center space-x-3 mb-3">
-                          <RadioGroupItem value="supporter" id="supporter" />
-                          <Label htmlFor="supporter" className="text-lg font-semibold text-red-800">Partner</Label>
+                      <div className="ml-7 space-y-3">
+                        <p className="text-sm font-medium text-gray-800">Perfect for U.S.-educated Bulgarians and young professionals</p>
+                        <div className="p-3 bg-amber-100 border border-amber-300 rounded-md mb-3">
+                          <p className="text-sm font-medium text-amber-800">
+                            <strong>Eligibility Requirement:</strong> Must have lived in the USA for longer than 4 years to qualify for Community Member status.
+                          </p>
                         </div>
-                        <div className="ml-7 space-y-3">
-                          <p className="text-sm font-medium text-gray-800">For organizations and individuals who want to support our mission</p>
-                          <div className="space-y-2">
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Stay updated on community initiatives and impact
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Receive invitations to special partner events
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Access to community insights and reports
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Networking opportunities with business leaders
-                            </p>
-                            <p className="text-sm text-gray-700 flex items-start">
-                              <span className="text-green-600 mr-2">✓</span>
-                              Support meaningful U.S.-Bulgaria business connections
-                            </p>
-                          </div>
-                          <div className="mt-4 p-3 bg-red-100 rounded-md">
-                            <p className="text-xs text-red-800">
-                              <strong>Getting Started:</strong> Interview with a community member to understand partnership opportunities. 
-                              <br />
-                              <strong>Cost:</strong> First 3 months free, then $45/month (portion goes to charity).
-                            </p>
-                          </div>
+                        <div className="space-y-2">
+                          <p className="text-sm text-gray-700 flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            Access to exclusive networking events and meetups
+                          </p>
+                          <p className="text-sm text-gray-700 flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            Professional development resources and workshops
+                          </p>
+                          <p className="text-sm text-gray-700 flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            Connect with like-minded professionals in your field
+                          </p>
+                          <p className="text-sm text-gray-700 flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            Job opportunities and career advancement support
+                          </p>
+                          <p className="text-sm text-gray-700 flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            Cultural events celebrating Bulgarian heritage
+                          </p>
                         </div>
-                      </div>
-                    </div>
-                  </RadioGroup>
-                </div>
-
-                {/* Profile Visibility Settings */}
-                {formData.membershipType === "member" && (
-                  <div className="border-t pt-6">
-                    <Label className="text-sm font-medium mb-3 block">Profile Visibility Settings</Label>
-                    <div className="flex items-start space-x-3">
-                      <Checkbox
-                        id="profile-visibility-partners"
-                        checked={formData.profileVisibleToPartners}
-                        onCheckedChange={handleCheckboxChange("profileVisibleToPartners")}
-                      />
-                      <div className="grid gap-1.5 leading-none">
-                        <label
-                          htmlFor="profile-visibility-partners"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Make my profile visible to partners
-                        </label>
-                        <p className="text-xs text-muted-foreground">
-                          Allow partners to see your profile information and connect with you for business opportunities. You can change this setting later in your profile.
-                        </p>
+                        <div className="mt-4 p-3 bg-blue-100 rounded-md">
+                          <p className="text-xs text-blue-800">
+                            <strong>Getting Started:</strong> Personal interview with a community member to understand your needs. 
+                            <br />
+                            <strong>Cost:</strong> First 3 months free, then $45/month (portion goes to charity).
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                )}
+                </div>
+
+                {/* Profile Visibility Settings */}
+                <div className="border-t pt-6">
+                  <Label className="text-sm font-medium mb-3 block">Profile Visibility Settings</Label>
+                  <div className="flex items-start space-x-3">
+                    <Checkbox
+                      id="profile-visibility-partners"
+                      checked={formData.profileVisibleToPartners}
+                      onCheckedChange={handleCheckboxChange("profileVisibleToPartners")}
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <label
+                        htmlFor="profile-visibility-partners"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        Make my profile visible to partners
+                      </label>
+                      <p className="text-xs text-muted-foreground">
+                        Allow partners to see your profile information and connect with you for business opportunities. You can change this setting later in your profile.
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Terms and Conditions */}
                 <div className="space-y-4 border-t pt-6">
