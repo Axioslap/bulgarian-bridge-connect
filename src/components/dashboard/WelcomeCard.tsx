@@ -13,30 +13,48 @@ interface WelcomeCardProps {
 }
 
 const WelcomeCard = ({ userProfile }: WelcomeCardProps) => {
+  const currentHour = new Date().getHours();
+  const getGreeting = () => {
+    if (currentHour < 12) return "Good morning";
+    if (currentHour < 18) return "Good afternoon";
+    return "Good evening";
+  };
+
   return (
-    <Card>
+    <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-100">
       <CardHeader>
-        <CardTitle>Welcome back, {userProfile.name}!</CardTitle>
+        <CardTitle className="text-xl">
+          {getGreeting()}, {userProfile.name}! 👋
+        </CardTitle>
         <CardDescription>
-          Here's what's happening in the ABTC Bulgaria community
+          Welcome to your ABTC Bulgaria community dashboard
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="mb-4">
-          <h3 className="font-medium text-sm mb-2">U.S. Education:</h3>
-          <p className="text-sm text-gray-500">{userProfile.usEducation}</p>
-        </div>
-        <div className="mb-4">
-          <h3 className="font-medium text-sm mb-2">Your Skills:</h3>
-          <div className="flex flex-wrap gap-1">
-            {userProfile.skills.map((skill, index) => (
-              <SkillTag key={index} skill={skill} variant="outline" />
-            ))}
+      <CardContent className="space-y-4">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <h3 className="font-medium text-sm mb-1 text-gray-700">Member Status</h3>
+            <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200">
+              {userProfile.role}
+            </Badge>
+          </div>
+          <div>
+            <h3 className="font-medium text-sm mb-1 text-gray-700">Education</h3>
+            <p className="text-sm text-gray-600">{userProfile.usEducation}</p>
           </div>
         </div>
         <div>
-          <h3 className="font-medium text-sm mb-2">Community Status:</h3>
-          <Badge>{userProfile.role}</Badge>
+          <h3 className="font-medium text-sm mb-2 text-gray-700">Your Expertise</h3>
+          <div className="flex flex-wrap gap-1">
+            {userProfile.skills.slice(0, 3).map((skill, index) => (
+              <SkillTag key={index} skill={skill} variant="outline" />
+            ))}
+            {userProfile.skills.length > 3 && (
+              <Badge variant="outline" className="text-xs">
+                +{userProfile.skills.length - 3} more
+              </Badge>
+            )}
+          </div>
         </div>
       </CardContent>
     </Card>

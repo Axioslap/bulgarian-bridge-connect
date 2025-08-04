@@ -43,7 +43,7 @@ const MemberDashboard = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case "dashboard":
-        return <DashboardTab userProfile={userProfile} />;
+        return <DashboardTab userProfile={userProfile} onTabChange={setActiveTab} />;
       case "discussion":
         return <DiscussionTab />;
       case "messages":
