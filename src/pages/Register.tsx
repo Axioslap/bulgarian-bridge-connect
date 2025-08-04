@@ -11,8 +11,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SkillSelector from "@/components/SkillSelector";
 import { useToast } from "@/hooks/use-toast";
+import { CheckCircle, Users, Star, ArrowLeft } from "lucide-react";
 
 const Register = () => {
+  const [currentStep, setCurrentStep] = useState<'membership' | 'registration'>('membership');
+  const [selectedMembership, setSelectedMembership] = useState<'free' | 'supporter' | null>(null);
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,7 +29,6 @@ const Register = () => {
     bio: "",
     businessInterest: "",
     companyExpansionNeeds: "",
-    membershipType: "member",
     agreeToTerms: false,
     agreeToNewsletter: false,
     profileVisibleToPartners: false,
@@ -47,6 +50,11 @@ const Register = () => {
       ...prev,
       [name]: checked
     }));
+  };
+
+  const handleMembershipSelect = (type: 'free' | 'supporter') => {
+    setSelectedMembership(type);
+    setCurrentStep('registration');
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -71,7 +79,7 @@ const Register = () => {
     }
 
     // Here you would typically send the data to your backend
-    console.log("Registration data:", { ...formData, skills });
+    console.log("Registration data:", { ...formData, skills, membershipType: selectedMembership });
     
     toast({
       title: "Registration Successful!",
@@ -79,339 +87,395 @@ const Register = () => {
     });
   };
 
+  const renderMembershipSelection = () => (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">Choose Your Membership</h1>
+        <p className="mt-2 text-gray-600">
+          Select the membership type that best fits your needs
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Free Membership */}
+        <Card className="relative border-2 hover:border-primary transition-colors cursor-pointer" onClick={() => handleMembershipSelect('free')}>
+          <CardHeader className="text-center">
+            <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+              <Users className="w-6 h-6 text-blue-600" />
+            </div>
+            <CardTitle className="text-xl">Free Member</CardTitle>
+            <CardDescription>Perfect for getting started</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-3">
+              <div className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Message other community members</span>
+              </div>
+              <div className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Access to free events</span>
+              </div>
+              <div className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Access to free videos and resources</span>
+              </div>
+            </div>
+            <div className="pt-4 border-t">
+              <p className="text-2xl font-bold text-center">Free</p>
+            </div>
+            <Button className="w-full" onClick={() => handleMembershipSelect('free')}>
+              Choose Free Membership
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Community Supporter */}
+        <Card className="relative border-2 border-primary hover:border-primary/80 transition-colors cursor-pointer" onClick={() => handleMembershipSelect('supporter')}>
+          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+              Recommended
+            </div>
+          </div>
+          <CardHeader className="text-center">
+            <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <Star className="w-6 h-6 text-primary" />
+            </div>
+            <CardTitle className="text-xl">Community Supporter</CardTitle>
+            <CardDescription>Full access to everything</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-3">
+              <div className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Message other community members</span>
+              </div>
+              <div className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Access to ALL events (free & premium)</span>
+              </div>
+              <div className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Access to ALL videos (free & premium)</span>
+              </div>
+              <div className="flex items-start">
+                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm">Priority support and networking</span>
+              </div>
+            </div>
+            <div className="pt-4 border-t">
+              <p className="text-2xl font-bold text-center">$45<span className="text-sm font-normal">/month</span></p>
+              <p className="text-xs text-center text-gray-500 mt-1">Part goes to charity</p>
+            </div>
+            <Button className="w-full" onClick={() => handleMembershipSelect('supporter')}>
+              Choose Community Supporter
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+
+  const renderRegistrationForm = () => (
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mb-6">
+        <Button
+          variant="ghost"
+          onClick={() => setCurrentStep('membership')}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Membership Selection
+        </Button>
+        
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">Registration Form</h1>
+          <p className="mt-2 text-gray-600">
+            You selected: <span className="font-semibold text-primary">
+              {selectedMembership === 'free' ? 'Free Member' : 'Community Supporter'}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Complete Your Registration</CardTitle>
+          <CardDescription>
+            Please fill out all required fields to complete your registration
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Personal Information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="firstName">First Name *</Label>
+                <Input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  required
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <Label htmlFor="lastName">Last Name *</Label>
+                <Input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  required
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="email">Email Address *</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="password">Password *</Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  value={formData.password}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <Label htmlFor="confirmPassword">Confirm Password *</Label>
+                <Input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  required
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            {/* Professional Information */}
+            <div>
+              <Label htmlFor="usEducation">U.S. Education Background</Label>
+              <Input
+                id="usEducation"
+                name="usEducation"
+                type="text"
+                placeholder="e.g., MBA Harvard Business School, BS Computer Science MIT"
+                value={formData.usEducation}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="currentRole">Current Role</Label>
+                <Input
+                  id="currentRole"
+                  name="currentRole"
+                  type="text"
+                  placeholder="e.g., Software Engineer"
+                  value={formData.currentRole}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <Label htmlFor="company">Company/Organization</Label>
+                <Input
+                  id="company"
+                  name="company"
+                  type="text"
+                  placeholder="e.g., Tech Company Inc."
+                  value={formData.company}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            {/* Skills Section */}
+            <div>
+              <Label>Skills & Expertise</Label>
+              <div className="mt-2">
+                <SkillSelector
+                  skills={skills}
+                  onSkillsChange={setSkills}
+                  placeholder="Add your skills and areas of expertise..."
+                />
+              </div>
+            </div>
+
+            {/* Business Interests Section */}
+            <div className="border-t pt-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900">Business Interests & Goals</h3>
+              
+              <div>
+                <Label htmlFor="businessInterest">Business Interest</Label>
+                <RadioGroup
+                  value={formData.businessInterest}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, businessInterest: value }))}
+                  className="mt-3"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="expand-existing" id="expand-existing" />
+                    <Label htmlFor="expand-existing">I have a company and want to expand</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="start-company" id="start-company" />
+                    <Label htmlFor="start-company">I'm looking to start a company</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="join-company" id="join-company" />
+                    <Label htmlFor="join-company">I'm looking to join an existing company</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="other" id="other" />
+                    <Label htmlFor="other">Other business interests</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              <div className="mt-4">
+                <Label htmlFor="companyExpansionNeeds">
+                  {formData.businessInterest === "expand-existing" && "What do you need to expand your company?"}
+                  {formData.businessInterest === "start-company" && "What do you need to start your company?"}
+                  {formData.businessInterest === "join-company" && "What type of company are you looking to join?"}
+                  {(formData.businessInterest === "other" || !formData.businessInterest) && "Please describe your business interests and needs"}
+                </Label>
+                <Textarea
+                  id="companyExpansionNeeds"
+                  name="companyExpansionNeeds"
+                  rows={4}
+                  placeholder={
+                    formData.businessInterest === "expand-existing" 
+                      ? "e.g., funding, partnerships, talent acquisition, market entry, technology solutions..."
+                      : formData.businessInterest === "start-company"
+                      ? "e.g., co-founders, funding, mentorship, business plan development, market research..."
+                      : formData.businessInterest === "join-company"
+                      ? "e.g., tech startup, consulting firm, fintech company, specific role preferences..."
+                      : "Tell us about your business goals, what you're looking for, or how you'd like to contribute..."
+                  }
+                  value={formData.companyExpansionNeeds}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Label htmlFor="bio">Brief Bio</Label>
+              <Textarea
+                id="bio"
+                name="bio"
+                rows={4}
+                placeholder="Tell us about yourself, your interests, and what you hope to gain from the ABTC Bulgaria community..."
+                value={formData.bio}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            {/* Profile Visibility Settings */}
+            <div className="border-t pt-6">
+              <Label className="text-sm font-medium mb-3 block">Profile Visibility Settings</Label>
+              <div className="flex items-start space-x-3">
+                <Checkbox
+                  id="profile-visibility-partners"
+                  checked={formData.profileVisibleToPartners}
+                  onCheckedChange={handleCheckboxChange("profileVisibleToPartners")}
+                />
+                <div className="grid gap-1.5 leading-none">
+                  <label
+                    htmlFor="profile-visibility-partners"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Make my profile visible to partners
+                  </label>
+                  <p className="text-xs text-muted-foreground">
+                    Allow partners to see your profile information and connect with you for business opportunities. You can change this setting later in your profile.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Terms and Conditions */}
+            <div className="space-y-4 border-t pt-6">
+              <div className="flex items-start space-x-3">
+                <Checkbox
+                  id="terms"
+                  checked={formData.agreeToTerms}
+                  onCheckedChange={handleCheckboxChange("agreeToTerms")}
+                />
+                <div className="grid gap-1.5 leading-none">
+                  <Label
+                    htmlFor="terms"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    I agree to the Terms and Conditions *
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    By checking this box, you agree to our terms of service and privacy policy.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <Checkbox
+                  id="newsletter"
+                  checked={formData.agreeToNewsletter}
+                  onCheckedChange={handleCheckboxChange("agreeToNewsletter")}
+                />
+                <div className="grid gap-1.5 leading-none">
+                  <Label
+                    htmlFor="newsletter"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Subscribe to newsletter and updates
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    Receive updates about events, news, and community activities.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Button type="submit" className="w-full">
+              Create Account
+            </Button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link to="/login" className="font-medium text-primary hover:text-primary/80">
+                Sign in here
+              </Link>
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       
       <div className="flex-1 bg-gray-50 py-12">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Join ABTC Bulgaria</h1>
-            <p className="mt-2 text-gray-600">
-              Connect with a community of professionals bridging the U.S. and Bulgaria
-            </p>
-          </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Registration Form</CardTitle>
-              <CardDescription>
-                Please fill out all required fields to complete your registration
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Information */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="firstName">First Name *</Label>
-                    <Input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      required
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName">Last Name *</Label>
-                    <Input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      required
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="password">Password *</Label>
-                    <Input
-                      id="password"
-                      name="password"
-                      type="password"
-                      required
-                      value={formData.password}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="confirmPassword">Confirm Password *</Label>
-                    <Input
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      type="password"
-                      required
-                      value={formData.confirmPassword}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-
-                {/* Professional Information */}
-                <div>
-                  <Label htmlFor="usEducation">U.S. Education Background</Label>
-                  <Input
-                    id="usEducation"
-                    name="usEducation"
-                    type="text"
-                    placeholder="e.g., MBA Harvard Business School, BS Computer Science MIT"
-                    value={formData.usEducation}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="currentRole">Current Role</Label>
-                    <Input
-                      id="currentRole"
-                      name="currentRole"
-                      type="text"
-                      placeholder="e.g., Software Engineer"
-                      value={formData.currentRole}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="company">Company/Organization</Label>
-                    <Input
-                      id="company"
-                      name="company"
-                      type="text"
-                      placeholder="e.g., Tech Company Inc."
-                      value={formData.company}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-
-                {/* Skills Section */}
-                <div>
-                  <Label>Skills & Expertise</Label>
-                  <div className="mt-2">
-                    <SkillSelector
-                      skills={skills}
-                      onSkillsChange={setSkills}
-                      placeholder="Add your skills and areas of expertise..."
-                    />
-                  </div>
-                </div>
-
-                {/* Business Interests Section */}
-                <div className="border-t pt-6">
-                  <h3 className="text-lg font-semibold mb-4 text-gray-900">Business Interests & Goals</h3>
-                  
-                  <div>
-                    <Label htmlFor="businessInterest">Business Interest</Label>
-                    <RadioGroup
-                      value={formData.businessInterest}
-                      onValueChange={(value) => setFormData(prev => ({ ...prev, businessInterest: value }))}
-                      className="mt-3"
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="expand-existing" id="expand-existing" />
-                        <Label htmlFor="expand-existing">I have a company and want to expand</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="start-company" id="start-company" />
-                        <Label htmlFor="start-company">I'm looking to start a company</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="join-company" id="join-company" />
-                        <Label htmlFor="join-company">I'm looking to join an existing company</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="other" id="other" />
-                        <Label htmlFor="other">Other business interests</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-
-                  <div className="mt-4">
-                    <Label htmlFor="companyExpansionNeeds">
-                      {formData.businessInterest === "expand-existing" && "What do you need to expand your company?"}
-                      {formData.businessInterest === "start-company" && "What do you need to start your company?"}
-                      {formData.businessInterest === "join-company" && "What type of company are you looking to join?"}
-                      {(formData.businessInterest === "other" || !formData.businessInterest) && "Please describe your business interests and needs"}
-                    </Label>
-                    <Textarea
-                      id="companyExpansionNeeds"
-                      name="companyExpansionNeeds"
-                      rows={4}
-                      placeholder={
-                        formData.businessInterest === "expand-existing" 
-                          ? "e.g., funding, partnerships, talent acquisition, market entry, technology solutions..."
-                          : formData.businessInterest === "start-company"
-                          ? "e.g., co-founders, funding, mentorship, business plan development, market research..."
-                          : formData.businessInterest === "join-company"
-                          ? "e.g., tech startup, consulting firm, fintech company, specific role preferences..."
-                          : "Tell us about your business goals, what you're looking for, or how you'd like to contribute..."
-                      }
-                      value={formData.companyExpansionNeeds}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="bio">Brief Bio</Label>
-                  <Textarea
-                    id="bio"
-                    name="bio"
-                    rows={4}
-                    placeholder="Tell us about yourself, your interests, and what you hope to gain from the ABTC Bulgaria community..."
-                    value={formData.bio}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                {/* Membership Type */}
-                <div>
-                  <Label className="text-base font-medium">Membership Type *</Label>
-                  <div className="mt-3">
-                    <div className="border rounded-lg p-6 bg-blue-50/50">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <div className="w-4 h-4 rounded-full bg-blue-600"></div>
-                        <Label className="text-lg font-semibold text-blue-800">Community Member</Label>
-                      </div>
-                      <div className="ml-7 space-y-3">
-                        <p className="text-sm font-medium text-gray-800">Perfect for U.S.-educated Bulgarians and young professionals</p>
-                        <div className="p-3 bg-amber-100 border border-amber-300 rounded-md mb-3">
-                          <p className="text-sm font-medium text-amber-800">
-                            <strong>Eligibility Requirement:</strong> Must have lived in the USA for longer than 4 years to qualify for Community Member status.
-                          </p>
-                        </div>
-                        <div className="space-y-2">
-                          <p className="text-sm text-gray-700 flex items-start">
-                            <span className="text-green-600 mr-2">✓</span>
-                            Access to exclusive networking events and meetups
-                          </p>
-                          <p className="text-sm text-gray-700 flex items-start">
-                            <span className="text-green-600 mr-2">✓</span>
-                            Professional development resources and workshops
-                          </p>
-                          <p className="text-sm text-gray-700 flex items-start">
-                            <span className="text-green-600 mr-2">✓</span>
-                            Connect with like-minded professionals in your field
-                          </p>
-                          <p className="text-sm text-gray-700 flex items-start">
-                            <span className="text-green-600 mr-2">✓</span>
-                            Job opportunities and career advancement support
-                          </p>
-                          <p className="text-sm text-gray-700 flex items-start">
-                            <span className="text-green-600 mr-2">✓</span>
-                            Cultural events celebrating Bulgarian heritage
-                          </p>
-                        </div>
-                        <div className="mt-4 p-3 bg-blue-100 rounded-md">
-                          <p className="text-xs text-blue-800">
-                            <strong>Getting Started:</strong> Personal interview with a community member to understand your needs. 
-                            <br />
-                            <strong>Cost:</strong> First 3 months free, then $45/month (portion goes to charity).
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Profile Visibility Settings */}
-                <div className="border-t pt-6">
-                  <Label className="text-sm font-medium mb-3 block">Profile Visibility Settings</Label>
-                  <div className="flex items-start space-x-3">
-                    <Checkbox
-                      id="profile-visibility-partners"
-                      checked={formData.profileVisibleToPartners}
-                      onCheckedChange={handleCheckboxChange("profileVisibleToPartners")}
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <label
-                        htmlFor="profile-visibility-partners"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Make my profile visible to partners
-                      </label>
-                      <p className="text-xs text-muted-foreground">
-                        Allow partners to see your profile information and connect with you for business opportunities. You can change this setting later in your profile.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Terms and Conditions */}
-                <div className="space-y-4 border-t pt-6">
-                  <div className="flex items-start space-x-3">
-                    <Checkbox
-                      id="terms"
-                      checked={formData.agreeToTerms}
-                      onCheckedChange={handleCheckboxChange("agreeToTerms")}
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <Label
-                        htmlFor="terms"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        I agree to the Terms and Conditions *
-                      </Label>
-                      <p className="text-xs text-muted-foreground">
-                        By checking this box, you agree to our terms of service and privacy policy.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <Checkbox
-                      id="newsletter"
-                      checked={formData.agreeToNewsletter}
-                      onCheckedChange={handleCheckboxChange("agreeToNewsletter")}
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <Label
-                        htmlFor="newsletter"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Subscribe to newsletter and updates
-                      </Label>
-                      <p className="text-xs text-muted-foreground">
-                        Receive updates about events, news, and community activities.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <Button type="submit" className="w-full">
-                  Create Account
-                </Button>
-              </form>
-
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-600">
-                  Already have an account?{" "}
-                  <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-                    Sign in here
-                  </Link>
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        {currentStep === 'membership' ? renderMembershipSelection() : renderRegistrationForm()}
       </div>
       
       <Footer />
