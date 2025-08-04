@@ -388,28 +388,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Profile Visibility Settings */}
-            <div className="border-t pt-6">
-              <Label className="text-sm font-medium mb-3 block">Profile Visibility Settings</Label>
-              <div className="flex items-start space-x-3">
-                <Checkbox
-                  id="profile-visibility-partners"
-                  checked={formData.profileVisibleToPartners}
-                  onCheckedChange={handleCheckboxChange("profileVisibleToPartners")}
-                />
-                <div className="grid gap-1.5 leading-none">
-                  <label
-                    htmlFor="profile-visibility-partners"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Make my profile visible to partners
-                  </label>
-                  <p className="text-xs text-muted-foreground">
-                    Allow partners to see your profile information and connect with you for business opportunities. You can change this setting later in your profile.
-                  </p>
-                </div>
-              </div>
-            </div>
 
             {/* Terms and Conditions */}
             <div className="space-y-4 border-t pt-6">
