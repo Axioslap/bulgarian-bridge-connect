@@ -131,89 +131,89 @@ const Register = () => {
         </Card>
 
         {/* Community Supporter */}
-        <Card className="relative border-2 border-primary hover:border-primary/80 transition-colors cursor-pointer" onClick={() => handleMembershipSelect('supporter')}>
+        <Card className="relative border-2 border-gray-300 opacity-75 cursor-not-allowed">
           <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-            <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
-              Recommended
+            <div className="bg-gray-400 text-gray-700 px-4 py-1 rounded-full text-sm font-medium">
+              Coming Soon
             </div>
           </div>
           <CardHeader className="text-center">
-            <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-              <Star className="w-6 h-6 text-primary" />
+            <div className="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+              <Star className="w-6 h-6 text-gray-400" />
             </div>
-            <CardTitle className="text-xl">Community Supporter</CardTitle>
-            <CardDescription>Full access to everything</CardDescription>
+            <CardTitle className="text-xl text-gray-600">Community Supporter</CardTitle>
+            <CardDescription className="text-gray-500">Full access to everything</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-3">
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Message other community members</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">Message other community members</span>
               </div>
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Access to ALL events (free & premium)</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">Access to ALL events (free & premium)</span>
               </div>
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Access to ALL videos (free & premium)</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">Access to ALL videos (free & premium)</span>
               </div>
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Priority support and networking</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">Priority support and networking</span>
               </div>
             </div>
             <div className="pt-4 border-t">
-              <p className="text-2xl font-bold text-center">$45<span className="text-sm font-normal">/month</span></p>
-              <p className="text-xs text-center text-gray-500 mt-1">Part goes to charity</p>
+              <p className="text-2xl font-bold text-center text-gray-500">$45<span className="text-sm font-normal">/month</span></p>
+              <p className="text-xs text-center text-gray-400 mt-1">Part goes to charity</p>
             </div>
-            <Button className="w-full" onClick={() => handleMembershipSelect('supporter')}>
-              Choose Community Supporter
+            <Button className="w-full" disabled>
+              Coming Soon
             </Button>
           </CardContent>
         </Card>
 
         {/* Annual Premium */}
-        <Card className="relative border-2 border-yellow-400 hover:border-yellow-500 transition-colors cursor-pointer" onClick={() => handleMembershipSelect('annual')}>
+        <Card className="relative border-2 border-gray-300 opacity-75 cursor-not-allowed">
           <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-            <div className="bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-medium">
-              Best Value + Tax Credit
+            <div className="bg-gray-400 text-gray-700 px-4 py-1 rounded-full text-sm font-medium">
+              Coming Soon
             </div>
           </div>
           <CardHeader className="text-center">
-            <div className="mx-auto w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
-              <TrendingUp className="w-6 h-6 text-yellow-600" />
+            <div className="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+              <TrendingUp className="w-6 h-6 text-gray-400" />
             </div>
-            <CardTitle className="text-xl">Annual Premium</CardTitle>
-            <CardDescription>Pay for full year, get tax benefits</CardDescription>
+            <CardTitle className="text-xl text-gray-600">Annual Premium</CardTitle>
+            <CardDescription className="text-gray-500">Pay for full year, get tax benefits</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-3">
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Everything in Community Supporter</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">Everything in Community Supporter</span>
               </div>
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">2 months FREE (save $90)</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">2 months FREE (save $90)</span>
               </div>
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Tax deductible membership</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">Tax deductible membership</span>
               </div>
               <div className="flex items-start">
-                <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">Annual membership certificate</span>
+                <CheckCircle className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-500">Annual membership certificate</span>
               </div>
             </div>
             <div className="pt-4 border-t">
-              <p className="text-2xl font-bold text-center">$450<span className="text-sm font-normal">/year</span></p>
-              <p className="text-xs text-center text-gray-500 mt-1">
+              <p className="text-2xl font-bold text-center text-gray-500">$450<span className="text-sm font-normal">/year</span></p>
+              <p className="text-xs text-center text-gray-400 mt-1">
                 <span className="line-through">$540</span> • Save $90 + Tax Benefits
               </p>
             </div>
-            <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-yellow-900" onClick={() => handleMembershipSelect('annual')}>
-              Choose Annual Premium
+            <Button className="w-full" disabled>
+              Coming Soon
             </Button>
           </CardContent>
         </Card>
