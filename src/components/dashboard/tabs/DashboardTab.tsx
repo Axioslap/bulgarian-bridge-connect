@@ -33,6 +33,17 @@ const DashboardTab = ({ userProfile, onTabChange }: DashboardTabProps) => {
     }
   };
 
+  // Derived discussion slices
+  const userSkills = (userProfile.skills || []).map((s) => s.toLowerCase());
+  const yourPosts = mockDiscussionPosts
+    .filter((p) => p.author === userProfile.name)
+    .slice(0, 3);
+  const recommendedPosts = mockDiscussionPosts
+    .filter(
+      (p) => p.author !== userProfile.name && p.tags?.some((tag) => userSkills.includes(tag.toLowerCase()))
+    )
+    .slice(0, 3);
+
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
@@ -122,39 +133,95 @@ const DashboardTab = ({ userProfile, onTabChange }: DashboardTabProps) => {
                   Recent Discussions
                 </CardTitle>
                 <CardDescription>
-                  Latest community activity
+                  Your posts and recommended topics
                 </CardDescription>
               </div>
               <Button variant="outline" size="sm" onClick={() => handleQuickAction("discussion")}>
-                Join
+                See more
               </Button>
             </div>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {mockDiscussionPosts.slice(0, 3).map((post) => (
-                <div 
-                  key={post.id} 
-                  className="p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
-                  onClick={() => handlePostClick(post.id)}
-                >
-                  <h4 className="font-medium text-sm mb-1">{post.title}</h4>
-                  <p className="text-xs text-gray-600 mb-2 line-clamp-2">{post.content}</p>
-                  <div className="flex items-center justify-between text-xs text-gray-500">
-                    <div className="flex items-center space-x-3">
-                      <span className="flex items-center gap-1">
-                        <Heart className="w-3 h-3" />
-                        {post.likes}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MessageSquare className="w-3 h-3" />
-                        {post.comments}
-                      </span>
-                    </div>
-                    <span>{post.timeAgo}</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Your Posts */}
+              <div>
+                <h4 className="text-sm font-medium mb-2">Your Discussions</h4>
+                {yourPosts.length === 0 ? (
+                  <div className="text-xs text-gray-500 border rounded-lg p-3">
+                    You haven't posted yet.
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-2"
+                      onClick={() => handleQuickAction("discussion")}
+                    >
+                      Create Post
+                    </Button>
                   </div>
-                </div>
-              ))}
+                ) : (
+                  <div className="space-y-3">
+                    {yourPosts.map((post) => (
+                      <div
+                        key={post.id}
+                        className="p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
+                        onClick={() => handlePostClick(post.id)}
+                      >
+                        <h5 className="font-medium text-sm mb-1">{post.title}</h5>
+                        <p className="text-xs text-gray-600 mb-2 line-clamp-2">{post.content}</p>
+                        <div className="flex items-center justify-between text-xs text-gray-500">
+                          <div className="flex items-center space-x-3">
+                            <span className="flex items-center gap-1">
+                              <Heart className="w-3 h-3" />
+                              {post.likes}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <MessageSquare className="w-3 h-3" />
+                              {post.comments}
+                            </span>
+                          </div>
+                          <span>{post.timeAgo}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Recommended */}
+              <div>
+                <h4 className="text-sm font-medium mb-2">Recommended for You</h4>
+                {recommendedPosts.length === 0 ? (
+                  <div className="text-xs text-gray-500 border rounded-lg p-3">
+                    No recommendations yet. Update your skills to see more relevant topics.
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {recommendedPosts.map((post) => (
+                      <div
+                        key={post.id}
+                        className="p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
+                        onClick={() => handlePostClick(post.id)}
+                      >
+                        <h5 className="font-medium text-sm mb-1">{post.title}</h5>
+                        <p className="text-xs text-gray-600 mb-2 line-clamp-2">{post.content}</p>
+                        <div className="flex items-center justify-between text-xs text-gray-500">
+                          <div className="flex items-center space-x-3">
+                            <span className="flex items-center gap-1">
+                              <Heart className="w-3 h-3" />
+                              {post.likes}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <MessageSquare className="w-3 h-3" />
+                              {post.comments}
+                            </span>
+                          </div>
+                          <span>{post.timeAgo}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>
