@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+
 
 interface MemberDashboardHeaderProps {
   userProfile: {
@@ -16,18 +18,21 @@ const MemberDashboardHeader = ({ userProfile, onLogout }: MemberDashboardHeaderP
     <header className="bg-white shadow-lg border-b border-blue-100 sticky top-0 z-40 flex-shrink-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <img 
-              src="/lovable-uploads/a622b81f-1bc6-4b70-90bc-fdf0fd79ae53.png" 
-              alt="ABTC Bulgaria Logo" 
-              className="h-10 w-10 object-contain"
-            />
-            <div>
-              <span className="text-lg font-bold text-blue-700 mr-1">ABTC</span>
-              <span className="text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
-              <p className="text-xs text-gray-600 leading-tight hidden md:block">Member Portal</p>
-            </div>
-          </Link>
+          <div className="flex items-center space-x-3">
+            <SidebarTrigger className="mr-1" />
+            <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <img 
+                src="/lovable-uploads/a622b81f-1bc6-4b70-90bc-fdf0fd79ae53.png" 
+                alt="ABTC Bulgaria Logo" 
+                className="h-10 w-10 object-contain"
+              />
+              <div>
+                <span className="text-lg font-bold text-blue-700 mr-1">ABTC</span>
+                <span className="text-lg font-bold text-red-600 tracking-tight">Bulgaria</span>
+                <p className="text-xs text-gray-600 leading-tight hidden md:block">Member Portal</p>
+              </div>
+            </Link>
+          </div>
           
           <div className="flex items-center space-x-2 md:space-x-4">
             <span className="text-sm text-gray-600 hidden sm:inline truncate max-w-32 md:max-w-none">

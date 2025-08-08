@@ -1,7 +1,5 @@
 
 import { useRef } from "react";
-import DashboardSidebar from "./DashboardSidebar";
-import { mockMessages } from "@/data/mockData";
 
 interface MemberDashboardLayoutProps {
   userProfile: any;
@@ -17,45 +15,13 @@ const MemberDashboardLayout = ({
   children 
 }: MemberDashboardLayoutProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const unreadMessageCount = mockMessages.filter(m => m.unread).length;
+  
 
-  const handleTabChange = (newTab: string) => {
-    onTabChange(newTab);
-    
-    // Auto-scroll to content on mobile after tab change
-    setTimeout(() => {
-      if (contentRef.current && window.innerWidth < 1024) {
-        contentRef.current.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }, 100);
-  };
 
   return (
     <div className="flex-1 flex flex-col min-h-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1 flex flex-col min-h-0">
         <div className="flex flex-col lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0 flex-1 min-h-0">
-          {/* Mobile sidebar */}
-          <div className="lg:hidden">
-            <DashboardSidebar
-              userProfile={userProfile}
-              activeTab={activeTab}
-              setActiveTab={handleTabChange}
-              unreadMessageCount={unreadMessageCount}
-            />
-          </div>
-          
-          {/* Desktop sidebar */}
-          <div className="hidden lg:block lg:w-64 flex-shrink-0">
-            <DashboardSidebar
-              userProfile={userProfile}
-              activeTab={activeTab}
-              setActiveTab={handleTabChange}
-              unreadMessageCount={unreadMessageCount}
-            />
-          </div>
           
           {/* Main content area - Responsive padding and sizing */}
           <div ref={contentRef} className="flex-1 min-h-0">

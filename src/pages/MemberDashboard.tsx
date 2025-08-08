@@ -16,6 +16,9 @@ import ExpertsTab from "@/components/dashboard/tabs/ExpertsTab";
 import NewsTab from "@/components/dashboard/tabs/NewsTab";
 import CommunityImpactTab from "@/components/dashboard/tabs/CommunityImpactTab";
 import { useMemberAuth } from "@/hooks/useMemberAuth";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import AppMemberSidebar from "@/components/dashboard/AppMemberSidebar";
+
 
 const MemberDashboard = () => {
   const [activeTab, setActiveTab] = useState<string>("dashboard");
@@ -74,20 +77,34 @@ const MemberDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex flex-col">
-      <MemberDashboardHeader 
-        userProfile={userProfile} 
-        onLogout={handleLogout} 
-      />
-      
-      <MemberDashboardLayout
-        userProfile={userProfile}
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-      >
-        {renderTabContent()}
-      </MemberDashboardLayout>
-    </div>
+    <SidebarProvider>
+      <div className="min-h-screen flex flex-col w-full">
+        <MemberDashboardHeader 
+          userProfile={userProfile} 
+          onLogout={handleLogout} 
+        />
+
+        <div className="flex flex-1 w-full">
+          <AppMemberSidebar 
+            userProfile={userProfile}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+
+          <SidebarInset>
+            <div className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex flex-col">
+              <MemberDashboardLayout
+                userProfile={userProfile}
+                activeTab={activeTab}
+                onTabChange={setActiveTab}
+              >
+                {renderTabContent()}
+              </MemberDashboardLayout>
+            </div>
+          </SidebarInset>
+        </div>
+      </div>
+    </SidebarProvider>
   );
 };
 
