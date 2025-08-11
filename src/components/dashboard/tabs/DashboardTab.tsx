@@ -3,6 +3,7 @@ import UpcomingEventsCard from "../UpcomingEventsCard";
 import ResourceLibraryCard from "../ResourceLibraryCard";
 import QuickActions from "../QuickActions";
 import WelcomeCard from "../WelcomeCard";
+import OverviewCalendar from "../OverviewCalendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -79,6 +80,9 @@ const DashboardTab = ({ userProfile, onTabChange }: DashboardTabProps) => {
 
       {/* Quick Actions */}
       <QuickActions onActionClick={handleQuickAction} />
+
+      {/* Calendar & Schedule */}
+      <OverviewCalendar />
 
       {/* Activity Feed */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
