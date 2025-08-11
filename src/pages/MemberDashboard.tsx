@@ -15,6 +15,7 @@ import JobsTab from "@/components/dashboard/tabs/JobsTab";
 import ExpertsTab from "@/components/dashboard/tabs/ExpertsTab";
 import NewsTab from "@/components/dashboard/tabs/NewsTab";
 import CommunityImpactTab from "@/components/dashboard/tabs/CommunityImpactTab";
+import CalendarTab from "@/components/dashboard/tabs/CalendarTab";
 import { useMemberAuth } from "@/hooks/useMemberAuth";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import AppMemberSidebar from "@/components/dashboard/AppMemberSidebar";
@@ -63,6 +64,8 @@ const MemberDashboard = () => {
         return <VideosTab />;
       case "community-impact":
         return <CommunityImpactTab />;
+      case "calendar":
+        return <CalendarTab />;
       case "articles":
         return <ArticlesTab />;
       case "jobs":

@@ -61,6 +61,7 @@ const AppMemberSidebar = ({ userProfile, activeTab, setActiveTab }: AppMemberSid
       label: "Community",
       items: [
         { key: "community-impact", label: "Impact Stories", Icon: Heart },
+        { key: "calendar", label: "Calendar & Schedule", Icon: Calendar },
       ],
     },
   ] as const;
