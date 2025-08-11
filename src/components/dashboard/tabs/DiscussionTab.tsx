@@ -8,12 +8,22 @@ import SkillSelector from "@/components/SkillSelector";
 import DiscussionPost from "@/components/DiscussionPost";
 import { mockDiscussionPosts } from "@/data/mockData";
 import { useToast } from "@/hooks/use-toast";
+import { useMemberAuth } from "@/hooks/useMemberAuth";
 
 const DiscussionTab = () => {
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostContent, setNewPostContent] = useState("");
   const [newPostTags, setNewPostTags] = useState<string[]>([]);
   const { toast } = useToast();
+  const { userProfile, userSkills } = useMemberAuth();
+
+  const userName = userProfile?.name || "";
+  const skillsList = (userProfile?.skills || userSkills || []).map((s) => s.toLowerCase());
+
+  const yourPosts = mockDiscussionPosts.filter((p) => p.author === userName);
+  const interestedPosts = mockDiscussionPosts.filter(
+    (p) => p.author !== userName && p.tags?.some((tag) => skillsList.includes(tag.toLowerCase()))
+  );
 
   const handlePostSubmit = () => {
     if (newPostTitle.trim() && newPostContent.trim()) {
@@ -64,9 +74,33 @@ const DiscussionTab = () => {
 
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Community Discussion</h3>
-        {mockDiscussionPosts.map((post) => (
-          <DiscussionPost key={post.id} post={post} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <section aria-labelledby="your-posts">
+            <h4 id="your-posts" className="text-sm font-medium mb-2">Your Posts</h4>
+            {yourPosts.length === 0 ? (
+              <p className="text-sm text-muted-foreground">You haven't posted yet.</p>
+            ) : (
+              <div className="space-y-3">
+                {yourPosts.map((post) => (
+                  <DiscussionPost key={post.id} post={post} />
+                ))}
+              </div>
+            )}
+          </section>
+
+          <section aria-labelledby="interested-posts">
+            <h4 id="interested-posts" className="text-sm font-medium mb-2">Posts You're Interested In</h4>
+            {interestedPosts.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No recommendations yet. Update your skills to see more relevant topics.</p>
+            ) : (
+              <div className="space-y-3">
+                {interestedPosts.map((post) => (
+                  <DiscussionPost key={post.id} post={post} />
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
       </div>
     </div>
   );
