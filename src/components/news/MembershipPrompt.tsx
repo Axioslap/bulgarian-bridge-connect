@@ -12,12 +12,12 @@ const MembershipPrompt = () => {
         Join ABTC Bulgaria to access our full collection of business and tech news, insights, and analysis.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <Link to="/register">
+        <Link to="/join-us">
           <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
             Become a Member
           </Button>
         </Link>
-        <Link to="/register">
+        <Link to="/join-us">
           <Button variant="outline">
             Support Our Community
           </Button>
