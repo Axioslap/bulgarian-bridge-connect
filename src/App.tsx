@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import MemberDashboard from "./pages/MemberDashboard";
+import AllPosts from "./pages/AllPosts";
 import Partners from "./pages/Partners";
 import PartnerDetail from "./pages/PartnerDetail";
 import BoardMember from "./pages/BoardMember";
@@ -42,6 +43,11 @@ const App = () => (
           <Route path="/member" element={
             <ProtectedRoute>
               <MemberDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/all-posts" element={
+            <ProtectedRoute>
+              <AllPosts />
             </ProtectedRoute>
           } />
           <Route path="*" element={<NotFound />} />

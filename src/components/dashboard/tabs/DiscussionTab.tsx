@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,13 +17,13 @@ const DiscussionTab = () => {
   const [newPostTags, setNewPostTags] = useState<string[]>([]);
   const { toast } = useToast();
   const { userProfile, userSkills } = useMemberAuth();
+  const navigate = useNavigate();
 
   const userName = userProfile?.name || "";
-  const skillsList = (userProfile?.skills || userSkills || []).map((s) => s.toLowerCase());
-
+  
   const yourPosts = mockDiscussionPosts.filter((p) => p.author === userName);
-  const interestedPosts = mockDiscussionPosts.filter(
-    (p) => p.author !== userName && p.tags?.some((tag) => skillsList.includes(tag.toLowerCase()))
+  const commentedPosts = mockDiscussionPosts.filter(
+    (p) => p.author !== userName && p.hasUserCommented === true
   );
 
   const handlePostSubmit = () => {
@@ -72,35 +73,42 @@ const DiscussionTab = () => {
         </CardContent>
       </Card>
 
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Community Discussion</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <section aria-labelledby="your-posts">
-            <h4 id="your-posts" className="text-sm font-medium mb-2">Your Posts</h4>
-            {yourPosts.length === 0 ? (
-              <p className="text-sm text-muted-foreground">You haven't posted yet.</p>
-            ) : (
-              <div className="space-y-3">
-                {yourPosts.map((post) => (
-                  <DiscussionPost key={post.id} post={post} />
-                ))}
-              </div>
-            )}
-          </section>
+      <div className="flex justify-center mb-6">
+        <Button 
+          variant="outline" 
+          onClick={() => navigate('/all-posts')}
+          className="px-8"
+        >
+          See All Posts
+        </Button>
+      </div>
 
-          <section aria-labelledby="interested-posts">
-            <h4 id="interested-posts" className="text-sm font-medium mb-2">Posts You're Interested In</h4>
-            {interestedPosts.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No recommendations yet. Update your skills to see more relevant topics.</p>
-            ) : (
-              <div className="space-y-3">
-                {interestedPosts.map((post) => (
-                  <DiscussionPost key={post.id} post={post} />
-                ))}
-              </div>
-            )}
-          </section>
-        </div>
+      <div className="space-y-6">
+        <section aria-labelledby="your-posts">
+          <h3 className="text-lg font-semibold mb-4">Your Posts</h3>
+          {yourPosts.length === 0 ? (
+            <p className="text-sm text-muted-foreground">You haven't posted yet.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {yourPosts.slice(0, 4).map((post) => (
+                <DiscussionPost key={post.id} post={post} />
+              ))}
+            </div>
+          )}
+        </section>
+
+        <section aria-labelledby="commented-posts">
+          <h3 className="text-lg font-semibold mb-4">Posts You Commented On (Last 2 Weeks)</h3>
+          {commentedPosts.length === 0 ? (
+            <p className="text-sm text-muted-foreground">You haven't commented on any posts recently.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {commentedPosts.slice(0, 4).map((post) => (
+                <DiscussionPost key={post.id} post={post} />
+              ))}
+            </div>
+          )}
+        </section>
       </div>
     </div>
   );

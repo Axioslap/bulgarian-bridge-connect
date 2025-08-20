@@ -72,7 +72,8 @@ export const mockDiscussionPosts = [
     likes: 12,
     comments: 5,
     timeAgo: "2 hours ago",
-    isLiked: false
+    isLiked: false,
+    hasUserCommented: true
   },
   {
     id: 2,
@@ -83,7 +84,8 @@ export const mockDiscussionPosts = [
     likes: 8,
     comments: 12,
     timeAgo: "1 day ago",
-    isLiked: true
+    isLiked: true,
+    hasUserCommented: false
   },
   {
     id: 3,
@@ -94,7 +96,44 @@ export const mockDiscussionPosts = [
     likes: 6,
     comments: 3,
     timeAgo: "3 days ago",
-    isLiked: false
+    isLiked: false,
+    hasUserCommented: true
+  },
+  {
+    id: 4,
+    author: "Viktor Stoilov",
+    title: "Startup Funding Landscape in Bulgaria",
+    content: "Has anyone noticed the changes in startup funding in Bulgaria lately? VCs seem more interested in deep tech and AI companies. What's your experience with recent funding rounds?",
+    tags: ["Startup", "Funding", "Investment"],
+    likes: 15,
+    comments: 8,
+    timeAgo: "5 days ago",
+    isLiked: false,
+    hasUserCommented: true
+  },
+  {
+    id: 5,
+    author: "Kristina Radeva",
+    title: "Digital Marketing Trends for 2024",
+    content: "Just finished analyzing our Q4 marketing data. Some interesting trends emerging - video content is still king, but AI-powered personalization is becoming crucial. Thoughts?",
+    tags: ["Marketing", "Digital", "Trends"],
+    likes: 9,
+    comments: 6,
+    timeAgo: "1 week ago",
+    isLiked: true,
+    hasUserCommented: false
+  },
+  {
+    id: 6,
+    author: "Dimitar Nachev",
+    title: "Remote Work Policies - Best Practices",
+    content: "Our company is updating remote work policies. Looking for insights from other leaders - what policies work best for maintaining productivity and team culture?",
+    tags: ["Remote Work", "Leadership", "HR"],
+    likes: 11,
+    comments: 14,
+    timeAgo: "1 week ago",
+    isLiked: false,
+    hasUserCommented: true
   }
 ];
 
