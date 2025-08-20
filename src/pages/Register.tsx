@@ -369,7 +369,7 @@ const Register = () => {
             </div>
 
             <Button type="submit" className="w-full">
-              Create Account
+              Submit Application
             </Button>
           </form>
 
