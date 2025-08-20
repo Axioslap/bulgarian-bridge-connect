@@ -52,7 +52,7 @@ const CTASection = () => {
               Join over 500 professionals who are already building the future of US-Bulgaria business relations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-              <Link to="/join-us" className="w-full sm:w-auto">
+              <Link to="/register" className="w-full sm:w-auto">
                 <Button 
                   size={isMobile ? "default" : "lg"} 
                   className={`bg-white text-blue-800 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 font-semibold group w-full sm:w-auto touch-manipulation ${

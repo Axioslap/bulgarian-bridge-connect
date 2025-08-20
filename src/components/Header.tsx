@@ -88,7 +88,7 @@ const Header = () => {
           Log in
         </Button>
       </Link>
-      <Link to="/join-us">
+      <Link to="/register">
         <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-medium">
           Join Us
         </Button>
@@ -134,7 +134,7 @@ const Header = () => {
               Log in
             </Button>
           </Link>
-          <Link to="/join-us" onClick={() => setMobileMenuOpen(false)}>
+          <Link to="/register" onClick={() => setMobileMenuOpen(false)}>
             <Button size="sm" className="w-full justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium">
               Join Us
             </Button>

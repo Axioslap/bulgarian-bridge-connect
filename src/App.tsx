@@ -11,9 +11,6 @@ import Events from "./pages/Events";
 import News from "./pages/News";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import JoinUs from "./pages/JoinUs";
-import RequestInvitation from "./pages/RequestInvitation";
-import InviteMember from "./pages/InviteMember";
 import NotFound from "./pages/NotFound";
 import MemberDashboard from "./pages/MemberDashboard";
 import Partners from "./pages/Partners";
@@ -42,13 +39,6 @@ const App = () => (
           <Route path="/news" element={<News />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/join-us" element={<JoinUs />} />
-          <Route path="/request-invitation" element={<RequestInvitation />} />
-          <Route path="/invite-member" element={
-            <ProtectedRoute>
-              <InviteMember />
-            </ProtectedRoute>
-          } />
           <Route path="/member" element={
             <ProtectedRoute>
               <MemberDashboard />

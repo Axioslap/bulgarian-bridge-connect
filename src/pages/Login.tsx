@@ -128,8 +128,8 @@ const Login = () => {
           <CardFooter className="flex flex-col space-y-4">
             <div className="text-sm text-center text-gray-600">
               Don't have an account?{" "}
-              <Link to="/join-us" className="text-primary hover:underline">
-                Request invitation
+              <Link to="/register" className="text-primary hover:underline">
+                Register here
               </Link>
             </div>
             <div className="text-xs text-center text-gray-500">

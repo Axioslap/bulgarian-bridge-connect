@@ -97,7 +97,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/join-us" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group">
+                <Link to="/register" className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group">
                   <span className="w-2 h-2 bg-red-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                   Join Our Community
                 </Link>

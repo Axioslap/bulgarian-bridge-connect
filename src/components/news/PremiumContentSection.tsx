@@ -53,13 +53,13 @@ const PremiumContentSection = ({ articles, isLoggedIn, onReadMore }: PremiumCont
                 on the U.S.-Bulgaria business corridor. Our premium content is crafted by industry experts.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/join-us">
+                <Link to="/register">
                   <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
                     <Star className="w-5 h-5 mr-2" />
                     Become a Member
                   </Button>
                 </Link>
-                <Link to="/join-us">
+                <Link to="/register">
                   <Button variant="outline" size="lg" className="border-blue-400 text-blue-700 hover:bg-blue-50">
                     Learn More
                   </Button>
@@ -82,7 +82,7 @@ const PremiumContentSection = ({ articles, isLoggedIn, onReadMore }: PremiumCont
               <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
                 Join our community of business leaders and get unlimited access to all premium articles
               </p>
-              <Link to="/join-us">
+              <Link to="/register">
                 <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200">
                   <Star className="w-5 h-5 mr-2" />
                   Become a Member to See Full Articles

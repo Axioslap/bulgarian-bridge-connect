@@ -163,12 +163,12 @@ const News = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-3 mt-4">
-            <Link to="/join-us" onClick={() => setShowMembershipModal(false)}>
+            <Link to="/register" onClick={() => setShowMembershipModal(false)}>
               <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
                 Become a Member
               </Button>
             </Link>
-            <Link to="/join-us" onClick={() => setShowMembershipModal(false)}>
+            <Link to="/register" onClick={() => setShowMembershipModal(false)}>
               <Button variant="outline" className="w-full">
                 Support Our Community
               </Button>
