@@ -237,7 +237,7 @@ const Register = () => {
         <CardHeader>
           <CardTitle>Complete Your Registration</CardTitle>
           <CardDescription>
-            Please fill out all required fields to complete your registration
+            To protect our members and maintain our exceptional community standards, we carefully review each application to guarantee an outstanding experience for everyone joining our exclusive network.
           </CardDescription>
         </CardHeader>
         <CardContent>
