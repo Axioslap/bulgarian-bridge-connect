@@ -12,11 +12,9 @@ import Footer from "@/components/Footer";
 import SkillSelector from "@/components/SkillSelector";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, Users, Star, ArrowLeft, TrendingUp } from "lucide-react";
-
 const Register = () => {
   const [currentStep, setCurrentStep] = useState<'membership' | 'registration'>('membership');
   const [selectedMembership, setSelectedMembership] = useState<'free' | 'supporter' | 'annual' | null>(null);
-  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -31,64 +29,63 @@ const Register = () => {
     companyExpansionNeeds: "",
     agreeToTerms: false,
     agreeToNewsletter: false,
-    profileVisibleToPartners: false,
+    profileVisibleToPartners: false
   });
-  
   const [skills, setSkills] = useState<string[]>([]);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const {
+      name,
+      value
+    } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
-
   const handleCheckboxChange = (name: string) => (checked: boolean | string) => {
     setFormData(prev => ({
       ...prev,
       [name]: checked
     }));
   };
-
   const handleMembershipSelect = (type: 'free' | 'supporter' | 'annual') => {
     setSelectedMembership(type);
     setCurrentStep('registration');
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (formData.password !== formData.confirmPassword) {
       toast({
         title: "Error",
         description: "Passwords do not match",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-    
     if (!formData.agreeToTerms) {
       toast({
         title: "Error",
         description: "Please agree to the terms and conditions",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
 
     // Here you would typically send the data to your backend
-    console.log("Registration data:", { ...formData, skills, membershipType: selectedMembership });
-    
+    console.log("Registration data:", {
+      ...formData,
+      skills,
+      membershipType: selectedMembership
+    });
     toast({
       title: "Registration Successful!",
-      description: "Welcome to ABTC Bulgaria. You will receive a confirmation email shortly.",
+      description: "Welcome to ABTC Bulgaria. You will receive a confirmation email shortly."
     });
   };
-
-  const renderMembershipSelection = () => (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  const renderMembershipSelection = () => <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Choose Your Membership</h1>
         <p className="mt-2 text-gray-600">
@@ -218,27 +215,19 @@ const Register = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
-  );
-
-  const renderRegistrationForm = () => (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    </div>;
+  const renderRegistrationForm = () => <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mb-6">
-        <Button
-          variant="ghost"
-          onClick={() => setCurrentStep('membership')}
-          className="mb-4"
-        >
+        <Button variant="ghost" onClick={() => setCurrentStep('membership')} className="mb-4">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Membership Selection
         </Button>
         
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Registration Form</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Application Forum</h1>
           <p className="mt-2 text-gray-600">
             You selected: <span className="font-semibold text-primary">
-              {selectedMembership === 'free' ? 'Free Member' : 
-               selectedMembership === 'supporter' ? 'Community Supporter' : 'Annual Premium'}
+              {selectedMembership === 'free' ? 'Free Member' : selectedMembership === 'supporter' ? 'Community Supporter' : 'Annual Premium'}
             </span>
           </p>
         </div>
@@ -257,100 +246,44 @@ const Register = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="firstName">First Name *</Label>
-                <Input
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  required
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                />
+                <Input id="firstName" name="firstName" type="text" required value={formData.firstName} onChange={handleInputChange} />
               </div>
               <div>
                 <Label htmlFor="lastName">Last Name *</Label>
-                <Input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  required
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                />
+                <Input id="lastName" name="lastName" type="text" required value={formData.lastName} onChange={handleInputChange} />
               </div>
             </div>
 
             <div>
               <Label htmlFor="email">Email Address *</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={handleInputChange}
-              />
+              <Input id="email" name="email" type="email" required value={formData.email} onChange={handleInputChange} />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="password">Password *</Label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  value={formData.password}
-                  onChange={handleInputChange}
-                />
+                <Input id="password" name="password" type="password" required value={formData.password} onChange={handleInputChange} />
               </div>
               <div>
                 <Label htmlFor="confirmPassword">Confirm Password *</Label>
-                <Input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  required
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                />
+                <Input id="confirmPassword" name="confirmPassword" type="password" required value={formData.confirmPassword} onChange={handleInputChange} />
               </div>
             </div>
 
             {/* Professional Information */}
             <div>
               <Label htmlFor="usEducation">U.S. Education Background</Label>
-              <Input
-                id="usEducation"
-                name="usEducation"
-                type="text"
-                placeholder="e.g., MBA Harvard Business School, BS Computer Science MIT"
-                value={formData.usEducation}
-                onChange={handleInputChange}
-              />
+              <Input id="usEducation" name="usEducation" type="text" placeholder="e.g., MBA Harvard Business School, BS Computer Science MIT" value={formData.usEducation} onChange={handleInputChange} />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="currentRole">Current Role</Label>
-                <Input
-                  id="currentRole"
-                  name="currentRole"
-                  type="text"
-                  placeholder="e.g., Software Engineer"
-                  value={formData.currentRole}
-                  onChange={handleInputChange}
-                />
+                <Input id="currentRole" name="currentRole" type="text" placeholder="e.g., Software Engineer" value={formData.currentRole} onChange={handleInputChange} />
               </div>
               <div>
                 <Label htmlFor="company">Company/Organization</Label>
-                <Input
-                  id="company"
-                  name="company"
-                  type="text"
-                  placeholder="e.g., Tech Company Inc."
-                  value={formData.company}
-                  onChange={handleInputChange}
-                />
+                <Input id="company" name="company" type="text" placeholder="e.g., Tech Company Inc." value={formData.company} onChange={handleInputChange} />
               </div>
             </div>
 
@@ -358,11 +291,7 @@ const Register = () => {
             <div>
               <Label>Skills & Expertise</Label>
               <div className="mt-2">
-                <SkillSelector
-                  skills={skills}
-                  onSkillsChange={setSkills}
-                  placeholder="Add your skills and areas of expertise..."
-                />
+                <SkillSelector skills={skills} onSkillsChange={setSkills} placeholder="Add your skills and areas of expertise..." />
               </div>
             </div>
 
@@ -372,11 +301,10 @@ const Register = () => {
               
               <div>
                 <Label htmlFor="businessInterest">Business Interest</Label>
-                <RadioGroup
-                  value={formData.businessInterest}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, businessInterest: value }))}
-                  className="mt-3"
-                >
+                <RadioGroup value={formData.businessInterest} onValueChange={value => setFormData(prev => ({
+                ...prev,
+                businessInterest: value
+              }))} className="mt-3">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="expand-existing" id="expand-existing" />
                     <Label htmlFor="expand-existing">I have a company and want to expand</Label>
@@ -403,51 +331,22 @@ const Register = () => {
                   {formData.businessInterest === "join-company" && "What type of company are you looking to join?"}
                   {(formData.businessInterest === "other" || !formData.businessInterest) && "Please describe your business interests and needs"}
                 </Label>
-                <Textarea
-                  id="companyExpansionNeeds"
-                  name="companyExpansionNeeds"
-                  rows={4}
-                  placeholder={
-                    formData.businessInterest === "expand-existing" 
-                      ? "e.g., funding, partnerships, talent acquisition, market entry, technology solutions..."
-                      : formData.businessInterest === "start-company"
-                      ? "e.g., co-founders, funding, mentorship, business plan development, market research..."
-                      : formData.businessInterest === "join-company"
-                      ? "e.g., tech startup, consulting firm, fintech company, specific role preferences..."
-                      : "Tell us about your business goals, what you're looking for, or how you'd like to contribute..."
-                  }
-                  value={formData.companyExpansionNeeds}
-                  onChange={handleInputChange}
-                />
+                <Textarea id="companyExpansionNeeds" name="companyExpansionNeeds" rows={4} placeholder={formData.businessInterest === "expand-existing" ? "e.g., funding, partnerships, talent acquisition, market entry, technology solutions..." : formData.businessInterest === "start-company" ? "e.g., co-founders, funding, mentorship, business plan development, market research..." : formData.businessInterest === "join-company" ? "e.g., tech startup, consulting firm, fintech company, specific role preferences..." : "Tell us about your business goals, what you're looking for, or how you'd like to contribute..."} value={formData.companyExpansionNeeds} onChange={handleInputChange} />
               </div>
             </div>
 
             <div>
               <Label htmlFor="bio">Brief Bio</Label>
-              <Textarea
-                id="bio"
-                name="bio"
-                rows={4}
-                placeholder="Tell us about yourself, your interests, and what you hope to gain from the ABTC Bulgaria community..."
-                value={formData.bio}
-                onChange={handleInputChange}
-              />
+              <Textarea id="bio" name="bio" rows={4} placeholder="Tell us about yourself, your interests, and what you hope to gain from the ABTC Bulgaria community..." value={formData.bio} onChange={handleInputChange} />
             </div>
 
 
             {/* Terms and Conditions */}
             <div className="space-y-4 border-t pt-6">
               <div className="flex items-start space-x-3">
-                <Checkbox
-                  id="terms"
-                  checked={formData.agreeToTerms}
-                  onCheckedChange={handleCheckboxChange("agreeToTerms")}
-                />
+                <Checkbox id="terms" checked={formData.agreeToTerms} onCheckedChange={handleCheckboxChange("agreeToTerms")} />
                 <div className="grid gap-1.5 leading-none">
-                  <Label
-                    htmlFor="terms"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
+                  <Label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     I agree to the Terms and Conditions *
                   </Label>
                   <p className="text-xs text-muted-foreground">
@@ -457,16 +356,9 @@ const Register = () => {
               </div>
 
               <div className="flex items-start space-x-3">
-                <Checkbox
-                  id="newsletter"
-                  checked={formData.agreeToNewsletter}
-                  onCheckedChange={handleCheckboxChange("agreeToNewsletter")}
-                />
+                <Checkbox id="newsletter" checked={formData.agreeToNewsletter} onCheckedChange={handleCheckboxChange("agreeToNewsletter")} />
                 <div className="grid gap-1.5 leading-none">
-                  <Label
-                    htmlFor="newsletter"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
+                  <Label htmlFor="newsletter" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Subscribe to newsletter and updates
                   </Label>
                   <p className="text-xs text-muted-foreground">
@@ -491,11 +383,8 @@ const Register = () => {
           </div>
         </CardContent>
       </Card>
-    </div>
-  );
-
-  return (
-    <div className="flex flex-col min-h-screen">
+    </div>;
+  return <div className="flex flex-col min-h-screen">
       <Header />
       
       <div className="flex-1 bg-gray-50 py-12">
@@ -503,8 +392,6 @@ const Register = () => {
       </div>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Register;
